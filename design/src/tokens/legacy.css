@@ -1,0 +1,8 @@
+/* Aliases from the first token draft (2026-10-23) to the generated roles, so earlier pieces keep working. New code uses the
+   generated roles directly (see STYLE.md). */
+:root {
+  --paper: var(--surface-ground); --paper-shade: var(--surface-sunken); --sky: var(--blicky); --sky-deep: var(--sky-500);
+  --brine: var(--pickle-stripe); --spark: var(--attention); --riso-blue: var(--sky-800); --riso-green: var(--moss-600);
+  --glass-dark: var(--sky-900);
+  --shadow-contact: 0 1px 1px rgba(18,18,18,.18); --shadow-near: 0 6px 14px -6px rgba(18,18,18,.28); --shadow-far: 0 26px 48px -26px rgba(20,28,32,.4);
+}

@@ -1,0 +1,3 @@
+html, body { background: var(--silver-200); -webkit-font-smoothing: antialiased; }
+@media print { .no-print { display: none !important; } }
+@page { size: 1920px 1080px; margin: 0; }

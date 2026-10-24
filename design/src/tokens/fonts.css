@@ -1,0 +1,7 @@
+/* Geist Pixel (Vercel × basement.studio, SIL OFL 1.1, see fonts/GeistPixel-OFL.txt). s09: the machine's voice.
+   Square is the pixel face (counts, labels); Circle is the dot-matrix print (s11). */
+@font-face { font-family: 'Geist Pixel Square'; src: url('./fonts/GeistPixel-Square.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Geist Pixel Circle'; src: url('./fonts/GeistPixel-Circle.woff2') format('woff2'); font-display: swap; }
+/* Fairfax HD (Kreative Software, SIL OFL 1.1, see fonts/FairfaxHD-OFL.txt), from github.com/kreativekorp/open-relay,
+   the no-CJK build. His secondary face (2026-10-24: "the HD Fox one for the secondary"). */
+@font-face { font-family: 'Fairfax HD'; src: url('./fonts/FairfaxHD.woff2') format('woff2'); font-display: swap; }

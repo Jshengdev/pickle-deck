@@ -1,0 +1,31 @@
+{
+  "name": "pickle-deck",
+  "private": true,
+  "type": "module",
+  "description": "pickje's final presentation, built on the pickje brand system (tokens, materials, cast, kit) with the brand book and the materials lab.",
+  "scripts": {
+    "dev": "vite --port 5320 --host 127.0.0.1",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit -p .",
+    "tokens": "node design/tools/tokens.mjs",
+    "pdf": "node deck/tools/pdf.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist-mono": "^5.3.0",
+    "@gsap/react": "^2.1.2",
+    "dialkit": "^2.0.2",
+    "gsap": "^3.15.0",
+    "motion": "^14.6.0",
+    "pretendard": "^1.3.9",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "playwright-core": "^1.64.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  }
+}
