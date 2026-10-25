@@ -38,7 +38,8 @@ hack to stay on top of it all. *(press)* Mia's ambition is being held back by to
 ## Meet pickje (slides 9–14)
 
 **9 ·** > "Instead of a tool that does more for you, we built one that does it with you."
-**10 ·** > "Introducing pickje. *(press)* A computer-use AI collaborator that works with you."
+**10 ·** > "Introducing pickje. *(press)* A computer-use AI collaborator that works with you on your own screen and manages your
+> context, so you can turn messy projects and ambitious thoughts into the next actionable step."
 **11 · Meet Pickle.** > "Meet Pickle. *(press)* Your context brain. *(press)* It keeps track of every project: the north star, the last stop,
 > and the next step. *(press)* Every project you start is a tab." *(his final notepad, live; the desk lamp tab opens its page)*
 - His words, lightly cleaned. The pad's text is the staged demo projects (pickje `app/recall/staged.ts`, synthetic).

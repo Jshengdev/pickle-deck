@@ -10,7 +10,8 @@ import { Show } from '../kit/step'
     then under the bottom of that say it's a computer use a collaborator that works with you". So the giant line is
     "Introducing pickje." and the bottom line is his, lightly cleaned. The tagline ("pickje sees what you mean.", his S2 pick)
     is off this slide since then. */
-const LINE = 'A computer-use AI collaborator that works with you.'
+// his ask 2026-10-25 ~7 AM: "restore the full descitoponi of hte ai collaborat … i want the full descritpion": the 4:38 AM line
+const LINE = 'A computer-use AI collaborator that works with you on your own screen and manages your context, so you can turn messy projects and ambitious thoughts into the next actionable step.'
 
 export function Title() {
   return (
