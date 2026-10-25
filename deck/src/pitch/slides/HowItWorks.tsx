@@ -3,16 +3,18 @@ import { tokens } from '@design/tokens'
 import { Page } from '../../brand/frame'
 import { Show, useStep } from '../kit/step'
 
-/** 8 · How it works: a felt tray holding the 5 pieces. All 5 are there on arrival; each press lifts one and the rest
-    fade back, so you talk through them one at a time. Steps = PIECES.length + 1.
-    Every line is a fact from the outline with its ID (docs/SPEC.md, docs/STATUS.md). The title is DRAFT. */
+/** How it's built: a felt tray holding the parts, each sponsor doing one job. All there on arrival; each press lifts one
+    and the rest fade back. Steps = PIECES.length + 1. Updated 2026-10-25 from the pickje README (docs/PRODUCT.md:47-107):
+    every line and proof is from there. Which ones to name is his call (outline, "Calls that are his" 4). Title is DRAFT. */
 const K = tokens.component.deck.scale
 const PIECES = [
-  { name: 'Shell', line: 'Native Swift, like open-source Clicky', proof: 'S8, F2' },
-  { name: 'Eyes', line: 'screenpipe, local: nothing leaves the Mac', proof: 'M4' },
-  { name: 'Brain', line: 'Claude decides now or earlier', proof: 'C6' },
-  { name: 'Voice', line: 'Cartesia', proof: 'Q4' },
-  { name: 'Sessions', line: 'cmux, with your words kept per repo', proof: 'C10, C15' },
+  { name: 'Claude', line: 'Both brains, and the teacher', proof: 'Opus writes every turn and mark' },
+  { name: 'Cartesia', line: 'The voice and the ears', proof: 'quiet 499 ms after you talk' },
+  { name: 'Moss', line: 'Routes each turn; holds the live context', proof: '16/16 routed right' },
+  { name: 'Convex', line: 'Pickle’s record, live', proof: '6 ms to the card' },
+  { name: 'Elastic', line: 'Brings back what you did days ago', proof: '15/18, staged data' },
+  { name: 'Factory', line: 'Droid does the project’s work', proof: 'says it back before it writes' },
+  { name: 'Mana', line: 'The idea log a judge can open', proof: '36 staged entries' },
 ]
 export const HOW_STEPS = PIECES.length + 1
 const W = (1728 - 2 * 24 * K - (PIECES.length - 1) * 16 * K) / PIECES.length
@@ -20,14 +22,14 @@ const W = (1728 - 2 * 24 * K - (PIECES.length - 1) * 16 * K) / PIECES.length
 export function HowItWorks() {
   const step = useStep()
   return (
-    <Page title="5 pieces make it work">
+    <Page title="7 parts, each doing one job">
       <Tray width={1728} height={540} scale={K} layout={{ alignItems: 'center' }}>
         {PIECES.map((p, i) => (
           <Show key={p.name} dim={step > 0 && step !== i + 1}>
             <Card width={W} height={440} scale={K} lifted={step === i + 1}>
-              <div style={{ font: 'var(--t-head-2)' }}>{p.name}</div>
-              <div style={{ font: 'var(--t-second-3)', color: 'var(--text-secondary)' }}>{p.line}</div>
-              <div style={{ marginTop: 'auto', font: 'var(--t-pixel-4)', color: 'var(--text-muted)' }}>{p.proof}</div>
+              <div style={{ font: '700 30px var(--font-head)', letterSpacing: '-0.02em' }}>{p.name}</div>
+              <div style={{ font: '400 21px/1.35 var(--font-second)', color: 'var(--text-secondary)' }}>{p.line}</div>
+              <div style={{ marginTop: 'auto', font: '400 16px/1.3 var(--font-pixel)', color: 'var(--text-muted)' }}>{p.proof}</div>
             </Card>
           </Show>
         ))}

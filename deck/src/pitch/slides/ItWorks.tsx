@@ -2,14 +2,18 @@ import { Stat } from '@design/ui/kit'
 import { Page } from '../../brand/frame'
 import { Show } from '../kit/step'
 
-/** 9 · It works, the brand book's Numbers template: 3 numbers, one per press. 3 steps.
-    All re-run by the lead (docs/STATUS.md). Which 3 is his call (outline, "Calls that are his" 3); the others:
-    earlier moment in the top 10 for 5/5 (C5), boxes 9/10 at IoU ≥ 0.9 (C7), capture 99.5% (C2). Title is DRAFT. */
+/** It works, the brand book's Numbers template: 3 numbers, one per press. 3 steps.
+    Updated 2026-10-25 to the first full live exam (the pickje README, docs/PRODUCT.md:27-29, 50, 70): a live exam drove the
+    real app on the real screen and a strict Opus judge graded it against the demo's rubric. Which 3 is his call; the
+    caveat stays on the slide: the whole rubric was 52% on that run, which had demo examples in its prompts, so it isn't a
+    clean number (pass bar: 80% over two runs). Others he could pick: 6 ms to the live card (Convex, :79), 15/18 found on a
+    staged question set (Elastic, :87), 499 ms to go quiet when you talk (Cartesia, :61). Title is DRAFT. */
 const NUMBERS = [
-  { value: '42ms', caption: 'The newest frame. STATUS C4.' },
-  { value: '9/9', caption: 'Now or earlier, right. C6.' },
-  { value: '10/10', caption: 'Shakes caught, 0 false wakes. C1.' },
+  { value: '0', caption: 'answers given away early: 16/16 reveal criteria.' },
+  { value: '16/16', caption: 'turns routed to the right project.' },
+  { value: '20/21', caption: 'chemistry criteria on the first live exam.' },
 ]
+const CAVEAT = 'First full live exam, graded by a strict Opus judge against the demo’s rubric. The whole rubric was 52% on that run, which had demo examples in its prompts, so it isn’t a clean number. The pass bar is 80% over two runs.'
 export const IT_WORKS_STEPS = NUMBERS.length
 
 export function ItWorks() {
@@ -20,6 +24,7 @@ export function ItWorks() {
           <Show key={n.value} from={i}><Stat value={n.value} caption={n.caption} size="calc(var(--deck-giant) * 1.35)" /></Show>
         ))}
       </div>
+      <Show from={2}><p style={{ margin: '56px 0 0', maxWidth: 1300, font: 'var(--t-pixel-4)', color: 'var(--text-muted)' }}>{CAVEAT}</p></Show>
     </Page>
   )
 }

@@ -13,6 +13,12 @@ The template shelf: http://127.0.0.1:5320/?deck=templates
 
 The URL tracks where you are: `#/5/2` is slide 5, step 2. Reload and you land on the same step.
 
+## The story (draft 2, 2026-10-25): read `deck/pitch/SCRIPT.md` first
+The spoken script, slide by slide (about 3 minutes), with every fact's source and what's still his call. The order:
+title → the problem in 3 slides (Mia's story, It's not just Mia, There's always a tool for more) → meet the cast →
+the demo as 3 looping clips (the first minute, any screen, talk·mark·speak·save) → how it's built → it works → close,
+then an appendix (shake to wake, the 4 stages, your north star, built for the real world).
+
 ## Files
 ```
 pitch/
@@ -25,6 +31,11 @@ pitch/
                      the rest of the pitch; each file's top comment says what each press does and where its words come from
     Problem.tsx      out of the order for now (the story covers it)
     _Template.tsx    copy this to start a slide
+    NotJustMia, ToolsForMore   the problem's 2nd and 3rd slides (data with sources, his line; "a tool for more")
+    ClipOnboarding, ClipScenarios, ClipLoop   the demo clips: each a looping GSAP scene with a slow camera
+  clip/kit.tsx       the clips' parts: the polished Screen (a 1512 × 982 desktop inside), Bubble, Words, Listening,
+                     Pin, StampMark, Ring (Blicky's drawn ring), Worksheet + IrFigure, FusionWindow, FigmaWindow,
+                     ProjectTabs, useLoop (loops; in ?print it stops on one frame)
 ```
 
 ## Templates (`templates/`, open `?deck=templates`)

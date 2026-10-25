@@ -27,6 +27,9 @@ npm run dev                 # http://127.0.0.1:5320
 
 ## 2. The story and the facts
 
+**Start with `deck/pitch/SCRIPT.md`** (draft 2, 2026-10-25): the spoken script for every slide, with sources, built from
+his brief. The draft outline below is the earlier version.
+
 - **The draft story:** `deck/pitch/OUTLINE-draft1.md`. Eleven slides: title, problem, meet Pickle and Blicky, shake to wake, the magic moment, the demo, your north star, how it works, it works, why it matters, close. Every line in it is one of three things: his words, a fact with its proof, or a draft clearly marked. Keep it that way.
 - **What pickje is, in full:** `docs/PRODUCT.md` (the product README).
   - Pickle is the context brain: it knows which project this is, keeps each project's memory, and speaks first.
