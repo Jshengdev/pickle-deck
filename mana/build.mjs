@@ -40,15 +40,16 @@ const scrubStr = (s, where) => {
   if (t.length > 4000) { problems.push(`${where}: ${t.length} chars, cut to 4000`); t = t.slice(0, 3990) + '…' }
   return t
 }
+const cleanKey = (k) => String(k).replace(/[.#$\[\]\/]/g, '_') || '_'
 const scrub = (v, where = '') => Array.isArray(v) ? v.map((x, i) => scrub(x, `${where}[${i}]`))
-  : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, scrub(x, `${where}.${k}`)]))
+  : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [cleanKey(k), scrub(x, `${where}.${k}`)]))
   : typeof v === 'string' ? scrubStr(v, where) : v
 const safeId = (s, i) => { const t = String(s || '').toLowerCase().replace(/[^a-z0-9_~-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 100); return SAFE.test(t) ? t : `item-${i}` }
 const imgOk = (p) => typeof p === 'string' && (p.startsWith('img/') ? imgFiles.has(p.slice(4)) : /^https:\/\//.test(p))
 
 // ── entries from every lane ──
 const allEntries = []
-for (const [name, d] of Object.entries(data)) for (const e of d.entries || []) allEntries.push({ ...e, lane: e.lane || name })
+for (const [name, d] of Object.entries(data)) if (!['specs', 'evalsets'].includes(name)) for (const e of d.entries || []) allEntries.push({ ...e, lane: e.lane || name })
 const seen = new Set(), entries = {}
 allEntries.forEach((e, i) => {
   let id = safeId(e.id, i); while (seen.has(id)) id = `${id}-2`; seen.add(id)
@@ -90,13 +91,13 @@ const style = scrub({
 
 // ── open threads: the unfinished ideas (his open calls, from the session) ──
 const threads = scrub({
-  t1: { title: 'Mia: whose sister?', body: 'Slide 2 reads "Enlie’s sister"; in the 5:46 AM run-through he said "she’s my sister".', lane: 'deck' },
-  t2: { title: 'Teach: Jev or Anthropic?', body: 'docs/VERBS.md: the forge quote says Teach runs on Jev; the sponsor column says Anthropic. The deck follows the column.', lane: 'sponsors' },
-  t3: { title: 'Hand a spoken request to a project’s Claude Code', body: '`cli.ts handover` sends words verbatim to a project’s Claude Code session; no voice path calls it yet (a spoken hand-over goes to Droid, or Claude Code when Droid isn’t set up).', lane: 'product' },
-  t4: { title: 'The 80% pass bar', body: 'Latest live exam: 62% over two passes, 1 reveal slip. Not passed yet. Visual (where Blicky draws) is the weak part.', lane: 'evals' },
-  t5: { title: 'The logo', body: 'Six directions explored; none picked yet.', lane: 'design' },
-  t6: { title: 'The SwiftUI port of the two notepads', body: 'Planned in docs/frontend-plan (HANDOFF-PROMPT.md): port to SwiftUI, a crop per last stop, Blicky’s sketches into the pad when the screen runs out of room, tokens.mjs as the one source.', lane: 'design' },
-  t7: { title: 'The mic in the live exam', body: 'In the latest run the mic heard 0 of 36 steps; the words were handed in through the test hook.', lane: 'evals' },
+  t1: { head: 'Mia: whose sister is she', note: 'Slide 2 says Enlie’s sister. When I read it out at 5:46 I said my sister. I need to pick one before the video.', lane: 'deck' },
+  t2: { head: 'Teach runs on Jev or on Anthropic', note: 'VERBS.md disagrees with itself: the forge line puts Teach on Jev, the sponsor column on Anthropic. The deck follows the column for now.', lane: 'sponsors' },
+  t3: { head: 'Say it out loud, land it in the project’s Claude Code', note: 'cli.ts handover already sends my words word for word into a project’s Claude Code session. No voice path calls it yet; a spoken hand-over still goes to Droid, or Claude Code when Droid isn’t set up.', lane: 'product' },
+  t4: { head: 'The 80% bar', note: 'Latest live exam is 62% over two passes with one reveal slip. Not passed. Where Blicky draws is the weak part.', lane: 'evals' },
+  t5: { head: 'The logo', note: 'Six directions explored. None picked.', lane: 'design' },
+  t6: { head: 'The two notepads, in SwiftUI', note: 'The plan is in docs/frontend-plan: port them to SwiftUI, keep a crop per last stop, let Blicky’s sketches fall into the pad when the screen runs out of room, tokens.mjs as the one source.', lane: 'design' },
+  t7: { head: 'The mic in the live exam', note: 'In the latest run the mic heard 0 of 36 steps, so the words went in through the test hook. I want a run where it actually hears me.', lane: 'evals' },
 }, 'threads')
 
 // ── about ──
@@ -105,14 +106,14 @@ const commits = count(`git -C ${HOME}/code/pickje log --oneline | wc -l`)
 const specs = count(`ls ${HOME}/code/pickje/docs/spec/*.md | wc -l`)
 const nImgs = new Set([...Object.values(entries).flatMap((e) => e.images || []), ...designImgs]).size
 const about = scrub({
-  lede: 'How pickje was made, written down as we went: what we asked, tried, measured, kept, dropped, and left unfinished.',
+  lede: 'How pickje got made, written down as I went: what I asked, what we tried, what we measured, what I kept, dropped, and left unfinished.',
   paragraphs: [
-    'pickje is a computer-use AI collaborator for your own screen: Pickle keeps your context, Blicky draws it out with you, one step at a time. It was built at Cal Hacks 13.0, Oct 23–25, 2026, from an empty repo after Friday 6 PM.',
-    'This notebook is the process, not the pitch. Every page is one step: a question, what was tried, what was measured, what was decided, and his words verbatim (typos kept) with where they came from. Our notes are plain prose. Numbers name their source and keep their caveat.',
-    'It lives in Mana on purpose: the whole notebook is data in this space (entries, sponsor tracks, test runs, the style book), so Mana’s own agent can read it as memory and answer questions about why things went the way they did.',
-    'What is not here: nothing from his screen, his screen recordings or anyone else’s words. Pictures are our own renders: the brand book, the notepads, the deck, the app’s own onboarding frames and marks.',
+    'pickje is a computer-use AI collaborator that lives on your own screen. Pickle keeps your context; Blicky draws it out with you, one step at a time. We built it at Cal Hacks 13.0, Oct 23–25, 2026, from an empty repo after Friday 6 PM, after a week of thinking about it.',
+    'This notebook is the process, not the pitch. Every page is one step: a question, a try, a result, a decision. The marks say how it turned out. Every page links to what it came from and what it led to, so you can walk the reasoning. Numbers name their source and keep their caveat.',
+    'It lives in Mana on purpose. The whole thing is data in this space (pages, specs, test sets, sponsor math, the style book), so Mana’s own agent can read it as memory and answer why things went the way they did.',
+    'Nothing here comes from my screen, my recordings, or anyone else’s words. The pictures are our own renders: the brand book, the notepads, the deck, the app’s own frames, and my two drawings.',
   ],
-  ask: ['Why did we route with Moss before Claude, and what did it cost?', 'What did we try for the ears before Cartesia, and why did we drop it?', 'Which live-exam failures changed the product, and how?', 'Show me every decision he made by clicking, in order.', 'What is still unfinished?'],
+  ask: ['Why did we route with Moss before Claude, and what did it cost?', 'Walk me through the eval set for the chemistry demo: the cases, the grader, the runs.', 'What did we try for the ears before Cartesia, and why did we drop it?', 'Which live-exam failures changed the product, and how?', 'Show me every decision he made by clicking, in order.', 'What is still unfinished?'],
   counts: [
     { label: 'pages of notes', value: String(Object.keys(entries).length), source: 'this notebook' },
     { label: 'pictures', value: String(nImgs), source: 'mana/img' },
@@ -136,10 +137,15 @@ const images = {}
   images[`i${String(i).padStart(3, '0')}`] = { path: p, caption: c ? c.caption : f.replace(/\.(png|jpe?g|webp)$/i, '').replace(/^[a-z]+-/, '').replace(/[-_]+/g, ' '), at: c ? c.at : '' }
 })
 // the pages to read first (each lane's strongest, by their researchers), in story order; missing ids are skipped
-const PIN_IDS = ['seed-mission', 'heyclicky-difference', 'blind-round-1', 'naming-pickje-official', 'design-cookbook-rejected', 'p-variability-harness', 'p-xray-built-then-dropped', 'p-was-it-faked', 'moss-route-measured', 'elastic-recall-measured', 'tradeoff-ledger', 'design-final-two', 'design-21-signs', 'deck-no-self-learning']
+const PIN_IDS = ['seed-mission', 'heyclicky-difference', 'blind-angles-round-1', 'naming-pickje-official', 'design-cookbook-rejected', 'p-variability-harness', 'p-xray-built-then-dropped', 'p-was-it-faked', 'moss-route-measured', 'elastic-recall-measured', 'tradeoff-ledger', 'design-final-two', 'design-21-signs', 'deck-no-self-learning']
 const pins = {}
 PIN_IDS.filter((id) => entries[id]).forEach((id, i) => { pins[`p${String(i).padStart(2, '0')}`] = id })
-const children = { about, entries, tracks, runs, checks, style, threads, images, pins }
+// specs and eval sets
+const specCards = {}
+;(data.specs?.specs || []).forEach((sp, i) => { specCards[safeId(sp.id, i)] = scrub(sp, `specs.${sp.id}`) })
+const es = data.evalsets || {}
+const evalsets = scrub({ method: es.method || {}, sets: Object.fromEntries((es.sets || []).map((st, i) => [safeId(st.id, i), st])) }, 'evalsets')
+const children = { about, entries, tracks, runs, checks, style, threads, images, pins, specs: specCards, evalsets }
 const digest = createHash('sha256').update(JSON.stringify({ appCode, children })).digest('hex')
 const updatesFor = (now, isNew) => ({
   code: appCode,
@@ -155,7 +161,7 @@ if (cmd === 'preview') {
   writeFileSync(join(OUT, 'payload.json'), JSON.stringify({ path: ROOT, updates: updatesFor('<now>', true), children }, null, 1))
   writeFileSync(join(OUT, 'digest.txt'), digest + '\n')
   const kb = Math.round(Buffer.byteLength(JSON.stringify(children)) / 1024)
-  console.log(JSON.stringify({ path: ROOT, lanes: Object.keys(data), entries: Object.keys(entries).length, tracks: Object.keys(tracks).length, runs: Object.keys(runs).length, checks: Object.keys(checks).length, images: nImgs, kb, appKb: Math.round(appCode.length / 1024), problems: [...new Set(problems)].slice(0, 40), digest }, null, 1))
+  console.log(JSON.stringify({ path: ROOT, lanes: Object.keys(data), entries: Object.keys(entries).length, specs: Object.keys(specCards).length, sets: Object.keys(evalsets.sets).length, cases: Object.values(evalsets.sets).reduce((n, x) => n + (x.cases || []).length, 0), tracks: Object.keys(tracks).length, runs: Object.keys(runs).length, checks: Object.keys(checks).length, images: nImgs, kb, appKb: Math.round(appCode.length / 1024), problems: [...new Set(problems)].slice(0, 40), digest }, null, 1))
   process.exit(0)
 }
 
@@ -192,7 +198,7 @@ if (cmd === 'status') {
     await call('POST /api/external/update', { path: ROOT, updates: updatesFor(now, !meta) })
     // the children, in batches so no one request is huge
     for (const [k, v] of Object.entries(children)) {
-      if (v && typeof v === 'object' && !Array.isArray(v) && ['entries', 'tracks', 'runs', 'checks'].includes(k)) {
+      if (v && typeof v === 'object' && !Array.isArray(v) && ['entries', 'tracks', 'runs', 'checks', 'specs'].includes(k)) {
         const ks = Object.keys(v)
         await call('POST /api/external/delete', { path: `${ROOT}/${k}` }).catch(() => null)   // start clean: stale pages go
         for (let i = 0; i < ks.length; i += 60) {
