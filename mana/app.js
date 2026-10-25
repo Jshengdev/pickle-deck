@@ -530,6 +530,10 @@ function UserDiv(props) {
       arr(a.ask).length ? h('div', { style: { marginTop: 18 } }, Hand('ask Mana about it', 22, T.blicky),
         h('div', { style: { font: '14px/1.5 ' + T.head, color: T.mute, margin: '4px 0 6px' } }, 'All of this is data in this Mana space, so Mana’s own agent can read it. Try:'),
         arr(a.ask).map(function (x, i) { return Hand('→ ' + noq(x), 17, T.ink, { key: i, margin: '4px 0' }) })) : null,
+      arr(a.links).length ? h('div', { style: { marginTop: 18 } }, Hand('everything we made, linked', 22, T.pickle),
+        h('div', { style: { display: 'grid', gap: 6, marginTop: 6 } }, arr(a.links).map(function (l, i) {
+          return h('a', { key: i, href: l.url, target: '_blank', rel: 'noreferrer', style: { font: '600 15px ' + T.head, color: T.blicky, textDecoration: 'underline', textDecorationColor: T.dot } }, l.label + ' ↗', l.note ? h('span', { style: { font: '400 13px ' + T.head, color: T.mute, marginLeft: 8, textDecoration: 'none' } }, l.note) : null)
+        }))) : null,
       arr(a.counts).length ? Numbers(a.counts) : null,
       a.sources ? h('div', { style: { marginTop: 14 } }, Pix(a.sources)) : null)
   }

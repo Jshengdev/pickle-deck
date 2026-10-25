@@ -114,6 +114,14 @@ const about = scrub({
     'It lives in Mana on purpose. The whole thing is data in this space (pages, specs, test sets, sponsor math, the style book), so Mana’s own agent can read it as memory and answer why things went the way they did.',
     'Nothing here comes from my screen, my recordings, or anyone else’s words. The pictures are our own renders: the brand book, the notepads, the deck, the app’s own frames, and my two drawings.',
   ],
+  links: [
+    { label: 'The pitch deck and the design system', url: 'https://github.com/Jshengdev/pickle-deck', note: 'npm run dev, then /?deck=pitch' },
+    { label: 'The product: pickje', url: 'https://github.com/Jshengdev/pickje', note: 'the README follows the pitch' },
+    { label: 'Every sponsor, one page each, with its health check', url: 'https://github.com/Jshengdev/pickje/tree/master/docs/sponsors' },
+    { label: 'The eval sets, one case per line', url: 'https://github.com/Jshengdev/pickle-deck/tree/main/mana/evalsets' },
+    { label: 'Focus Thread, the next scenario', url: 'https://github.com/Jshengdev/pickje/blob/master/docs/research/focus-thread.md' },
+    { label: 'This notebook’s source', url: 'https://github.com/Jshengdev/pickle-deck/tree/main/mana' },
+  ],
   ask: ['Why did we route with Moss before Claude, and what did it cost?', 'Walk me through the eval set for the chemistry demo: the cases, the grader, the runs.', 'What did we try for the ears before Cartesia, and why did we drop it?', 'Which live-exam failures changed the product, and how?', 'Show me every decision he made by clicking, in order.', 'What is still unfinished?'],
   counts: [
     { label: 'pages of notes', value: String(Object.keys(entries).length), source: 'this notebook' },
