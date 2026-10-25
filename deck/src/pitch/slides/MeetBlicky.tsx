@@ -10,22 +10,29 @@ import after from '../assets/annotations/after.png'
 
 /** 12 · Meet Blicky. His words (2026-10-25, 4:38 AM, voice): "And then this is Blicky, and show its scratchpad of like how
     it's able to draw diagrams and do all these different things."
+    His run-through (2026-10-25, 5:20 AM, voice): "And then you meet Blicky. He is basically your draw executor. He basically
+    does the actions on your screen. He draws it out. He keeps every diagram in a scratch pad, so you can easily organize your
+    thoughts into whatever Pickle and Blicky."
     What each press shows:
       0  "Meet Blicky." and Blicky, drawn large (he bounces in when the slide arrives).
-      1  "He draws it out with you, right on your screen." A screen rises in and his marks draw across it, left to right:
-         the real marks the app drew (assets/annotations/after.png over before.png, from the app's marks gallery: rings,
-         curved arrows, the IHD panel, the labels, on an o-chem page). Blicky steps down beside it with his pencil.
-      2  "And keeps every diagram in his scratchpad." His scratchpad rises onto the screen (where it lives in the app), the
-         sticker lands, and the page is being written, the border running glass while it writes; when it's done the pad
-         shows the diagrams it kept (the pen starts out of sight when the slide arrives, so the page is along by now).
+      1  "He does the work on your screen." A screen rises in (an o-chem page, unmarked) and Blicky steps down beside it with
+         his pencil.
+      2  "He draws it out with you." His marks draw across the page, left to right: the real marks the app drew
+         (assets/annotations/after.png over before.png, from the app's marks gallery: rings, curved arrows, the IHD panel,
+         the labels).
+      3  "And keeps every diagram in his scratchpad, so your thoughts stay organized." His scratchpad rises onto the screen
+         (where it lives in the app), the sticker lands, and the page is being written, the border running glass while it
+         writes; when it's done the pad shows the diagrams it kept. The pen starts out of sight as the slide arrives (the
+         earliest it can), so three presses in the page is well along.
     The scratchpad is the final he signed off ("these two will be the final two examples"), set up as in
     deck/src/notepads/Notepads.tsx (FinalPad, who='blicky'); its data is copied from there below. What the scratchpad is
     for, his words (deck/pitch/SCRIPT.md): "The scratch pad is just meant to summarize ideas and save the diagrams that
     were drawn so if it gets too cluttered it can pull the diagram from the screen and save it in the scratch pad." */
-const TITLE = 'Meet Blicky.'                                     // his words: "And then this is Blicky"
+const TITLE = 'Meet Blicky.'                                     // his words (5:20 AM): "And then you meet Blicky"
 const LINES = [
-  'He draws it out with you, right on your screen.',             // DRAFT, from his "how it's able to draw diagrams"
-  'And keeps every diagram in his scratchpad.',                   // DRAFT, from his "show its scratchpad" and the SCRIPT.md quote above
+  'He does the work on your screen.',                              // his words, lightly cleaned: "He basically does the actions on your screen"
+  'He draws it out with you.',                                     // his words: "He draws it out" ("with you" is ours, DRAFT)
+  'And keeps every diagram in his scratchpad, so your thoughts stay organized.',   // his words, lightly cleaned: "He keeps every diagram in a scratch pad, so you can easily organize your thoughts"
 ]
 export const MEET_BLICKY_STEPS = 1 + LINES.length
 
@@ -59,16 +66,16 @@ const SCR = { x: 930, y: 176, w: 894 }
 const IMG_H = Math.round(SCR.w / 2.02), SCR_H = IMG_H + 34
 const PAD = { x: 1420, y: 236, w: 400, h: 760 }
 const BIG = 500                                          // Blicky's drawn height when he's alone on the slide
-const SIDE = { scale: 0.46, x: -690, y: -210 }           // and beside the screen (from step 1): smaller, at its left, pencil up to it
+const SIDE = { scale: 0.46, x: -690, y: -150 }           // and beside the screen (from step 1): smaller, at its left, pencil up to it
 
 export function MeetBlicky() {
   const step = useStep()
-  const screen = step >= 1, pad = step >= 2
-  // the pen starts when the slide arrives, out of sight, so by press 2 the page is well along (it writes a character every
-  // 40 ms, about 25 s for the page); the pad rises in on press 2 and the sticker lands on it
+  const screen = step >= 1, marks = step >= 2, pad = step >= 3
+  // the pen starts when the slide arrives, out of sight, so by press 3 the page is well along (it writes a character every
+  // 40 ms, about 25 s for the page); the pad rises in on press 3 and the sticker lands on it
   const [started, setStarted] = useState(PRINT)
   useEffect(() => { const t = window.setTimeout(() => setStarted(true), 300); return () => clearTimeout(t) }, [])
-  const [stuck, setStuck] = useState(PRINT || step >= 2)
+  const [stuck, setStuck] = useState(PRINT || step >= 3)
   useEffect(() => {
     if (!pad) { setStuck(false); return }
     const t = window.setTimeout(() => setStuck(true), PRINT ? 0 : 650)
@@ -90,15 +97,15 @@ export function MeetBlicky() {
         style={{ position: 'absolute', left: M, top: TOP, font: '700 var(--deck-giant)/1 var(--font-head)', letterSpacing: 'var(--tracking-giant)', whiteSpace: 'nowrap' }}>{TITLE}</motion.div>
       <Lines lines={LINES} from={1} size="var(--t-head-2)" gap={22} style={{ position: 'absolute', left: M, top: 372, width: span(5) + 40 }} />
 
-      {/* the screen, and his marks drawing across it */}
+      {/* the screen (press 1), and his marks drawing across it (press 2) */}
       <motion.div initial={false} animate={screen ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 60, scale: 0.97 }} transition={spring}
         style={{ position: 'absolute', left: SCR.x, top: SCR.y, width: SCR.w, height: SCR_H }}>
         <Win title="o-chem · ethanol + benzoyl chloride" w={SCR.w} h={SCR_H} style={{ left: 0, top: 0 }}>
           <div style={{ position: 'relative', height: IMG_H, overflow: 'hidden' }}>
             <img src={before} alt="" style={{ position: 'absolute', left: 0, top: 0, width: '100%', display: 'block' }} />
             <motion.img src={after} alt="Blicky's marks on the o-chem page: rings, curved arrows, the IHD panel and labels" initial={false}
-              animate={{ clipPath: screen ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)' }}
-              transition={PRINT || !screen ? { duration: 0 } : { duration: 1.8, ease: 'easeInOut', delay: 0.45 }}
+              animate={{ clipPath: marks ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)' }}
+              transition={PRINT || !marks ? { duration: 0.25 } : { duration: 1.8, ease: 'easeInOut', delay: 0.15 }}
               style={{ position: 'absolute', left: 0, top: 0, width: '100%', display: 'block' }} />
           </div>
         </Win>

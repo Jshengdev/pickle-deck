@@ -8,32 +8,33 @@ follow (`deck/src/pitch/slides/mia/`).
 **The script:** `deck/pitch/SCRIPT.md` · **the running order:** `deck/src/pitch/index.tsx` · **open it:** `npm run dev`,
 then http://127.0.0.1:5320/?deck=pitch (→ one sentence, ← back, ↓↑ skip a slide, G the grid).
 
-## The order (his walkthrough 2026-10-25, about 4:45 AM; verbatim in SCRIPT.md)
+## The order (his run-through 2026-10-25, 5:20 AM; verbatim at the end of SCRIPT.md)
 
-| # | Slide | File | Status |
-|---|---|---|---|
-| 1 | Mia (just her picture) | `slides/mia/` · `MiaPortrait` | built |
-| 2 | "This is Mia." → "More specifically, she's En's sister." | `slides/mia/` · `ThisIsMia` | built (spelling of En: his call) |
-| 3 | Ambitious, smart → her 3 projects as cards (club car in CAD, investing, video) → "one thing keeps stopping her" | `slides/mia/` · `SheIs` | built |
-| 4 | Too many interests, projects, things → "So nothing starts." | `slides/mia/` · `TooMany` | built |
-| 5 | AI for help → wall of text → screenshot → paste → another project piques her interest → ten sessions | `slides/mia/` · `AsksAI` | built |
-| 6 | "But she doesn't need ten. She just needs the one next step." | `slides/mia/` · `OneStep` | built |
-| 7 | It's not just Mia: 3 sourced numbers, AI tools built for switching, his line | `slides/NotJustMia.tsx` | built |
-| 8 | There's always a tool for more: the pile of releases → his quote | `slides/ToolsForMore.tsx` | agent |
-| 9 | Instead of a tool that does more, one that does it with you: the main use cases | `slides/WithYou.tsx` | agent |
-| 10 | pickje sees what you mean. + his bottom line | `slides/Title.tsx` | built |
-| 11 | Meet Pickle: the context brain, its notepad and tabs | `slides/MeetPickle.tsx` | agent |
-| 12 | Meet Blicky: the scratchpad and his marks | `slides/MeetBlicky.tsx` | agent |
-| 13 | Onboarding OB0 → OB5, a press each (your name; circle two points) | `slides/Onboarding.tsx` | agent |
-| 14 | The scenarios → his live demo | `slides/Scenarios.tsx` | agent |
-| 15 | Fifteen verbs, each sponsor lit in turn | `slides/Verbs.tsx` | built (agent) |
-| 16 | The full exam: run 1 → latest, categories, more numbers | `slides/Exam.tsx` | agent |
-| 17 | Before and after Blicky's marks | `slides/Annotations.tsx` | agent |
-| 18 | How we built it: the stack and the process | `slides/Stack.tsx` | agent |
-| 19 | Close: "Tonight, Mia started." | `slides/Close.tsx` | built (latest exam numbers) |
+| # | Slide | File |
+|---|---|---|
+| 1 | Mia (just her picture) | `slides/mia/` · `MiaPortrait` |
+| 2 | "This is Mia." → "More specifically, she's Enlie's sister." | `slides/mia/` · `ThisIsMia` |
+| 3 | Ambitious, smart → her 3 projects as cards → "one thing keeps stopping her" | `slides/mia/` · `SheIs` |
+| 4 | Too many interests, projects, things → "So nothing starts." | `slides/mia/` · `TooMany` |
+| 5 | It's not just Mia: "Mia has ADHD.", 3 sourced numbers, what switching costs | `slides/NotJustMia.tsx` |
+| 6 | You ask AI → wall of text → screenshot → paste → another project → ten | `slides/mia/` · `AsksAI` |
+| 7 | "But you don't need ten windows. You just need the one next step." | `slides/mia/` · `OneStep` |
+| 8 | There's always a tool for more → "Our ambitions are being held back…" | `slides/ToolsForMore.tsx` |
+| 9 | Built to do it with you: 4 UX decisions → "Introducing pickje." | `slides/WithYou.tsx` |
+| 10 | pickje sees what you mean. + his bottom line | `slides/Title.tsx` |
+| 11 | Meet Pickle: context brain, the notepad and its tabs | `slides/MeetPickle.tsx` |
+| 12 | Meet Blicky: does the work on your screen, the scratchpad | `slides/MeetBlicky.tsx` |
+| 13 | The onboarding, a press per beat (shake → pin → ask about earlier) | `slides/Onboarding.tsx` |
+| 14 | "A quick live demo of the onboarding." | `slides/LiveDemo.tsx` |
+| 15 | The scenarios → no new chats: Pickle routes each one → "Now, live." | `slides/Scenarios.tsx` |
+| 16 | The whole product is built on 15 verbs; a press per sponsor, technical | `slides/Verbs.tsx` |
+| 17 | Before and after Blicky (the chemistry page) | `slides/Annotations.tsx` |
+| 18 | It runs in 3 layers: the Mac, the talk server, the brains and memory | `slides/Stack.tsx` |
+| 19 | Close: "Tonight, Mia started." → summary → "We've got you, Mia." | `slides/Close.tsx` |
+| 20 | Appendix: the full exam and the measured numbers | `slides/Exam.tsx` |
 
-Out of the running order (files kept, his call "the things in the very end we can clear out"): MiaStory, MeetCast,
-ShakeToWake, SeesFlow, NorthStar, HowItWorks, ItWorks, RealWorld, ClipOnboarding, ClipScenarios, ClipLoop.
+Out of the running order (files kept): MiaStory, MeetCast, ShakeToWake, SeesFlow, NorthStar, HowItWorks, ItWorks,
+RealWorld, ClipOnboarding, ClipScenarios, ClipLoop.
 
 ## The model to copy: `slides/mia/`
 - `words.ts`: every sentence, one per press, in his words where he gave them (comments say which), DRAFT where not.

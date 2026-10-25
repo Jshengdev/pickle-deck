@@ -6,7 +6,8 @@ export const HER = 'Mia'
 export const THIS_IS = 'This is Mia.'
 /** His words 2026-10-25 ~4:25 AM: "this is Mia. Um, more specifically, she's. And Lee's sister." Read as his teammate's
     sister (GitHub enliew). The name's spelling is DRAFT: confirm it with him. */
-export const SISTER = 'More specifically, she’s En’s sister.'
+/** His run-through 2026-10-25 5:20 AM: "change the end apostrophe to N L I E": Enlie (his teammate, GitHub enliew). */
+export const SISTER = 'More specifically, she’s Enlie’s sister.'
 /** His words 2026-10-25 ~4:40 AM: "what she does is like 3D cap for car. She's learning to invest. She's editing videos, all
     those. So be more specific that these are different projects and like ways to organize context for like things that
     she wants to learn and things she wants to be ambitious about." (cap = CAD; the club is from his ~4:25 AM take). */
@@ -30,18 +31,22 @@ export const TOO_MANY = [
   'Too many things she needs to do.',
   'So nothing starts.',
 ]                                                                       // his words: "too many interests, too many projects. Too many things that she needs to do. That nothing starts."
-export const ASKS_AI = [                                                // his words 2026-10-25, one per press, lightly cleaned
-  'The obvious solution: use AI for help.',                             // "The obvious solution is to use something like AI for help"
-  'She types out a question.',
+/** His run-through 2026-10-25 5:20 AM, after "It's not just Mia", so it's "you" now: "So the obvious solution is to use AI
+    for help. Type out a question, answers with a wall text. Maybe you screenshot the question, paste it back. While you
+    wait, you might start some of your other projects, and then maybe another, another, another, another, and soon you have
+    ten. But you don't need ten windows. You just need one. The next, the one next step." One per press, lightly cleaned. */
+export const ASKS_AI = [
+  'The obvious solution: use AI for help.',
+  'You type out a question.',
   'It answers with a wall of text.',
-  'She screenshots the page.',
-  'Pastes it back in.',
-  'While she waits, another project piques her interest, so she opens another chat.',   // ~4:40 AM: "while she waits… she's going to start working on another one of her projects because it piques her interest"
-  'Another to learn video editing.',                                    // "And then another one for how to video edit"
-  'And another for stocks.',                                            // "and another one for how to do stocks"
-  'Soon she has ten sessions.',                                         // "And soon she has ten sessions"
+  'You screenshot the question.',
+  'Paste it back in.',
+  'While you wait, you start one of your other projects.',
+  'Then another.',
+  'And another.',
+  'Soon you have ten.',
 ]
-export const ONE_STEP = ['But she doesn’t need ten.', 'She just needs the one next step.']   // his words ~4:40 AM: "but she doesn't need ten. She just needs the one next step."
+export const ONE_STEP = ['But you don’t need ten windows.', 'You just need the one next step.']
 export const NEXT_STEP = 'Question 22: count the degrees of unsaturation first.'   // her rule in the staged o-chem project: "Do degrees of unsaturation first on every unknown"
 
 /** What she types to the AI about the real worksheet's question 22, and its answer (chemistry checked: C₁₀H₁₂O has 5

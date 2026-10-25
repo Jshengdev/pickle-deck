@@ -22,7 +22,9 @@ import { Lines } from './mia/parts'
 export const TOOLS_STEPS = 4
 
 const SAY = ['A new model every week.', 'A new AI tool for every niche.', 'A new hack to stay on top of it all.'] // DRAFT
-const QUOTE = 'Our ambitions are being held back by tools that only seem to complicate them.' // his words, lightly cleaned
+// his run-through 2026-10-25 5:20 AM: "Instead of having a quote here, maybe just say like, our ambitions are being held
+// back by tools that seem to only complicate them." So it's a statement now, in the head face, no quote marks.
+const QUOTE = 'Our ambitions are being held back by tools that seem to only complicate them.'
 
 /** The mock cards (all names and lines DRAFT, made up). */
 type Card =
@@ -181,7 +183,7 @@ export function ToolsForMore() {
       {/* his line lands on the settled pile */}
       <motion.div initial={false} animate={{ opacity: quiet ? 1 : 0, y: quiet ? 0 : 40, scale: quiet ? 1 : 0.98 }} transition={{ type: 'spring', visualDuration: 0.6, bounce: 0.14, delay: quiet ? 0.25 : 0 }}
         style={{ position: 'absolute', left: M, right: M, top: 300, bottom: 96, display: 'grid', alignContent: 'center', pointerEvents: 'none' }}>
-        <p style={{ margin: 0, maxWidth: 1600, font: `400 calc(var(--deck-hero) * ${d.quote})/1.14 var(--font-second)`, color: 'var(--ink)', textWrap: 'balance', textIndent: '-1ch' }}>“{QUOTE}”</p>
+        <p style={{ margin: 0, maxWidth: 1600, font: `700 calc(var(--deck-hero) * ${d.quote})/1.06 var(--font-head)`, letterSpacing: 'var(--tracking-giant)', color: 'var(--ink)', textWrap: 'balance' }}>{QUOTE}</p>
       </motion.div>
     </>
   )

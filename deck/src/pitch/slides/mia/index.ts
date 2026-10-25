@@ -8,9 +8,9 @@ export const MIA: Entry[] = [
   { title: 'This is Mia', chapter: 'Mia', chrome: false, steps: THIS_IS_STEPS, render: ThisIsMia },
   { title: 'Who she is', chapter: 'Mia', steps: SHE_IS_STEPS, render: SheIs },
   { title: 'Too much', chapter: 'Mia', steps: TOO_MANY_STEPS, render: TooMany },
-  { title: 'She asks AI', chapter: 'Mia', steps: ASKS_AI_STEPS, render: AsksAI },
 ]
-/** The turn, after the numbers: one next step, then meet pickje. */
-export const MIA_TURN: Entry[] = [
-  { title: 'One next step', chapter: 'Mia', steps: ONE_STEP_STEPS, render: OneStep },
+/** After "It's not just Mia" (his run-through 2026-10-25 5:20 AM): you ask AI, ten windows, then one next step. */
+export const MIA_AI: Entry[] = [
+  { title: 'You ask AI', chapter: 'The problem', steps: ASKS_AI_STEPS, render: AsksAI },
+  { title: 'One next step', chapter: 'The problem', steps: ONE_STEP_STEPS, render: OneStep },
 ]

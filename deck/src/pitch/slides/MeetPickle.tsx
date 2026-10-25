@@ -10,18 +10,20 @@ import { Lines } from './mia/parts'
 /** 11 · Meet Pickle. His words (2026-10-25, 4:38 AM, voice): "so then we're going to introduce the cast, which is Meet
     Pickle. Basically, this is your context brain. It keeps track of your to-do listing, and then also include the
     visualization of its UI tab."
-    What each press shows:
+    His run-through (2026-10-25, 5:20 AM, voice): "meet the cast meet Pickle. Use your context brain, keep track of every
+    project, the north star, the last stop, and the next step. Very simple. Each project that you end up creating is a tab."
+    What each press shows (very simple, his ask):
       0  "Meet Pickle." and Pickle, drawn large (he moves in when the slide arrives: "more animated when you do each new slide").
       1  "Your context brain." Pickle steps aside and points; his notepad rises in, the sticker lands, the page is written.
       2  "It keeps track of every project…" the pad keeps writing: the north star, the last stop, the next step.
-      3  "Each project is a tab…" the desk lamp tab slides out with its next step, and one press later the pad is on that page.
+      3  "Every project you start is a tab." The desk lamp tab slides out with its next step, then the pad turns to that page.
     The notepad is the final one he signed off ("these two will be the final two examples"), set up as in
     deck/src/notepads/Notepads.tsx (FinalPad, who='pickle'); its data is copied from there below. */
-const TITLE = 'Meet Pickle.'                                     // his words: "introduce the cast, which is Meet Pickle"
-const LEAD = 'Your context brain.'                                      // his words: "this is your context brain" (trimmed)
+const TITLE = 'Meet Pickle.'                                     // his words (5:20 AM): "meet the cast meet Pickle"
+const LEAD = 'Your context brain.'                               // his words: "Use your context brain" (4:38 AM: "this is your context brain")
 const LINES = [
-  'It keeps track of every project: the north star, the last stop, the next step.',   // DRAFT, from his "It keeps track of your to-do listing"; the three are the pad's own labels
-  'Each project is a tab; one press and you’re back in it.',                          // DRAFT, from his "include the visualization of its UI tab"
+  'It keeps track of every project: the north star, the last stop, and the next step.',   // his words, lightly cleaned: "keep track of every project, the north star, the last stop, and the next step"
+  'Every project you start is a tab.',                                                    // his words, lightly cleaned: "Each project that you end up creating is a tab"
 ]
 export const MEET_PICKLE_STEPS = 2 + LINES.length
 
