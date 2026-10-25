@@ -9,7 +9,8 @@ import '@design/engine/gsap'
 import './deck.css'
 import { Deck } from './Deck'
 import { MaterialsLab } from './lab/MaterialsLab'
+import { Notepads } from './notepads/Notepads'
 
-// ?lab opens the materials lab; everything else is the book
-const lab = new URLSearchParams(location.search).has('lab')
-createRoot(document.getElementById('root')!).render(lab ? <MaterialsLab /> : <Deck />)
+// ?lab opens the materials lab, ?notepads the two final notepads (live); everything else is the book
+const q = new URLSearchParams(location.search)
+createRoot(document.getElementById('root')!).render(q.has('lab') ? <MaterialsLab /> : q.has('notepads') ? <Notepads /> : <Deck />)

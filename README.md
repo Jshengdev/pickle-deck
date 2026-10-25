@@ -11,6 +11,9 @@ everything you need to make beautiful, on-brand slides is in this repo:
 
 > **pickje sees what you mean.** Pickle rides your cursor and keeps the context; Blicky sketches and talks.
 
+**Polishing the deck? Start with [`docs/FOR-THE-DECK.md`](docs/FOR-THE-DECK.md)**: how to run it, the story and the facts
+with their sources, the demo beats, the brand rules, and the calls that are Johnny's.
+
 ## Run it
 
 ```bash
@@ -23,6 +26,7 @@ npm run dev          # http://127.0.0.1:5320
 | `/` | **The brand book.** 58 pages, every one live code. ← → to page, G for the grid. |
 | `/?deck=pitch` | **The final presentation.** It starts as a wireframe of the draft outline. This is where we build. |
 | `/?lab` | **The materials lab.** Material × form × colour × light; stack 2 layers; keep presets. |
+| `/?notepads` | **The two final notepads, live.** Pickle's notepad and Blicky's scratchpad (`?notepads=blicky`); replay, tune, screenshot. |
 
 | Command | What |
 |---|---|
@@ -45,13 +49,23 @@ design/
   src/cast/             Pickle and Blicky as drawn; <Pickle pose look>, <Blicky pose look>, <Say>; PickleFace (alive)
   src/ui/kit/           Card, Tray, Band, Button, Toggle, Tag, Key, Meter, Stat, Printed, Logo, Wordmark,
                         Banner, Scribble, Bars, Flow
+  src/ui/product/       the product's own surfaces: NotesPad (the two final notepads), Notepad (tabs), Routing
+  src/material/Glass.tsx  glass plastic, for small parts only
+  src/cast/Live.tsx     Pickle and Blicky's 11 everyday states (asleep, idle, listening, working, talking, sketching…)
   src/engine/           GSAP with the brand's named eases
 deck/
   src/brand/            the brand book (frame.tsx = the page frame; slides-a…d; index.tsx = the order)
   src/pitch/            THE FINAL PRESENTATION: start here
   src/lab/              the materials lab
+  src/notepads/         the two final notepads, live (?notepads)
   pitch/OUTLINE-draft1.md   the draft story (11 slides); every line is his words, a fact with proof, or a draft
 docs/
+  FOR-THE-DECK.md       start here if you're polishing the deck
+  PRODUCT.md            what pickje is, how it was tested, the numbers (the product's README)
+  SPONSORS.md · EVALS.md · EVENT.md · VERBS.md   the tracks, the eval record, the event rules, his vocabulary
+  frontend-plan/        the plan for putting the notepads in the Mac app; renders and art of both pads
+  refs/2026-10-24/      his Cofounder and notepad references, mapped to his words
+  spec/design-02-blicky-states.md   the cast's states, the notepads, metal and glass, in his words with build logs
   SPEC.md               the product spec, with his words verbatim
   STATUS.md             what works, with proof; slides cite numbers from here
   spec/design-01-branding-and-motion.md   every design decision in his words, in order, with build logs

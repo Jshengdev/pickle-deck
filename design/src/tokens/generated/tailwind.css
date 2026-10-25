@@ -111,6 +111,7 @@
   --color-ember-900: oklch(27.0% 0.086 21.0);
   --color-ember-950: oklch(18.0% 0.026 20.0);
   --color-night: oklch(19.6% 0.004 84.6);
+  --color-page: oklch(100.0% 0.000 89.9);
   --color-surface-ground: var(--color-silver-100);
   --color-surface-plane: var(--color-silver-50);
   --color-surface-raised: var(--color-silver-50);
@@ -121,6 +122,9 @@
   --color-surface-felt-sky: var(--color-sky-500);
   --color-surface-felt-neutral: var(--color-silver-300);
   --color-surface-night: var(--color-night);
+  --color-surface-page: var(--color-page);
+  --color-blicky-ink: var(--color-sky-700);
+  --color-pickle-ink: var(--color-forest-700);
   --color-ink: var(--color-silver-950);
   --color-text-secondary: var(--color-silver-800);
   --color-text-muted: var(--color-silver-700);

@@ -1,0 +1,14 @@
+{
+  "_note": "Blicky and Pickle's everyday states, tuned by feel in Storybook (Product/Blicky, Tune a state). Paste a copied preset here to keep it. Units: eye moves in drawing units, angles in degrees, times in seconds.",
+  "asleep":    { "breath": 0.035, "breathTime": 2.6, "zRise": 16 },
+  "idle":      { "breath": 0.02, "breathTime": 2, "look": 7, "lookEvery": 1, "lag": 0.06, "overshoot": 2.2 },
+  "listening": { "inward": 4, "lean": 3, "bob": 1.4, "bobTime": 0.32, "lag": 0.06 },
+  "working":   { "lookUp": 5, "sway": 2, "swayTime": 0.6, "taps": 4, "tap": 0.35 },
+  "talking":   { "squash": 0.035, "wordTime": 0.12, "dart": 5, "words": 6 },
+  "sketching": { "strokeTime": 0.09, "strokes": 8, "reach": 0.45, "spread": 0.25, "follow": 2 },
+  "caught":    { "tilt": 6, "stare": 1.14, "hold": 1.6, "nudge": 4 },
+  "checked":   { "hop": 14, "lift": 1, "squint": 0.45, "rest": 0.9 },
+  "stuck":     { "slump": 0.04, "lean": 4, "droop": 10, "swayTime": 1.4 },
+  "dazed":     { "circle": 4, "circleTime": 0.18, "wobble": 4, "spin": 2.2 },
+  "dragged":   { "swing": 22, "swingTime": 0.55, "wide": 1.15, "lift": 0.6, "tilt": 3 }
+}
