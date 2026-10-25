@@ -321,7 +321,7 @@ function UserDiv(props) {
   var EvalSets = function () {
     var steps = arr(method.steps)
     return h('div', null,
-      Hand('this is how we made test data, then used it: every number in this notebook came out of one of these sets.', 19, T.ink2),
+      Hand('this is how we made test data, then used it: the test numbers in this notebook came out of runs on sets like these.', 19, T.ink2),
       steps.length ? h('div', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'stretch', gap: 6, margin: '12px 0 6px' } }, steps.map(function (st, i) {
         var on = opened['step' + i]
         return h('span', { key: i, style: { display: 'flex', alignItems: 'center', gap: 6 } },
@@ -357,7 +357,7 @@ function UserDiv(props) {
                 })))),
             h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 10, alignItems: 'center' } },
               Chip(copied === 'jsonl:' + s.id ? 'copied ✓' : 'copy as JSONL', false, function () { copy(jsonl, 'jsonl:' + s.id) }),
-              h('a', { href: REPO + 'evalsets/' + s.id + '.jsonl', target: '_blank', rel: 'noreferrer', style: { font: '15px ' + T.hand, color: T.blicky } }, 'the file, to run it yourself ↗'),
+              h('a', { href: REPO + 'evalsets/' + s.id + '.jsonl', target: '_blank', rel: 'noreferrer', style: { font: '15px ' + T.hand, color: T.blicky } }, 'the file, one case per line ↗'),
               arr(s.runs).map(function (r) { return h('button', { key: r, onClick: function () { goTab('tests', 'run-' + r) }, style: { font: '14px ' + T.hand, color: T.pickle, background: T.mossSoft, border: 'none', borderRadius: 8, padding: '3px 9px', cursor: 'pointer' } }, 'run ' + r + ' →') })),
             arr(s.lessons).length ? h('div', { style: { marginTop: 10 } }, Hand('what it taught me', 16, T.pickle), arr(s.lessons).map(function (l, i) { return Hand('· ' + noq(l), 16, T.ink2, { key: i }) })) : null,
             arr(s.entries).length ? h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 } }, arr(s.entries).map(function (id) { return LinkChip(id, '→') }).filter(Boolean)) : null,
