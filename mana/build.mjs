@@ -97,6 +97,7 @@ const threads = scrub({
   t4: { head: 'The 80% bar', note: 'Latest live exam is 62% over two passes with one reveal slip. Not passed. Where Blicky draws is the weak part.', lane: 'evals' },
   t5: { head: 'The logo', note: 'Six directions explored. None picked.', lane: 'design' },
   t6: { head: 'The two notepads, in SwiftUI', note: 'The plan is in docs/frontend-plan: port them to SwiftUI, keep a crop per last stop, let Blicky’s sketches fall into the pad when the screen runs out of room, tokens.mjs as the one source.', lane: 'design' },
+  t8: { head: 'Focus Thread: build it, then run its 34 cases', note: 'The team’s Scenario 3 spec is in, and its cases are written before the code: a Focus Anchor on the exact spot, side quests for distractions, and the walk back. Nothing is built or run yet.', lane: 'evals', id: 'evals-focus-thread-spec' },
   t7: { head: 'The mic in the live exam', note: 'In the latest run the mic heard 0 of 36 steps, so the words went in through the test hook. I want a run where it actually hears me.', lane: 'evals' },
 }, 'threads')
 
