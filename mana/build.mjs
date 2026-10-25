@@ -205,6 +205,10 @@ if (cmd === 'status') {
           const part = Object.fromEntries(ks.slice(i, i + 60).map((id) => [`${k}/${id}`, v[id]]))
           await call('POST /api/external/update', { path: ROOT, updates: part })
         }
+      } else if (k === 'evalsets') {
+        await call('POST /api/external/delete', { path: `${ROOT}/evalsets` }).catch(() => null)
+        await call('POST /api/external/update', { path: ROOT, updates: { 'evalsets/method': v.method } })
+        for (const [sid, set] of Object.entries(v.sets)) await call('POST /api/external/update', { path: ROOT, updates: { [`evalsets/sets/${sid}`]: set } })
       } else await call('POST /api/external/update', { path: ROOT, updates: { [k]: v } })
     }
     const back = await read(`${ROOT}/entries`)
