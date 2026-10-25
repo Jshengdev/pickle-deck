@@ -10,7 +10,7 @@ import calHub from '../assets/screens/cal-hub.jpg'
 import stocks from '../assets/screens/stocks.jpg'
 import critique from '../assets/scenarios/critique.png'
 
-/** 15 · The scenarios: the set-up for the live demo, then the routing.
+/** 17 · The scenarios: the set-up for the live demo, then the tabs Pickle makes.
     His words (2026-10-25, 4:38 AM, voice): "Let's say like, so we have a couple of other scenarios. We have the OKM
     worksheet thing, the thing in this, the thing there, three different things, design critiques. And then we'll do the
     live demo of how it interacts, creates diagrams, draws, and can do all these things."
@@ -18,7 +18,9 @@ import critique from '../assets/scenarios/critique.png'
     the OKM worksheet the Cal Student Hub more basic stock page that we'll do live and then a design critique and then most
     importantly though, we should be able to visualize how we aren't creating more projects. The pickle just knows how to
     route to each one, and all you have to do is just, you know, reprime, what was it? Think what you want to do."
-    ("OKM worksheet" = the o-chem worksheet, as heard.)
+    His second run-through (2026-10-25, 5:46 AM): "So here's the thing. We're going to run it on. We ran it on four
+    different things, and then you don't need a new chat for each one. It automatically creates tabs on in depth. Pickle
+    screen." ("OKM worksheet" = the o-chem worksheet, as heard.)
 
     Presses (7 steps):
       0  the title, the lede, Pickle and Blicky waiting
@@ -26,9 +28,10 @@ import critique from '../assets/scenarios/critique.png'
       2  the Cal Student Hub, Pickle's ring on Prof. Nguyen's message
       3  the stocks page, rings on the Jul 31 drop and the headline that explains it
       4  a design critique (the lab's landing page), rings on 3 planted problems
-      5  the routing (his "most importantly"): "No new chats." The four screens line up on the right; one by one a dotted
-         route runs from each into Pickle's notepad, its project tab lifts and lights, and what was said is written on the
-         page with where it went. Four screens, one notepad, a tab each: no chat opens.
+      5  the tabs (his "most importantly"): "You don't need a new chat for each one." The four screens line up on the
+         right; one by one a dotted route runs from each into Pickle's notepad, and as it lands a new tab grows out of the
+         pad (it wasn't there before), lit, with what was said written on the page. Four screens, one notepad, a new tab
+         each, made automatically: no chat opens.
       6  "Now, live." The picture stays; Blicky joins Pickle.
 
     The notepad here is a clean drawn version of Pickle's (the real one is on Meet Pickle, slide 11): its sky glass tabs
@@ -39,16 +42,16 @@ import critique from '../assets/scenarios/critique.png'
     with the lab's drawer and chip hidden; it is a read-only prop with 5 planted problems (low-contrast headline, three
     competing buttons, misaligned cards, tiny text, stretched image).
 
-    Words: the title, lede, every "does" line, the routing lines, the tab names and the asks marked DRAFT are ours; sources
-    beside each. */
+    Words: the title and the tabs press's two lines are his (5:46 AM; the second cleaned); the lede, every "does" line, the
+    tab names and the asks marked DRAFT are ours; sources beside each. */
 
-/** DRAFT title and lede (his: "a couple of other scenarios… then we'll do the live demo"). */
-const TITLE = 'We’ll show it on 4 screens.'
-const LEDE = 'A couple of scenarios first, then the live demo.'
-/** DRAFT, from his "we aren't creating more projects. The pickle just knows how to route to each one, and all you have to
-    do is just… think what you want to do" (the coordinator's wording). */
-const ROUTE_TITLE = 'No new chats.'
-const ROUTE_LINE = 'Pickle routes each one to its project; you just say what you want to do.'
+/** The title is his (5:46 AM); the lede is DRAFT (his 4:38 AM: "a couple of other scenarios… then we'll do the live demo"). */
+const TITLE = 'We ran it on 4 different things.' // his words, 5:46 AM
+const LEDE = ''   // cut: "A couple of scenarios first, then the live demo." no longer fits his past-tense title
+/** His words (5:46 AM), cleaned: "you don't need a new chat for each one. It automatically creates tabs on… Pickle['s]
+    screen." */
+const ROUTE_TITLE = 'You don’t need a new chat for each one.'
+const ROUTE_LINE = 'Pickle creates a tab for each, automatically.'
 const LIVE = 'Now, live.' // DRAFT
 
 type Ring = { x: number; y: number; w: number; h: number } // the marked thing's box, fractions of the screen image
@@ -216,8 +219,8 @@ function Route({ i, on, tile }: { i: number; on: boolean; tile: number }) {
   )
 }
 
-/** Pickle's notepad, drawn clean: a paper sheet under a felt strip, a sky glass tab per project on its right edge (each
-    lifts and lights when a screen is routed to it), and on the page what was said, with where it went. */
+/** Pickle's notepad, drawn clean: a paper sheet under a felt strip. As each screen's route lands, a new sky glass tab
+    grows out of its right edge (hidden behind the pad until then), lit, and the page writes what was said and its tab. */
 function Notepad({ step }: { step: number }) {
   const shown = step >= ROUTE, fresh = step === ROUTE
   const { x, y, w, h, strip } = L.pad
@@ -226,10 +229,12 @@ function Notepad({ step }: { step: number }) {
       style={{ position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, pointerEvents: 'none' }}>
       {SCENARIOS.map((s, i) => {
         const lit = shown
+        // made, not found: fully behind the pad and squashed until its route lands, then it grows out with a little bounce
         return (
-          <motion.div key={s.tab} initial={false} animate={{ x: lit ? L.tab.peek + 10 : L.tab.peek - L.tab.w + 14 }}
-            transition={lit ? spring(fresh ? landAt(i) : 0) : { duration: 0.2 }}
-            style={{ position: 'absolute', left: x + w - L.tab.peek, top: tabTop(i), width: L.tab.w, height: L.tab.h, borderRadius: '0 16px 16px 0',
+          <motion.div key={s.tab} initial={false}
+            animate={lit ? { x: L.tab.peek + 10, scaleY: 1, opacity: 1 } : { x: L.tab.peek - L.tab.w, scaleY: 0.4, opacity: 0 }}
+            transition={lit ? { type: 'spring', visualDuration: 0.5, bounce: 0.35, delay: fresh ? landAt(i) : 0 } : { duration: 0.2 }}
+            style={{ position: 'absolute', left: x + w - L.tab.peek, top: tabTop(i), width: L.tab.w, height: L.tab.h, borderRadius: '0 16px 16px 0', transformOrigin: '0 50%',
               background: 'linear-gradient(180deg, var(--sky-100), var(--sky-200) 70%)',
               boxShadow: 'inset 0 1px 0 oklch(1 0 0 / .95), inset 0 0 0 1px oklch(83% 0.088 246 / .7), 0 2px 0 oklch(73% 0.13 250 / .55)' }}>
             <span style={{ position: 'absolute', left: '58%', top: '54%', transform: 'translate(-50%, -50%) rotate(90deg)', whiteSpace: 'nowrap', font: '600 22px var(--font-head)', color: 'var(--sky-700)' }}>{s.tab}</span>
@@ -246,7 +251,7 @@ function Notepad({ step }: { step: number }) {
         <motion.div key={s.tab} initial={false} animate={{ opacity: shown ? 1 : 0, y: shown ? 0 : 14 }} transition={shown ? spring(fresh ? landAt(i) + 0.05 : 0) : { duration: 0.15 }}
           style={{ position: 'absolute', left: x + 32, top: tabTop(i) + 22, width: w - 64 }}>
           <div style={{ font: '400 22px/1.3 var(--font-dot)', color: 'var(--ink)' }}>“{s.ask}”</div>
-          <div style={{ marginTop: 10, font: '600 20px var(--font-head)', color: 'var(--pickle-ink)' }}>→ {s.tab}</div>
+          <div style={{ marginTop: 10, font: '600 20px var(--font-head)', color: 'var(--pickle-ink)' }}>+ new tab: {s.tab}</div>
         </motion.div>
       ))}
     </motion.div>
@@ -270,8 +275,10 @@ export function Scenarios() {
       <motion.h1 {...show(step < ROUTE)} style={{ ...head, font: 'var(--t-head-1)', letterSpacing: 'var(--t-head-1-track)', whiteSpace: 'nowrap' }}>{TITLE}</motion.h1>
       <motion.p {...show(step === 0)} style={{ position: 'absolute', left: M, top: 252, margin: 0, font: 'var(--t-head-3)', letterSpacing: 'var(--t-head-3-track)', color: 'var(--text-secondary)' }}>{LEDE}</motion.p>
 
-      <motion.h1 {...show(step === ROUTE)} style={{ ...head, width: L.textW, font: 'var(--t-head-1)', letterSpacing: 'var(--t-head-1-track)' }}>{ROUTE_TITLE}</motion.h1>
-      <motion.p {...show(step === ROUTE, 0.1)} style={{ position: 'absolute', left: M, top: 262, width: L.textW, margin: 0, font: 'var(--t-head-2)', letterSpacing: 'var(--t-head-2-track)', color: 'var(--text-secondary)' }}>{ROUTE_LINE}</motion.p>
+      <div style={{ ...head, width: L.textW }}>
+        <motion.h1 {...show(step === ROUTE)} style={{ margin: 0, font: 'var(--t-head-1)', letterSpacing: 'var(--t-head-1-track)' }}>{ROUTE_TITLE}</motion.h1>
+        <motion.p {...show(step === ROUTE, 0.1)} style={{ margin: '24px 0 0', font: 'var(--t-head-2)', letterSpacing: 'var(--t-head-2-track)', color: 'var(--text-secondary)' }}>{ROUTE_LINE}</motion.p>
+      </div>
       <motion.div {...show(step === LIVE_AT)} style={{ ...head, width: L.textW, font: '700 var(--deck-hero)/1 var(--font-head)', letterSpacing: 'var(--tracking-giant)' }}>{LIVE}</motion.div>
 
       <Notepad step={step} />

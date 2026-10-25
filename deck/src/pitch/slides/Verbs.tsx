@@ -5,7 +5,7 @@ import { Stat } from '@design/ui/kit'
 import { Page } from '../../brand/frame'
 import { useStep } from '../kit/step'
 
-/** 16 · Fifteen verbs: the whole product is built on 15 verbs, then sponsor by sponsor, what carries each verb. 9 steps.
+/** 18 · Fifteen verbs: the whole product is built on 15 verbs, then sponsor by sponsor, what carries each verb. 9 steps.
 
     His words (2026-10-25, ~4:45 AM, voice; spelling fixed): "we originally created fifteen verbs. I think here we should
     flush out how we have fifteen verbs of what it's capable of doing, and how each sponsor track is associated with each."
@@ -15,6 +15,15 @@ import { useStep } from '../kit/step'
     sponsor is the backbone of this specific thing. Talk metrics, talk everything super important, very technical, and how
     it's being applied and why it's a core part of the repo. [...] But for the anthropic, anthropic is just what we use to
     run everything. and then Microsoft is be able to like measure against real world tasks."
+    His words (2026-10-25, 5:46 AM, second run-through, reading the sponsor presses; verbatim): "So now, onto the
+    technicals. We use Cartesia ink and Cartesia for the voice. We've used Moss for the memory, beside how characters decide
+    when to think and when to not and when to, stall for time. We use Convex to actually hold all of the data, and it's what
+    updates because we want everything to be local. And we use Elastic as the rag to index and find. Past memories, hand
+    over. We've used Droid to actually manage our context management. We then have manicured all our entries, testing,
+    ideation, surprise. Anthropic basically runs the entirety of this product, and it works natively inside of Claude Code.
+    And then we measured it against real world scenarios to ensure that there is real value provided." ("manicured" = Mana.)
+    Each panel's lead sentence (`lead`) is that line, lightly cleaned and checked against the repo; where his words and the
+    repo differ, the panel's comment says how.
 
     0  all 15 verbs in 5 groups, each with what it means for you (the UX line). Attune, Gauge, Learn: out for the demo.
     1  Cartesia → Catch, Show        2  Moss → Recall, Route       3  Convex → Hold       4  Elastic → Bring back
@@ -33,7 +42,7 @@ import { useStep } from '../kit/step'
     (claude-opus-5-5, claude-haiku-5-5), app/voice/cartesia.ts (sonic-3.6), app/ears/providers/cartesia-ink.ts (ink-2).
     Caveats kept on the slide: outputs not kept, staged data, headless, off by default, not passed.
 
-    DRAFT (ours, not his): the title; every UX line; every panel's "why" sentence and bullet wording (facts from PRODUCT.md,
+    DRAFT (ours, not his): the title; every UX line; the role line and bullet wording under each lead (facts from PRODUCT.md,
     shortened). Character name: the deck says Pickle; PRODUCT.md now writes Pickje for the same character. */
 export const VERBS_STEPS = 9
 const ANTHROPIC = 7
@@ -72,7 +81,7 @@ const GROUPS: Group[] = [
   ] },
 ]
 
-type Panel = { sponsor: string; role: string; why: string; how: [string, string][]; stats: { value: string; caption: string }[]; note?: string; repo: string }
+type Panel = { sponsor: string; role: string; lead: string; how: [string, string][]; stats: { value: string; caption: string }[]; note?: string; repo: string }
 
 /** One panel per sponsor press. `backticks` render as code. Every number keeps its caveat. */
 const PANELS: Record<number, Panel> = {
@@ -81,7 +90,7 @@ const PANELS: Record<number, Panel> = {
   // run 2, recomputed from results.json (:145-147). Echo-cancellation limit: :158-159.
   1: {
     sponsor: 'Cartesia', role: 'the backbone of Catch and Show',
-    why: 'The whole conversation is voice: Ink is the ear, Sonic speaks for both characters.',
+    lead: 'Cartesia Ink hears you, and Cartesia speaks for both characters.',
     how: [
       ['Ink 2 hears you.', 'Streaming `ink-2` at 16 kHz; a 7 s end timeout keeps a mid-thought pause from ending your turn.'],
       ['Sonic 3.6 speaks.', 'One socket kept open between turns, two contexts a turn, two cloned voices; Blicky streams line by line.'],
@@ -97,26 +106,34 @@ const PANELS: Record<number, Panel> = {
   // PRODUCT.md:163-213 (Moss). 6–7 ms: Moss deciding alone, 8 of 16 projects-check turns, median over two runs
   // (VERBS.md Route row; PRODUCT :197-200, "6 ms"; the card shows "routed by moss · 7 ms"); 1,332 ms with Moss off;
   // 16/16 right either way; "this check needs lab pages from outside the repo and its output wasn't kept".
+  // His lead, checked against ~/code/pickje/app/memory/README.md: "think or not" = Moss's decide() routes alone with no
+  // model call when the evidence is clear, else Claude routes (README :40, :98); "stall for time" = Moss's inference writes
+  // Pickle's first line while Opus thinks for 4–6 s (README :75-90, app/service/stall.ts). stall.ts is on by default, but
+  // since 10-25 Pickle speaks that line only with PICKJE_PICKLE_TALK=on (app/service/turn.ts:575, :961; PRODUCT.md :190-194).
   2: {
     sponsor: 'Moss', role: 'the backbone of Route and Recall',
-    why: 'The fast memory both characters decide with, inside the talk server’s own process.',
+    lead: 'Moss is the memory, and how the characters decide when to think, when not to, and when to stall for time.',
     how: [
-      ['Two warm sessions.', '`@moss-js/moss` 1.21.0 on `moss-minilm`: every project, and 8 hours of screen text re-indexed every 10 s.'],
-      ['Route.', '3 hybrid queries a sentence (alpha 0.6, metadata filters); Moss decides alone when it’s clear, else Claude picks from its top 3.'],
-      ['Recall.', 'Up to 4 older lines of the project go into Blicky’s brief; a shared session tells Droid what’s drawn.'],
+      ['The memory.', '`@moss-js/moss` 1.21.0 on `moss-minilm`, in process: every project, and 8 h of screen text re-indexed every 10 s.'],
+      ['Think or not.', '3 hybrid queries a sentence; when it’s clear, Moss routes alone with no model call; if not, Claude thinks.'],
+      ['Stall for time.', 'While Opus thinks, Moss’s inference writes Pickle’s first line about what’s at your pointer.'],
     ],
     stats: [
       { value: '6–7 ms', caption: 'to route when Moss decides alone (median, 2 runs), vs 1,332 ms for a Claude call' },
       { value: '16/16', caption: 'sentences routed right, 8 by Moss alone (projects check; output not kept)' },
     ],
-    repo: 'app/memory/route.ts · app/memory/live.ts · app/memory/context.ts',
+    note: 'The stall line is spoken only with `PICKJE_PICKLE_TALK=on` since 10-25.',
+    repo: 'app/memory/route.ts · app/memory/live.ts · app/service/stall.ts',
   },
   // PRODUCT.md:215-246 (Convex). 6 ms median (5–9 ms), three runs on 10-24, one run's output kept, through the app's own
   // TalkStream and LiveCard code run headless (:238-241). 864 ms: a close made while Convex was stopped, back on the card
   // after it returned (docs/evals/receipts/convex-live-check.log).
+  // His words: "Convex to actually hold all of the data". The repo: the project folders are written first (the prompts and
+  // Claude Code read the markdown) and Convex is the transactional live view; only Convex holds who routed and how fast,
+  // step state, the trust line, Elastic's hits and Droid's steps (PRODUCT.md :234-236). So the lead says "every step's data".
   3: {
     sponsor: 'Convex', role: 'the backbone of Hold',
-    why: 'Pickle’s record: every step is one transaction, and the card renders live from it.',
+    lead: 'Convex holds every step’s data and keeps the card live, all local.',
     how: [
       ['Local, no account.', '`convex` 1.48.0, self-hosted on 127.0.0.1: 7 tables, 12 indexes.'],
       ['One mutation a step.', '`turns:close` writes the card, the 3 hot files, the memlog line and the notes in one transaction.'],
@@ -134,7 +151,7 @@ const PANELS: Record<number, Panel> = {
   // median 10.1–11.1 s (:283-284). Guard: staged/test data only, his real words only after his yes, never screenshots (:274-276).
   4: {
     sponsor: 'Elastic', role: 'the backbone of Bring back',
-    why: 'The library across days: what you said and decided, so a session picks up where you stopped.',
+    lead: 'Elastic is the RAG: it indexes and finds past memories.',
     how: [
       ['Serverless index.', '`pickje-recall`: BM25 text plus `semantic_text` on `.jina-embeddings-v5-text-small`, written at each close.'],
       ['Bring back.', 'After an 8-hour gap, an RRF retriever (BM25 + semantic, filtered to the project) primes Blicky’s brief.'],
@@ -150,9 +167,12 @@ const PANELS: Record<number, Panel> = {
   // PRODUCT.md:295-336 (Factory). Hand-over 5/5, round trip median 8.1 s ("metrics.md; those runs' output wasn't kept",
   // :330). Practice set, 3 runs: 33.7, 52.9, 33.3 s; 2,942, 2,431, 2,346 credits; 2–3 molecules + 1 note (:327-328).
   // PICKJE_DROID_NEXT=1, off by default (:65, :310).
+  // His words: "We've used Droid to actually manage our context management." The repo: Pickle (Claude + Moss + Convex) manages
+  // the context; Droid does each project's work, one SDK session per project, opening that project's Moss context session
+  // by name and writing its notes back into it (PRODUCT.md :185-188, :305; app/service/DROID.md :66). The lead is that.
   5: {
     sponsor: 'Factory', role: 'the backbone of Hand over',
-    why: 'Blicky’s hands: a project’s real work runs on Droid, and every step shows on the card.',
+    lead: 'Droid takes the hand-over: each project’s work, in its own session, with that project’s context.',
     how: [
       ['Plan first.', '`@factory/droid-sdk` 0.10.0, a session per project in spec mode: it says its plan back, and writes nothing before your yes.'],
       ['Fenced.', 'Droid’s own shell, web and edit tools are off; it writes only through 4 tools pickje serves, inside the folder.'],
@@ -167,9 +187,12 @@ const PANELS: Record<number, Panel> = {
   },
   // PRODUCT.md:338-368 (Mana). Published 10-24 ~6 PM after his yes: 36 staged entries over 3 projects, read back 36/36;
   // status read 9:47 PM: not public (docs/evals/receipts/mana-status-2147.json). No code sends his real projects to Mana.
+  // His words: "manicured all our entries, testing, ideation, surprise". The repo's entry kinds are words, decision, note
+  // (with his reactions) and where it stopped (app/mana/publish.ts:66), all staged and by "test"; nothing in app/mana or
+  // the staged log is a "surprise", so the lead names what's there.
   6: {
     sponsor: 'Mana', role: 'the backbone of Curate',
-    why: 'The idea log: each project’s words, decisions and notes, as a Mana app the judges can open.',
+    lead: 'Mana curates our entries: ideas, decisions and reactions, in one log the judges can open.',
     how: [
       ['4 routes, 1 path.', 'Mana’s external API only (`me`, `read`, `update`, `delete`), under `file-system/pickje/idea-log`.'],
       ['One update.', 'Writes the app node (`user_div`, its React from `viewer.js`) and every entry; a read-back must match.'],
@@ -184,18 +207,22 @@ const PANELS: Record<number, Panel> = {
   // PRODUCT.md:69-113 (Anthropic) and :60. Blicky's cost a turn, median $0.029 over 8 uncached turns → $0.019 over 6 that
   // read the cache (docs/evals/receipts/anthropic-claude-check-17*.json); live exam run 2: $0.030 a turn on the grown
   // prompts, "read $0.019 as the saving, not the price" (:100-103). His words: "anthropic is just what we use to run everything."
+  // "Works natively inside Claude Code": app/brain/README.md :16, :25 (provider claude-cli: `claude -p --model haiku --effort
+  // low`, his Claude Code login, works with no key); app/service/cli.ts :5-6, :148-149 (`session <project>` starts the
+  // project's own background Claude Code session; `handover` hands his words to it verbatim).
   7: {
     sponsor: 'Anthropic', role: 'runs every verb',
-    why: 'The whole product runs on Claude.',
+    lead: 'Anthropic runs the entirety of this product, and it works natively inside Claude Code.',
     how: [
       ['Opus 5.5', 'writes every line Blicky says and picks every mark it draws, from the screenshot and your words.'],
       ['Haiku 5.5', 'runs Pickle’s quick calls: routing when Moss can’t decide, naming a project, rewriting its memory.'],
+      ['Claude Code.', 'With no API key the brain runs on `claude -p` and his Claude Code login; each project can have its own Claude Code session.'],
     ],
     stats: [
       { value: '$0.019', caption: 'Blicky’s cost a turn with prompt caching, down from $0.029 (medians)' },
     ],
     note: 'That’s the saving, not the price: on the live exam’s longer prompts a turn cost $0.030.',
-    repo: 'app/brain/providers/anthropic.ts · app/brain/chain.ts',
+    repo: 'app/brain/providers/anthropic.ts · app/brain/providers/claude-cli.ts · app/service/cli.ts',
   },
   // PRODUCT.md:28-37 and :370-420 (Microsoft); docs/evals/2026-10-24-2/summary.txt: 36 steps run, 33 judged; pass rate
   // 302/485 62%; reveal 33/34, 1 slip; pass bar (80% over 2 runs, no slips) NOT PASSED. The mic failed on every wake in
@@ -203,7 +230,7 @@ const PANELS: Record<number, Panel> = {
   // His words: "Microsoft is be able to like measure against real world tasks."
   8: {
     sponsor: 'Microsoft', role: 'the backbone of Measure',
-    why: 'The whole product is the entry, measured against real-world tasks.',
+    lead: 'We measured it against real-world scenarios, to make sure it gives real value.',
     how: [
       ['A live exam.', 'On the real screen: it opens the worksheet, moves the real pointer, circles and shakes; Claude Opus grades each step.'],
       ['Fresh problems.', 'Blicky runs blind on 13 kinds of screen: 49–51% of criteria.'],
@@ -279,7 +306,7 @@ function PanelBody({ p }: { p: Panel }) {
       <div>
         <div style={{ font: 'var(--t-head-1)', letterSpacing: 'var(--t-head-1-track)', color: 'var(--ink)' }}>{p.sponsor}</div>
         <div style={{ marginTop: 6, font: '500 22px/1.3 var(--font-head)', color: 'var(--pickle-ink)' }}>{p.role}</div>
-        <p style={{ margin: '26px 0 0', font: 'var(--t-second-3)', color: 'var(--ink)' }}>{p.why}</p>
+        <p style={{ margin: '26px 0 0', font: 'var(--t-second-3)', color: 'var(--ink)' }}>{p.lead}</p>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
         <div style={{ display: 'grid', gap: 16 }}>

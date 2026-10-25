@@ -24,7 +24,8 @@ export const TOOLS_STEPS = 4
 const SAY = ['A new model every week.', 'A new AI tool for every niche.', 'A new hack to stay on top of it all.'] // DRAFT
 // his run-through 2026-10-25 5:20 AM: "Instead of having a quote here, maybe just say like, our ambitions are being held
 // back by tools that seem to only complicate them." So it's a statement now, in the head face, no quote marks.
-const QUOTE = 'Our ambitions are being held back by tools that seem to only complicate them.'
+// his second run-through 2026-10-25 5:46 AM: "Mia's ambition is being held back by the tools that only complicate the process."
+const QUOTE = 'Mia’s ambition is being held back by tools that only complicate the process.'
 
 /** The mock cards (all names and lines DRAFT, made up). */
 type Card =

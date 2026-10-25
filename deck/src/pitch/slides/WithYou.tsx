@@ -8,53 +8,65 @@ import { Words } from '../clip/kit'
 import chemistry from '../assets/screens/chemistry.jpg'
 import calHub from '../assets/screens/cal-hub.jpg'
 
-/** 9 · Built to do it with you. 6 steps.
-    His run-through (2026-10-25, ~5:20 AM, voice, verbatim): "So instead of a tool that does more, we built one that does
-    it with you. And then let's not make it learn, plan, build, create, invest because those are targeted towards the
-    actual skills themselves. Our thing is more about AI collaboration. So we should talk about the more UX decisions
-    behind why this must exist and what mental model it possesses to make this more of a human AI collaboration effort
-    instead of it being just like an AI thing. But in the meantime, then we can just end it off on saying, introducing
-    Pickle." ("Pickle" = the product, pickje.)
+/** 13 · Built to do it with you: the decisions behind it. 6 steps. After Meet Pickle and Meet Blicky; the big headline
+    is its own slide before "Introducing pickje" (WithYouHeadline.tsx).
+    His run-through (2026-10-25, 5:46 AM, voice, verbatim): "So instead of a tool that does more, we built one that does it
+    with you. So it works where your work is. Nothing opens in a new chat window, no screenshot, no pasting. It's all on
+    your screen. Two friends, two jobs. We have two cute little buddies, each with its own dedicated task and way to work.
+    One of them tracks everything for you, and the other one. shows everything for you. And then it asks before it acts.
+    It keeps you in the driver's seat for most decisions, and it helps when you're switching projects and going. … It
+    works where your work is, your two friends … two job. Asks before it acts, one step at a time. And then another key
+    one is it manages the context for you, so it knows when to route and do self-learning and things of that sort. So
+    like use a bit of the VC buzzwords that they love to swallow up." His earlier note (~5:20 AM): talk about "the UX
+    decisions behind why this must exist and what mental model it possesses", not the skills.
 
-    0  the headline, his words (unchanged from his ~4:45 AM note; "build" set as "built"). Pickle and Blicky beside it.
-    1–4  the UX decisions behind the collaboration, one per press: a short decision (left) + one line on why, and a
-         picture of it (right). Decisions and lines are DRAFT, each grounded here:
-      1  It works where your work is. pickle-deck docs/PRODUCT.md "What it is": "Nothing opens in a chat window: the
-         explanation happens on top of the material you're working on." pickje docs/spec/0012 (demo/chaos/spec.txt): "the
-         student should not need to screenshot the portal, paste it into a chat window, manually describe where each item
-         appears". The picture: the Cal Student Hub with the spec's own line "Pickle, I'm overwhelmed" (verbatim), Blicky's
-         ring on the inbox row the spec says to read first (P1), and its one next step (card wording DRAFT).
-      2  Two friends, two jobs (the mental model). PRODUCT.md: Pickje "knows which of your projects this is and keeps each
-         project's memory"; Blicky "draws on your actual document… and talks you through one step at a time". His words,
-         pickje docs/context/his-words.md:88 (spelling fixed: "IT" → "It"): "It should feel like I have a friend
-         screensharing my problems." The three project names on Pickle's cards are Mia's scenario (DRAFT).
-      3  It asks before it acts. pickje docs/spec/0014 (his words, 10-25 ~1:30 AM): "a small popup wiht like a check or a
-         no"; it asks on any project switch or new project, and before a close-out toward the north star; Droid's offer
-         uses the same check/no popup (spec 0014, "kind": "droid"), and Droid works only after a yes (PRODUCT.md, Factory:
-         "Say yes and Droid makes a practice set"). Pickle's question in the popup is DRAFT.
-      4  One step at a time. pickje docs/spec/0006, his click 10-24 ~2:37 PM: "Step by step, everywhere"; the rule:
-         Blicky's next step "never name[s] a result he hasn't asked for". app/shell/README.md: "The voice waits for its
-         mark" (his click, 10-24), so here the words come only after the ring and arrow land. his-words.md:88: "keep it
-         short, simple, sweet, one at a time". Blicky's line on the worksheet is DRAFT (the first step of the mechanism,
-         the alcohol's O attacking the C=O carbon; the product is never drawn).
-    5  "Introducing pickje." (his words: "end it off on saying, introducing Pickle"), with his mission under it,
-       his-words.md:86 (spelling fixed, shortened at the sentence's first clause): "It's not another agent, it's a new
-       paradigm for collaborative work between humans and technology." Leads into the title slide. */
+    The title, his words: "instead of a tool that does more for you, we build one that does it with you" ("built").
+    0  the title and the five decisions as a list (the names are his lines; the list itself is ours). Pickle and Blicky.
+    1–5  one decision per press: the decision and its why (left), its picture (right), the five along the bottom.
+      1  "It works where your work is." Why, his words lightly cleaned: "Nothing opens in a new chat window: no
+         screenshots, no pasting. It's all on your screen." Also PRODUCT.md "What it is": "Nothing opens in a chat window",
+         and pickje docs/spec/0012: "should not need to screenshot the portal, paste it into a chat window". Picture: the
+         Cal Student Hub with the spec's line "Pickle, I'm overwhelmed" (verbatim), Blicky's ring on the inbox row the
+         spec says to read first (P1), and its one next step (card wording DRAFT).
+      2  "Two friends, two jobs." Why, his words lightly cleaned: "One tracks everything for you; the other shows
+         everything for you." His quote under it, pickje docs/context/his-words.md:88 (spelling fixed): "It should feel
+         like I have a friend screensharing my problems." Card lines from PRODUCT.md ("knows which of your projects this
+         is and keeps each project's memory"; Blicky "draws on your actual document… and talks you through"), wording
+         DRAFT. The three project names are Mia's scenario (DRAFT).
+      3  "It asks before it acts." Why, his words lightly cleaned: "You stay in the driver's seat, especially when you
+         switch projects." Grounded in pickje docs/spec/0014 ("a small popup wiht like a check or a no"; it asks on any
+         project switch or new project, before a close-out toward the north star, and for Droid's offer, kind "droid");
+         Droid works only after a yes (PRODUCT.md, Factory). Pickle's question in the popup is DRAFT.
+      4  "One step at a time." (his words). Why (DRAFT): pickje docs/spec/0006, his click 10-24: "Step by step,
+         everywhere" (Blicky never names a result he hasn't asked for); app/shell/README.md: "The voice waits for its
+         mark" (his click, 10-24), so the bubble comes only after the ring and arrow land. Blicky's line is DRAFT (the
+         first step of the mechanism; the product is never drawn).
+      5  "It manages your context for you." (his words, "it manages the context for you"). Why (DRAFT, his ask for VC
+         words, kept true): pickje app/memory/README.md: "Every sentence you say is routed to its project by Moss in a few
+         milliseconds… All of that runs on this Mac"; "the route takes 6–7 ms instead of about 1.3 s", but only when Moss
+         decides on its own (8 of 16 turns in the projects check, 16/16 routed right either way); otherwise Claude
+         routes. PRODUCT.md: Pickje "keeps each project's memory", and Claude Haiku runs "rewriting its memory". So:
+         "updates its own memory as you work", NOT "self-learning" (the Learn verb is out for the demo, pickje
+         docs/VERBS.md). The caveat is on the slide. The spoken sentence in the picture is the memory README's own example
+         ("now circle the carbonyl carbon on it"); "routed by moss · 7 ms" is the card's real text (same README);
+         "pickle is writing…" is the card's real status (PRODUCT.md). The project names are Mia's scenario (DRAFT). */
 export const WITH_YOU_STEPS = 6
 
-const HEAD_A = 'Instead of a tool that does more,'
+const HEAD_A = 'Instead of a tool that does more for you,'
 const HEAD_B = 'we built one that '
 const HEAD_C = 'does it with you.'
 
-/** The four decisions (DRAFT wording; sources above). `tab` is the short name in the row along the bottom. */
+/** The five decisions (sources above). `tab` is the short name in the row along the bottom (DRAFT). */
 const DECISIONS = [
-  { tab: 'Your screen', title: 'It works where your work is.', why: 'Nothing opens in a chat window. No screenshots, no pasting, no explaining it all again.' },
-  { tab: 'Two friends', title: 'Two friends, two jobs.', why: 'Pickle keeps your context, so you don’t have to. Blicky shows you, right on your screen.' },
-  { tab: 'Asks first', title: 'It asks before it acts.', why: 'A check or a no before it switches projects, closes out a goal or hands work to Droid. You stay in charge.' },
+  { tab: 'On screen', title: 'It works where your work is.', why: 'Nothing opens in a new chat window: no screenshots, no pasting. It’s all on your screen.' },
+  { tab: 'Two friends', title: 'Two friends, two jobs.', why: 'One tracks everything for you; the other shows everything for you.' },
+  { tab: 'Asks first', title: 'It asks before it acts.', why: 'You stay in the driver’s seat, especially when you switch projects.' },
   { tab: 'One step', title: 'One step at a time.', why: 'It teaches the next step and holds back the answer until you ask. Its voice waits for each mark to land.' },
+  { tab: 'Context', title: 'It manages your context for you.', why: 'On-device routing puts each sentence in the right project in milliseconds. Every project keeps its own memory, and Pickle updates it as you work.' },
 ]
 const FRIEND = '“It should feel like I have a friend screensharing my problems.”' // his-words.md:88, spelling fixed
-const MISSION = 'It’s not another agent. It’s a new paradigm for collaborative work between humans and technology.' // his-words.md:86
+/** The caveat on the 6–7 ms (app/memory/README.md). */
+const ROUTE_NOTE = '6–7 ms when Moss decides on its own (8 of 16 turns in our projects check, all 16 routed right); otherwise Claude routes.'
 
 type Mark = { kind: 'ring'; cx: number; cy: number; rx: number; ry: number } | { kind: 'arrow'; d: string; tip: [number, number]; from: [number, number] }
 type Shot = { src: string; iw: number; ih: number; marks: Mark[] }
@@ -178,7 +190,7 @@ function TwoFriends({ w, h, d }: { w: number; h: number; d: { beat: number } }) 
           <motion.div {...pop(b, 0, { y: 80, scale: 0.85 })} style={{ position: 'absolute', left: 30, bottom: 0 }}><Pickle pose="point" height={300} /></motion.div>
         </div>
         <motion.div {...pop(b, 5)} style={{ marginTop: 28 }}>
-          <div style={{ font: '700 40px/1.1 var(--font-head)', letterSpacing: '-0.02em', color: 'var(--pickle-ink)' }}>Pickle keeps your context</div>
+          <div style={{ font: '700 40px/1.1 var(--font-head)', letterSpacing: '-0.02em', color: 'var(--pickle-ink)' }}>Pickle tracks everything</div>
           <div style={{ font: '400 25px/1.4 var(--font-head)', color: 'var(--ink)', marginTop: 8 }}>Which project this is, what you asked, where you stopped.</div>
         </motion.div>
       </div>
@@ -193,7 +205,7 @@ function TwoFriends({ w, h, d }: { w: number; h: number; d: { beat: number } }) 
           <motion.div {...pop(b, 1, { y: 80, scale: 0.85 })} style={{ position: 'absolute', left: 20, bottom: 0 }}><Blicky pose="sketch" height={300} /></motion.div>
         </div>
         <motion.div {...pop(b, 6)} style={{ marginTop: 28 }}>
-          <div style={{ font: '700 40px/1.1 var(--font-head)', letterSpacing: '-0.02em', color: 'var(--blicky-ink)' }}>Blicky shows you</div>
+          <div style={{ font: '700 40px/1.1 var(--font-head)', letterSpacing: '-0.02em', color: 'var(--blicky-ink)' }}>Blicky shows everything</div>
           <div style={{ font: '400 25px/1.4 var(--font-head)', color: 'var(--ink)', marginTop: 8 }}>He draws on your own screen and talks you through it.</div>
         </motion.div>
       </div>
@@ -254,34 +266,90 @@ function OneStep({ w, h, d }: { w: number; h: number; d: { ring: number; beat: n
   )
 }
 
+/** 5 · it manages your context: her sentence → Pickle → the right project (routed by Moss, on this Mac), and Pickle
+    writing that project's memory. */
+function Context({ w, h, d }: { w: number; h: number; d: { beat: number } }) {
+  const b = d.beat
+  const projects = ['CHEM 120 · worksheet', 'Club bracket · CAD', 'LRKS · why it dropped'] // DRAFT, Mia's scenario
+  const memory = ['Your words, verbatim', 'Blicky’s notes', 'The session log'] // what a project folder holds (app/memory/README.md)
+  const line = (dd: string, i: number) => (
+    <motion.path d={dd} fill="none" stroke="var(--pickle-ink)" strokeWidth={5} strokeLinecap="round"
+      initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ pathLength: { duration: 0.45, ease: 'easeInOut', delay: i * b }, opacity: { duration: 0.01, delay: i * b } }} />
+  )
+  return (
+    <div style={{ position: 'relative', width: w, height: h + 44 }}>
+      <svg width={w} height={h + 44} style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible', pointerEvents: 'none' }}>
+        {line('M250 300C330 300 420 110 548 98', 3)}
+        {line('M190 420C230 560 380 560 548 540', 5)}
+      </svg>
+      <motion.div {...pop(b, 0, { x: -30, y: 0 })} style={{ position: 'absolute', left: 0, top: 0 }}>
+        <Words style={{ position: 'relative', whiteSpace: 'nowrap' }}>now circle the carbonyl carbon on it</Words>
+      </motion.div>
+      <motion.div {...pop(b, 1, { y: 60, scale: 0.85 })} style={{ position: 'absolute', left: 60, top: 180 }}><Pickle pose="point" height={230} /></motion.div>
+      {projects.map((p, i) => (
+        <motion.div key={p} {...pop(b, 1 + i * 0.5, { x: 30, y: 0 })} style={{ position: 'absolute', left: 560, top: i === 0 ? 40 : 60 + i * 110, width: 500 }}>
+          <motion.div initial={i === 0 ? { boxShadow: `inset 0 0 0 2px var(--line-hair), ${shadow}` } : false}
+            animate={{ boxShadow: `inset 0 0 0 ${i === 0 ? 3 : 2}px ${i === 0 ? 'var(--moss-400)' : 'var(--line-hair)'}, ${shadow}` }} transition={{ duration: 0.3, delay: i === 0 ? 4 * b + 0.2 : 0 }}
+            style={{ boxSizing: 'border-box', padding: '16px 22px', borderRadius: 16, background: 'var(--surface-page)', boxShadow: `inset 0 0 0 2px var(--line-hair), ${shadow}` }}>
+            <div style={{ font: `${i === 0 ? 600 : 500} 26px var(--font-head)`, color: 'var(--ink)' }}>{p}</div>
+            {i === 0 && <motion.div {...pop(b, 4)} style={{ marginTop: 6, font: '400 21px var(--font-pixel)', color: 'var(--pickle-ink)' }}>routed by moss · 7 ms</motion.div>}
+          </motion.div>
+        </motion.div>
+      ))}
+      <motion.div {...pop(b, 5.5, { y: 30, scale: 0.96 })} style={{ position: 'absolute', left: 560, top: 430, width: 500, boxSizing: 'border-box', padding: '20px 24px 22px', borderRadius: 20, background: 'var(--surface-page)', boxShadow: `inset 0 0 0 2px var(--moss-300), ${shadow}` }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+          <span style={{ font: '600 24px var(--font-head)', color: 'var(--pickle-ink)' }}>CHEM 120 · memory</span>
+          <span style={{ font: '400 20px var(--font-pixel)', color: 'var(--text-secondary)' }}>pickle is writing…</span>
+        </div>
+        <div style={{ display: 'grid', gap: 12, marginTop: 16 }}>
+          {memory.map((m, i) => (
+            <motion.div key={m} {...pop(b, 6.5 + i, { x: 20, y: 0 })} style={{ display: 'flex', alignItems: 'center', gap: 12, font: '500 24px var(--font-head)', color: 'var(--ink)' }}>
+              <Check size={24} color="var(--pickle-ink)" />{m}
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
 export function WithYou() {
   const step = useStep()
-  const d = useDialKit('With you', {
-    head: [92, 60, 130, 1], small: [0.48, 0.3, 0.8, 0.01],
-    screenW: [1080, 820, 1180, 4], ring: [6, 2, 12, 0.5], beat: [0.16, 0, 0.5, 0.01],
-  })
-  const at = step >= 1 && step <= 4 ? step - 1 : -1
+  const d = useDialKit('With you', { head: [44, 30, 70, 1], screenW: [1080, 820, 1180, 4], ring: [6, 2, 12, 0.5], beat: [0.16, 0, 0.5, 0.01] })
+  const at = step >= 1 && step <= 5 ? step - 1 : -1
   const dec = at >= 0 ? DECISIONS[at] : null
   const W = d.screenW, H = Math.round(W * 0.625), winLeft = 1920 - M - W, winTop = 984 - H - 44
-  const small = step >= 1, end = step >= 5
-  const Visual = [OnYourScreen, TwoFriends, AsksFirst, OneStep][at]
+  const Visual = [OnYourScreen, TwoFriends, AsksFirst, OneStep, Context][at]
 
   return (
     <>
-      {/* the headline: big on arrival, then up to the top as the title while the decisions play; gone for the end */}
-      <motion.h1 initial={{ opacity: 0, y: 70 }} animate={{ opacity: end ? 0 : 1, y: small ? (end ? 100 : 130) - 290 : 0, scale: small ? d.small : 1 }} transition={spring}
-        style={{ position: 'absolute', left: M, top: 290, margin: 0, transformOrigin: '0 0', font: `700 ${d.head}px/1.04 var(--font-head)`, letterSpacing: 'var(--t-head-1-track)', color: 'var(--ink)', whiteSpace: 'nowrap' }}>
+      {/* the title: his line, small, the whole slide */}
+      <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={spring}
+        style={{ position: 'absolute', left: M, top: 130, margin: 0, font: `700 ${d.head}px/1.04 var(--font-head)`, letterSpacing: 'var(--t-head-1-track)', color: 'var(--ink)', whiteSpace: 'nowrap' }}>
         {HEAD_A}<br />{HEAD_B}<span style={{ color: 'var(--pickle-ink)' }}>{HEAD_C}</span>
       </motion.h1>
 
-      {/* steps 0 and 5: the two of them, side by side */}
-      <motion.div initial={{ opacity: 0, y: 120 }} animate={step === 0 || end ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }} transition={{ ...spring, delay: step === 0 || end ? 0.2 : 0 }}
-        style={{ position: 'absolute', right: M + 80, bottom: 70, display: 'flex', alignItems: 'flex-end', gap: 36, pointerEvents: 'none' }}>
-        <Pickle pose={end ? 'point' : 'wave'} height={250} />
-        <Blicky pose={end ? 'wave' : 'cheer'} height={330} />
+      {/* step 0: the five decisions as a list, and the two of them */}
+      <AnimatePresence>
+        {step === 0 && (
+          <motion.ol key="list" exit={{ opacity: 0, y: -20 }} transition={spring} style={{ position: 'absolute', left: M, top: 320, margin: 0, padding: 0, listStyle: 'none', display: 'grid', gap: 26 }}>
+            {DECISIONS.map((k, i) => (
+              <motion.li key={k.tab} initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ ...spring, delay: 0.15 + i * 0.09 }}
+                style={{ display: 'flex', alignItems: 'baseline', gap: 26 }}>
+                <span style={{ width: 30, font: '600 32px var(--font-head)', color: 'var(--text-muted)', fontVariantNumeric: 'tabular-nums' }}>{i + 1}</span>
+                <span style={{ font: '700 56px/1.05 var(--font-head)', letterSpacing: '-0.035em', color: 'var(--ink)' }}>{k.title}</span>
+              </motion.li>
+            ))}
+          </motion.ol>
+        )}
+      </AnimatePresence>
+      <motion.div initial={{ opacity: 0, y: 120 }} animate={step === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }} transition={{ ...spring, delay: step === 0 ? 0.3 : 0 }}
+        style={{ position: 'absolute', right: M + 60, bottom: 70, display: 'flex', alignItems: 'flex-end', gap: 30, pointerEvents: 'none' }}>
+        <Pickle pose="wave" height={210} />
+        <Blicky pose="cheer" height={280} />
       </motion.div>
 
-      {/* steps 1–4: the decision and why on the left, its picture on the right */}
+      {/* steps 1–5: the decision and why on the left, its picture on the right */}
       <AnimatePresence>
         {dec && (
           <motion.div key={dec.tab} initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={spring}
@@ -289,6 +357,7 @@ export function WithYou() {
             <div style={{ font: '700 72px/1.04 var(--font-head)', letterSpacing: 'var(--t-head-1-track)', color: 'var(--ink)', textWrap: 'balance' } as CSSProperties}>{dec.title}</div>
             <p style={{ margin: '30px 0 0', font: '500 34px/1.3 var(--font-head)', letterSpacing: '-0.01em', color: 'var(--ink)' }}>{dec.why}</p>
             {at === 1 && <p style={{ margin: '30px 0 0', font: '400 30px/1.35 var(--font-second)', color: 'var(--pickle-ink)' }}>{FRIEND}</p>}
+            {at === 4 && <p style={{ margin: '26px 0 0', font: '400 20px/1.4 var(--font-head)', color: 'var(--text-secondary)' }}>{ROUTE_NOTE}</p>}
           </motion.div>
         )}
       </AnimatePresence>
@@ -300,29 +369,15 @@ export function WithYou() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* where we are among the four */}
-      <motion.div initial={false} animate={{ opacity: dec ? 1 : 0 }} transition={spring} style={{ position: 'absolute', left: M, top: 920, display: 'flex', gap: 30 }}>
+      {/* where we are among the five */}
+      <motion.div initial={false} animate={{ opacity: dec ? 1 : 0 }} transition={spring} style={{ position: 'absolute', left: M, top: 920, display: 'flex', gap: 24 }}>
         {DECISIONS.map((k, i) => (
-          <div key={k.tab} style={{ position: 'relative', font: `${i === at ? 700 : 500} 24px var(--font-head)`, color: i === at ? 'var(--ink)' : 'var(--text-muted)', paddingBottom: 10, whiteSpace: 'nowrap' }}>
+          <div key={k.tab} style={{ position: 'relative', font: `${i === at ? 700 : 500} 22px var(--font-head)`, color: i === at ? 'var(--ink)' : 'var(--text-muted)', paddingBottom: 10, whiteSpace: 'nowrap' }}>
             {k.tab}
             {i === at && <motion.i layoutId="with-you-bar" transition={spring} style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 4, borderRadius: 2, background: 'var(--pickle-ink)' }} />}
           </div>
         ))}
       </motion.div>
-
-      {/* step 5: introducing pickje */}
-      <AnimatePresence>
-        {end && (
-          <motion.div key="intro" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 30 }} transition={{ ...spring, delay: 0.1 }}
-            style={{ position: 'absolute', left: M, top: 300, width: 1060 }}>
-            <div style={{ font: '700 var(--deck-giant)/0.98 var(--font-head)', letterSpacing: 'var(--tracking-giant)', color: 'var(--ink)' }}>
-              Introducing <span style={{ color: 'var(--pickle-ink)' }}>pickje.</span>
-            </div>
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...spring, delay: 0.45 }}
-              style={{ margin: '44px 0 0', maxWidth: 900, font: '400 34px/1.35 var(--font-second)', color: 'var(--pickle-ink)' }}>“{MISSION}”</motion.p>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   )
 }

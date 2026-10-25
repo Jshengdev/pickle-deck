@@ -39,10 +39,10 @@ import ob5Asks from '../assets/onboarding/ob5-asks.png'
       0  OB0 · The intro card                      ob0-card (the two of them)
       1  OB1 · Shake your cursor to wake Pickle    ob1-shake (the intro card) + a cursor shaking beside it, where he spawns
       2  OB1 · Pickle pops up at your cursor       ob1-pop, then ob1-wave ("Hi, I'm Pickle.") 1.1 s later
-      3  OB2 · He tests your mic                   ob2-listening, zoomed tighter
+      3  OB2 · Test your mic                       ob2-listening, zoomed tighter
       4  OB2 · Your words show as heard            ob2-heard ("you can call me johnny"), pushes in further
       5  OB3 · Little Blicky pops up               ob3-pop, then ob3-said 1.4 s later
-      6  OB4 · Circle as you talk                  ob4-asks ("point 1, point 2, and what you want to know.")
+      6  OB4 · Circle anything on your screen and ask out loud   ob4-asks ("point 1, point 2, and what you want to know.")
       7  OB4 · Each circle leaves a numbered pin   ob4-pins: pulls wide, then pushes in on the 2 circles
       8  OB5 · Ask about something from earlier    ob5-asks
     Captions: his run-through's words, lightly cleaned ("spawn in the pickle thing" → "wake Pickle", "pops up the
@@ -52,6 +52,14 @@ import ob5Asks from '../assets/onboarding/ob5-asks.png'
     "The intro card", OB2's "He asks your name; the mic opens" and "Your words show as heard" are beats.json's titles,
     verbatim. Every line in the bubbles is the app's own, as rendered in that frame (some frames catch a line mid-type,
     e.g. OB3's "screen and talks you through stuff.").
+
+    Third round (his second run-through, 2026-10-25, 5:46 AM, voice): "Here's the onboarding intro. Shake your cursor to
+    wake up Pickle. Pickle pops up. Right your cursor. Test your mic. Your words are shown as heard, and then the little
+    pickle pops up. It basically tells you what it's capable of, and then you can just start circling around your screen
+    and use diction to basically ask what it is." So OB2 leads "Test your mic"; OB3 adds "He tells you what he can do."
+    (his "it basically tells you what it's capable of"; "the little pickle" there is Blicky, whose beat it is); OB4 leads
+    "Circle anything on your screen and ask out loud" (his "start circling around your screen and use diction to
+    basically ask what it is").
 
     The camera: every frame shares one coordinate system (the storyboard tool put its reference cast at the same top-left
     spot in each; only ob4-pins is shifted, by 161, 92). So one camera glides from beat to beat (a slow Ken Burns: pan +
@@ -91,10 +99,10 @@ const BEATS: Beat[] = [
   { ob: 0, title: 'The intro card', who: 'both', frames: [{ id: 'ob0-card' }], to: { cx: 267, cy: 210, vw: 820 } },
   { ob: 1, title: 'Shake your cursor to wake Pickle', who: 'pickle', frames: [{ id: 'ob1-shake' }], to: { cx: 470, cy: 360, vw: 985 } },
   { ob: 1, title: 'Pickle pops up at your cursor', who: 'pickle', frames: [{ id: 'ob1-pop' }, { id: 'ob1-wave', at: 1.1 }], to: { cx: 900, cy: 640, vw: 860 } },
-  { ob: 2, title: 'He tests your mic', more: 'He asks your name; the mic opens.', who: 'pickle', frames: [{ id: 'ob2-listening' }], to: { cx: 1001, cy: 676, vw: 760 } },
+  { ob: 2, title: 'Test your mic', more: 'He asks your name; the mic opens.', who: 'pickle', frames: [{ id: 'ob2-listening' }], to: { cx: 1001, cy: 676, vw: 760 } },
   { ob: 2, title: 'Your words show as heard', who: 'pickle', frames: [{ id: 'ob2-heard' }], to: { cx: 990, cy: 688, vw: 660 } },
-  { ob: 3, title: 'Little Blicky pops up', who: 'blicky', frames: [{ id: 'ob3-pop' }, { id: 'ob3-said', at: 1.4 }], to: { cx: 1175, cy: 616, vw: 1060 } },
-  { ob: 4, title: 'Circle as you talk', more: 'It watches what just happened and answers your points, one by one.', who: 'blicky', frames: [{ id: 'ob4-asks' }], to: { cx: 1095, cy: 640, vw: 1240 } },
+  { ob: 3, title: 'Little Blicky pops up', more: 'He tells you what he can do.', who: 'blicky', frames: [{ id: 'ob3-pop' }, { id: 'ob3-said', at: 1.4 }], to: { cx: 1175, cy: 616, vw: 1060 } },
+  { ob: 4, title: 'Circle anything on your screen and ask out loud', more: 'It watches what just happened and answers your points, one by one.', who: 'blicky', frames: [{ id: 'ob4-asks' }], to: { cx: 1095, cy: 640, vw: 1240 } },
   { ob: 4, title: 'Each circle leaves a numbered pin', who: 'blicky', frames: [{ id: 'ob4-pins' }], via: { cx: 771, cy: 338, vw: 1900 }, to: { cx: 196, cy: 168, vw: 760 } },
   { ob: 5, title: 'Ask about something from earlier', more: 'It catches you up on what was on your screen.', who: 'blicky', frames: [{ id: 'ob5-asks' }], to: { cx: 1040, cy: 625, vw: 1120 } },
 ]

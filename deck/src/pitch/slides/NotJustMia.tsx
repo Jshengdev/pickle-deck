@@ -17,7 +17,7 @@ import { MiaFigure } from './mia/parts'
          Murty, Dadlani & Das, "How Much Time and Energy Do We Waste Toggling Between Applications?", HBR, Aug 2022:
            137 people at 3 Fortune 500 companies, ≈ 1,200 toggles a day, just under 4 h a week reorienting
          Gloria Mark (UC Irvine), Gallup Business Journal interview: 23 min 15 s to resume interrupted work (one study, 36 workers)
-    4  the clear statement of his point (DRAFT wording; it's his reading of the numbers, not a cited finding)
+    4  his line (5:46 AM run-through): "Mia's ambition is there, but the start isn't." (his reading of the numbers, not a cited finding)
     Out since his run-through: the AI-tools line, and his "For years we thought she just needed better productivity apps…
     built for neurotypical brains" lines (still in the Devpost inspiration). Not used: "15–20% of people are
     neurodivergent" (its source couldn't be traced). */
@@ -27,7 +27,9 @@ const NUMBERS = [
   { value: '1,200', caption: 'app switches a day, and nearly 4 hours a week spent finding your place again. HBR, 2022 (137 people)' },
   { value: '23 min', caption: 'to get back to work after an interruption. Gloria Mark, UC Irvine (one study, 36 workers)' },
 ]
-const SAYS = ['Every switch costs more when focus is already hard.', 'The ambition is there. The start isn’t.']   // DRAFT, his point
+// his second run-through 2026-10-25 5:46 AM: "And so with the average interruption costing about twenty three minutes, Mia's
+// ambition is there, but the start isn't."
+const SAYS = ['Mia’s ambition is there, but the start isn’t.']
 
 export function NotJustMia() {
   return (

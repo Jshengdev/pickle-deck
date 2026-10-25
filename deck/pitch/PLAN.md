@@ -8,7 +8,7 @@ follow (`deck/src/pitch/slides/mia/`).
 **The script:** `deck/pitch/SCRIPT.md` · **the running order:** `deck/src/pitch/index.tsx` · **open it:** `npm run dev`,
 then http://127.0.0.1:5320/?deck=pitch (→ one sentence, ← back, ↓↑ skip a slide, G the grid).
 
-## The order (his run-through 2026-10-25, 5:20 AM; verbatim at the end of SCRIPT.md)
+## The order (his second run-through 2026-10-25, 5:46 AM; verbatim at the end of SCRIPT.md)
 
 | # | Slide | File |
 |---|---|---|
@@ -16,22 +16,24 @@ then http://127.0.0.1:5320/?deck=pitch (→ one sentence, ← back, ↓↑ skip 
 | 2 | "This is Mia." → "More specifically, she's Enlie's sister." | `slides/mia/` · `ThisIsMia` |
 | 3 | Ambitious, smart → her 3 projects as cards → "one thing keeps stopping her" | `slides/mia/` · `SheIs` |
 | 4 | Too many interests, projects, things → "So nothing starts." | `slides/mia/` · `TooMany` |
-| 5 | It's not just Mia: "Mia has ADHD.", 3 sourced numbers, what switching costs | `slides/NotJustMia.tsx` |
-| 6 | You ask AI → wall of text → screenshot → paste → another project → ten | `slides/mia/` · `AsksAI` |
+| 5 | It's not just Mia: ADHD, 3 sourced numbers, "Mia's ambition is there, but the start isn't." | `slides/NotJustMia.tsx` |
+| 6 | She asks AI → wall of text → screenshot → paste → session after session → ten | `slides/mia/` · `AsksAI` |
 | 7 | "But you don't need ten windows. You just need the one next step." | `slides/mia/` · `OneStep` |
-| 8 | There's always a tool for more → "Our ambitions are being held back…" | `slides/ToolsForMore.tsx` |
-| 9 | Built to do it with you: 4 UX decisions → "Introducing pickje." | `slides/WithYou.tsx` |
-| 10 | pickje sees what you mean. + his bottom line | `slides/Title.tsx` |
-| 11 | Meet Pickle: context brain, the notepad and its tabs | `slides/MeetPickle.tsx` |
-| 12 | Meet Blicky: does the work on your screen, the scratchpad | `slides/MeetBlicky.tsx` |
-| 13 | The onboarding, a press per beat (shake → pin → ask about earlier) | `slides/Onboarding.tsx` |
-| 14 | "A quick live demo of the onboarding." | `slides/LiveDemo.tsx` |
-| 15 | The scenarios → no new chats: Pickle routes each one → "Now, live." | `slides/Scenarios.tsx` |
-| 16 | The whole product is built on 15 verbs; a press per sponsor, technical | `slides/Verbs.tsx` |
-| 17 | Before and after Blicky (the chemistry page) | `slides/Annotations.tsx` |
-| 18 | It runs in 3 layers: the Mac, the talk server, the brains and memory | `slides/Stack.tsx` |
-| 19 | Close: "Tonight, Mia started." → summary → "We've got you, Mia." | `slides/Close.tsx` |
-| 20 | Appendix: the full exam and the measured numbers | `slides/Exam.tsx` |
+| 8 | There's always a tool for more → "Mia's ambition is being held back…" | `slides/ToolsForMore.tsx` |
+| 9 | "Instead of a tool that does more for you, we built one that does it with you." | `slides/WithYouHeadline.tsx` |
+| 10 | "Introducing pickje." + "A computer-use AI collaborator that works with you." | `slides/Title.tsx` |
+| 11 | Meet Pickle | `slides/MeetPickle.tsx` |
+| 12 | Meet Blicky | `slides/MeetBlicky.tsx` |
+| 13 | Built to do it with you: 5 decisions (where your work is, two friends, asks first, one step, your context) | `slides/WithYou.tsx` |
+| 14 | Where your context lives: a folder per project → Claude Code there → Pickle hands your words over | `slides/Context.tsx` |
+| 15 | The onboarding, a press per beat | `slides/Onboarding.tsx` |
+| 16 | "A quick live demo of the onboarding." | `slides/LiveDemo.tsx` |
+| 17 | "We ran it on 4 different things." → tabs made automatically → "Now, live." | `slides/Scenarios.tsx` |
+| 18 | The technicals: 15 verbs, a press per sponsor in his words | `slides/Verbs.tsx` |
+| 19 | Before and after Blicky | `slides/Annotations.tsx` |
+| 20 | It runs in 3 layers | `slides/Stack.tsx` |
+| 21 | Close → "We've got you, Mia." | `slides/Close.tsx` |
+| 22 | Appendix: the full exam | `slides/Exam.tsx` |
 
 Out of the running order (files kept): MiaStory, MeetCast, ShakeToWake, SeesFlow, NorthStar, HowItWorks, ItWorks,
 RealWorld, ClipOnboarding, ClipScenarios, ClipLoop.

@@ -5,6 +5,8 @@ import { ToolsForMore, TOOLS_STEPS } from './slides/ToolsForMore'
 import { MIA, MIA_AI } from './slides/mia'
 import { LiveDemo } from './slides/LiveDemo'
 import { WithYou, WITH_YOU_STEPS } from './slides/WithYou'
+import { WithYouHeadline, WITH_YOU_HEADLINE_STEPS } from './slides/WithYouHeadline'
+import { Context, CONTEXT_STEPS } from './slides/Context'
 import { MeetPickle, MEET_PICKLE_STEPS } from './slides/MeetPickle'
 import { MeetBlicky, MEET_BLICKY_STEPS } from './slides/MeetBlicky'
 import { Onboarding, ONBOARDING_STEPS } from './slides/Onboarding'
@@ -22,15 +24,17 @@ import { Close, CLOSE_STEPS } from './slides/Close'
 const felt = 'var(--surface-felt)'
 
 export const pitch: Entry[] = [
-  // ── The first half (his run-through 2026-10-25 5:20 AM): Mia → not just Mia → you ask AI → a tool for more → pickje ──
+  // ── The first half (his second run-through 2026-10-25 5:46 AM): Mia → not just Mia → you ask AI → a tool for more → pickje ──
   ...MIA,                                                    // her picture, "This is Mia.", her projects, "So nothing starts."
   { title: 'It’s not just Mia', chapter: 'The problem', steps: NOT_JUST_STEPS, render: NotJustMia },
   ...MIA_AI,                                                 // you ask AI → ten windows → "You just need the one next step."
   { title: 'There’s always a tool for more', chapter: 'The problem', steps: TOOLS_STEPS, render: ToolsForMore },
-  { title: 'Built to do it with you', chapter: 'pickje', steps: WITH_YOU_STEPS, render: WithYou },
-  { title: 'pickje sees what you mean.', steps: 2, ground: felt, dark: true, chrome: false, render: Title },
+  { title: 'Does it with you', chapter: 'pickje', steps: WITH_YOU_HEADLINE_STEPS, render: WithYouHeadline },
+  { title: 'Introducing pickje', steps: 2, ground: felt, dark: true, chrome: false, render: Title },
   { title: 'Meet Pickle', chapter: 'Meet the cast', steps: MEET_PICKLE_STEPS, render: MeetPickle },
   { title: 'Meet Blicky', chapter: 'Meet the cast', steps: MEET_BLICKY_STEPS, render: MeetBlicky },
+  { title: 'Built to do it with you', chapter: 'pickje', steps: WITH_YOU_STEPS, render: WithYou },
+  { title: 'Where your context lives', chapter: 'pickje', steps: CONTEXT_STEPS, render: Context },
   // ── The demo: the onboarding a press per beat, then he goes live, then the scenarios ──
   { title: 'Onboarding', chapter: 'Demo', steps: ONBOARDING_STEPS, render: Onboarding },
   { title: 'Live: the onboarding', chapter: 'Demo', render: LiveDemo },

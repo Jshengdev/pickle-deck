@@ -31,20 +31,20 @@ export const TOO_MANY = [
   'Too many things she needs to do.',
   'So nothing starts.',
 ]                                                                       // his words: "too many interests, too many projects. Too many things that she needs to do. That nothing starts."
-/** His run-through 2026-10-25 5:20 AM, after "It's not just Mia", so it's "you" now: "So the obvious solution is to use AI
-    for help. Type out a question, answers with a wall text. Maybe you screenshot the question, paste it back. While you
-    wait, you might start some of your other projects, and then maybe another, another, another, another, and soon you have
-    ten. But you don't need ten windows. You just need one. The next, the one next step." One per press, lightly cleaned. */
+/** His second run-through 2026-10-25 5:46 AM, verbatim: "The obvious solution: use AI for help. She might have a question.
+    Type it out, get an answer. Screenshot the question for more clarity, and then paste it back in. And then while she
+    waits, she might start another session, then another, and another, and soon you'll have ten, each a different project.
+    But you don't need ten windows. You just need the next one step." One per press, lightly cleaned. */
 export const ASKS_AI = [
   'The obvious solution: use AI for help.',
-  'You type out a question.',
+  'She types out a question.',
   'It answers with a wall of text.',
-  'You screenshot the question.',
-  'Paste it back in.',
-  'While you wait, you start one of your other projects.',
+  'She screenshots the question, for more clarity.',
+  'And pastes it back in.',
+  'While she waits, she starts another session.',
   'Then another.',
   'And another.',
-  'Soon you have ten.',
+  'Soon there are ten, each a different project.',
 ]
 export const ONE_STEP = ['But you don’t need ten windows.', 'You just need the one next step.']
 export const NEXT_STEP = 'Question 22: count the degrees of unsaturation first.'   // her rule in the staged o-chem project: "Do degrees of unsaturation first on every unknown"
