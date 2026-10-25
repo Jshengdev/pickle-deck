@@ -1,0 +1,10 @@
+{
+  "run": "2026-10-24T23-45-14",
+  "from": "/tmp/pickje-exam/2026-10-24T23-45-14",
+  "saved_at": "2026-10-25T00:51:32.574Z",
+  "judged_steps": 15,
+  "redactions": 0,
+  "summary": "summary: 18 step(s) run, 15 judged; judge claude-opus-5-5",
+  "pass_bar": "the pass bar (his click: at least 80% of criteria over 2 runs of both demos, no reveal slips): NOT PASSED (52% over 1 judged run(s), 0 reveal slip(s))",
+  "left_out": "screenpipe frames, setup sheets, anchor images and judge inputs (his screen); live.log"
+}

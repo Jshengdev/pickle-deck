@@ -1,0 +1,202 @@
+[
+  {
+    "id": "ob0-card",
+    "step": "OB0",
+    "title": "The intro card",
+    "file": "ob0-card.png",
+    "size": [
+      534,
+      420
+    ]
+  },
+  {
+    "id": "ob1-shake",
+    "step": "OB1",
+    "title": "Shake your cursor",
+    "file": "ob1-shake.png",
+    "size": [
+      534,
+      420
+    ]
+  },
+  {
+    "id": "ob1-pop",
+    "step": "OB1",
+    "title": "Pickle pops in at the cursor",
+    "file": "ob1-pop.png",
+    "size": [
+      900,
+      852
+    ]
+  },
+  {
+    "id": "ob1-wave",
+    "step": "OB1",
+    "title": "He waves while he types",
+    "file": "ob1-wave.png",
+    "size": [
+      1148,
+      845
+    ]
+  },
+  {
+    "id": "ob1-said",
+    "step": "OB1",
+    "title": "His intro, typed in his bubble",
+    "file": "ob1-said.png",
+    "size": [
+      1344,
+      772
+    ]
+  },
+  {
+    "id": "ob1-next",
+    "step": "OB1",
+    "title": "Shake me to go to the next one",
+    "file": "ob1-next.png",
+    "size": [
+      1342,
+      773
+    ]
+  },
+  {
+    "id": "ob2-listening",
+    "step": "OB2",
+    "title": "He asks your name; the mic opens",
+    "file": "ob2-listening.png",
+    "size": [
+      1341,
+      841
+    ]
+  },
+  {
+    "id": "ob2-heard",
+    "step": "OB2",
+    "title": "Your words show as heard",
+    "file": "ob2-heard.png",
+    "size": [
+      1340,
+      843
+    ]
+  },
+  {
+    "id": "ob2-quip",
+    "step": "OB2",
+    "title": "His witty line",
+    "file": "ob2-quip.png",
+    "size": [
+      1402,
+      772
+    ]
+  },
+  {
+    "id": "ob3-butt",
+    "step": "OB3",
+    "title": "His butt peeks out of the corner",
+    "file": "ob3-butt.png",
+    "size": [
+      1995,
+      1592
+    ]
+  },
+  {
+    "id": "ob3-look",
+    "step": "OB3",
+    "title": "His eyes peek out and look around",
+    "file": "ob3-look.png",
+    "size": [
+      1995,
+      1592
+    ]
+  },
+  {
+    "id": "ob3-pop",
+    "step": "OB3",
+    "title": "He pops out of thin air",
+    "file": "ob3-pop.png",
+    "size": [
+      1140,
+      763
+    ]
+  },
+  {
+    "id": "ob3-said",
+    "step": "OB3",
+    "title": "He introduces himself",
+    "file": "ob3-said.png",
+    "size": [
+      1688,
+      761
+    ]
+  },
+  {
+    "id": "ob4-asks",
+    "step": "OB4",
+    "title": "Circle what you mean",
+    "file": "ob4-asks.png",
+    "size": [
+      1704,
+      769
+    ]
+  },
+  {
+    "id": "ob4-pins",
+    "step": "OB4",
+    "title": "Each circle leaves a numbered mini Pickle",
+    "file": "ob4-pins.png",
+    "size": [
+      1865,
+      854
+    ]
+  },
+  {
+    "id": "ob5-asks",
+    "step": "OB5",
+    "title": "Ask about something from earlier",
+    "file": "ob5-asks.png",
+    "size": [
+      1592,
+      770
+    ]
+  },
+  {
+    "id": "ob6-asks",
+    "step": "OB6",
+    "title": "Tell it a task",
+    "file": "ob6-asks.png",
+    "size": [
+      1626,
+      770
+    ]
+  },
+  {
+    "id": "ob6-stamp",
+    "step": "OB6",
+    "title": "The say-back checks out: Pickle stamps it",
+    "file": "ob6-stamp.png",
+    "size": [
+      1276,
+      884
+    ]
+  },
+  {
+    "id": "ob6-saidback",
+    "step": "OB6",
+    "title": "Blicky says it back; it's working",
+    "file": "ob6-saidback.png",
+    "size": [
+      1688,
+      881
+    ]
+  },
+  {
+    "id": "ob6-undone",
+    "step": "OB6",
+    "title": "Click the stamp, undo: it stops",
+    "file": "ob6-undone.png",
+    "size": [
+      1478,
+      762
+    ]
+  }
+]

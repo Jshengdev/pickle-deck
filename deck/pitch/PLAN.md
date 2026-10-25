@@ -8,27 +8,32 @@ follow (`deck/src/pitch/slides/mia/`).
 **The script:** `deck/pitch/SCRIPT.md` · **the running order:** `deck/src/pitch/index.tsx` · **open it:** `npm run dev`,
 then http://127.0.0.1:5320/?deck=pitch (→ one sentence, ← back, ↓↑ skip a slide, G the grid).
 
-## The order (about 3 minutes)
+## The order (his walkthrough 2026-10-25, about 4:45 AM; verbatim in SCRIPT.md)
 
-| # | Slide | Folder / file | Status |
+| # | Slide | File | Status |
 |---|---|---|---|
 | 1 | Mia (just her picture) | `slides/mia/` · `MiaPortrait` | built |
-| 2 | "This is Mia." | `slides/mia/` · `ThisIsMia` | built |
-| 3 | Who she is → "But there's one thing that keeps stopping her." | `slides/mia/` · `SheIs` | built |
-| 4 | Too many interests, projects, things → "So nothing starts." (her real screens) | `slides/mia/` · `TooMany` | built |
-| 5 | She asks AI → wall of text → screenshot → paste → session after session → ten in, lost | `slides/mia/` · `AsksAI` | built |
-| 6 | It's not just Mia (his line + 3 sourced numbers) | `slides/NotJustMia.tsx` | built; agent polishes |
-| 7 | There's always a tool for more → collaborative, human-focused, context stays put | `slides/ToolsForMore.tsx` | built; agent polishes |
-| 8 | Mia needs one next step (the sessions clear, one card stays) | `slides/mia/` · `OneStep` | built |
-| 9 | pickje sees what you mean (the reveal) | `slides/Title.tsx` | built |
-| 10 | Meet Pickle and Blicky | `slides/MeetCast.tsx` | agent |
-| 11 | Clip: the first minute (onboarding) | `slides/ClipOnboarding.tsx` | built; agent polishes |
-| 12 | Clip: any screen (chemistry, Cal Student Hub, stocks, CAD) | `slides/ClipScenarios.tsx` | agent: swap in Mia's real screens |
-| 13 | Clip: talk, mark, speak, save | `slides/ClipLoop.tsx` | built |
-| 14 | How it's built (7 sponsor parts) | `slides/HowItWorks.tsx` | agent |
-| 15 | It works (live exam numbers + caveat) | `slides/ItWorks.tsx` | his call: which 3 |
-| 16 | Close (Mia started) | `slides/Close.tsx` | agent: echo Mia's next step |
-| — | Appendix: the one-scene Mia story, shake to wake, the 4 stages, north star, real world | | kept for questions |
+| 2 | "This is Mia." → "More specifically, she's En's sister." | `slides/mia/` · `ThisIsMia` | built (spelling of En: his call) |
+| 3 | Ambitious, smart → her 3 projects as cards (club car in CAD, investing, video) → "one thing keeps stopping her" | `slides/mia/` · `SheIs` | built |
+| 4 | Too many interests, projects, things → "So nothing starts." | `slides/mia/` · `TooMany` | built |
+| 5 | AI for help → wall of text → screenshot → paste → another project piques her interest → ten sessions | `slides/mia/` · `AsksAI` | built |
+| 6 | "But she doesn't need ten. She just needs the one next step." | `slides/mia/` · `OneStep` | built |
+| 7 | It's not just Mia: 3 sourced numbers, AI tools built for switching, his line | `slides/NotJustMia.tsx` | built |
+| 8 | There's always a tool for more: the pile of releases → his quote | `slides/ToolsForMore.tsx` | agent |
+| 9 | Instead of a tool that does more, one that does it with you: the main use cases | `slides/WithYou.tsx` | agent |
+| 10 | pickje sees what you mean. + his bottom line | `slides/Title.tsx` | built |
+| 11 | Meet Pickle: the context brain, its notepad and tabs | `slides/MeetPickle.tsx` | agent |
+| 12 | Meet Blicky: the scratchpad and his marks | `slides/MeetBlicky.tsx` | agent |
+| 13 | Onboarding OB0 → OB5, a press each (your name; circle two points) | `slides/Onboarding.tsx` | agent |
+| 14 | The scenarios → his live demo | `slides/Scenarios.tsx` | agent |
+| 15 | Fifteen verbs, each sponsor lit in turn | `slides/Verbs.tsx` | built (agent) |
+| 16 | The full exam: run 1 → latest, categories, more numbers | `slides/Exam.tsx` | agent |
+| 17 | Before and after Blicky's marks | `slides/Annotations.tsx` | agent |
+| 18 | How we built it: the stack and the process | `slides/Stack.tsx` | agent |
+| 19 | Close: "Tonight, Mia started." | `slides/Close.tsx` | built (latest exam numbers) |
+
+Out of the running order (files kept, his call "the things in the very end we can clear out"): MiaStory, MeetCast,
+ShakeToWake, SeesFlow, NorthStar, HowItWorks, ItWorks, RealWorld, ClipOnboarding, ClipScenarios, ClipLoop.
 
 ## The model to copy: `slides/mia/`
 - `words.ts`: every sentence, one per press, in his words where he gave them (comments say which), DRAFT where not.

@@ -1,48 +1,42 @@
 import type { Entry } from '../brand'
 import { Title } from './slides/Title'
-import { MiaStory, STORY_STEPS } from './slides/MiaStory'
-import { MeetCast } from './slides/MeetCast'
-import { ShakeToWake } from './slides/ShakeToWake'
-import { SeesFlow } from './slides/SeesFlow'
-import { NorthStar, NORTH_STAR_STEPS } from './slides/NorthStar'
-import { HowItWorks, HOW_STEPS } from './slides/HowItWorks'
-import { ItWorks, IT_WORKS_STEPS } from './slides/ItWorks'
-import { RealWorld } from './slides/RealWorld'
 import { NotJustMia, NOT_JUST_STEPS } from './slides/NotJustMia'
 import { ToolsForMore, TOOLS_STEPS } from './slides/ToolsForMore'
-import { ClipOnboarding } from './slides/ClipOnboarding'
-import { ClipScenarios } from './slides/ClipScenarios'
-import { ClipLoop } from './slides/ClipLoop'
 import { MIA, MIA_TURN } from './slides/mia'
+import { WithYou, WITH_YOU_STEPS } from './slides/WithYou'
+import { MeetPickle, MEET_PICKLE_STEPS } from './slides/MeetPickle'
+import { MeetBlicky, MEET_BLICKY_STEPS } from './slides/MeetBlicky'
+import { Onboarding, ONBOARDING_STEPS } from './slides/Onboarding'
+import { Scenarios, SCENARIOS_STEPS } from './slides/Scenarios'
+import { Verbs, VERBS_STEPS } from './slides/Verbs'
+import { Exam, EXAM_STEPS } from './slides/Exam'
+import { Annotations, ANNOTATIONS_STEPS } from './slides/Annotations'
+import { Stack, STACK_STEPS } from './slides/Stack'
 import { Close, CLOSE_STEPS } from './slides/Close'
 
-/** THE FINAL PRESENTATION, in order. Open it with ?deck=pitch. The story is draft 1 of the outline
+/** THE FINAL PRESENTATION, in order. Draft 5 (2026-10-25, ~4:45 AM): his walkthrough of the whole deck. Slides out of
+    the order (the clips, the earlier cast and proof slides, the one-scene Mia story) stay as files for reuse.  Open it with ?deck=pitch. The story is draft 1 of the outline
     (deck/pitch/OUTLINE-draft1.md), opened by a story; each slide's file says where its words come from.
     steps: how many presses the slide builds through (see kit/step.tsx). New slides start from templates/. */
 const felt = 'var(--surface-felt)'
 
 export const pitch: Entry[] = [
-  // Mia, the case study the pitch opens on (his brief 2026-10-25, ~4:10 AM): her picture, "This is Mia.", who she is,
-  // too much, she asks AI until she's ten sessions in. One sentence per press. slides/mia/.
-  ...MIA,
-  // His order (2026-10-25 ~5 AM): ten sessions in → "Mia doesn't need ten sessions. She needs one next step." → it's not
-  // just Mia → there's always a tool for more → then Pickle. That's the first half.
-  ...MIA_TURN,
+  // ── The first half (his walkthrough 2026-10-25, ~4:45 AM): Mia → the problem → the turn → pickje ──
+  ...MIA,                                                    // her picture, "This is Mia.", her projects, too much, AI, ten sessions
+  ...MIA_TURN,                                               // "She doesn't need ten. She just needs the one next step."
   { title: 'It’s not just Mia', chapter: 'The problem', steps: NOT_JUST_STEPS, render: NotJustMia },
   { title: 'There’s always a tool for more', chapter: 'The problem', steps: TOOLS_STEPS, render: ToolsForMore },
+  { title: 'Built to do it with you', chapter: 'pickje', steps: WITH_YOU_STEPS, render: WithYou },
   { title: 'pickje sees what you mean.', steps: 2, ground: felt, dark: true, chrome: false, render: Title },
-  { title: 'Meet Pickle and Blicky', chapter: 'Meet pickje', steps: 2, render: MeetCast },
-  // The demo as clips: onboarding, the scenarios, one turn close up. Each plays on its own and loops.
-  { title: 'The first minute', chapter: 'Demo', steps: 1, render: ClipOnboarding },
-  { title: 'Any screen', chapter: 'Demo', steps: 1, render: ClipScenarios },
-  { title: 'Talk, mark, speak, save', chapter: 'Demo', steps: 1, render: ClipLoop },
-  { title: 'How it’s built', chapter: 'How it works', steps: HOW_STEPS, render: HowItWorks },
-  { title: 'It works', chapter: 'Proof', steps: IT_WORKS_STEPS, render: ItWorks },
+  { title: 'Meet Pickle', chapter: 'Meet the cast', steps: MEET_PICKLE_STEPS, render: MeetPickle },
+  { title: 'Meet Blicky', chapter: 'Meet the cast', steps: MEET_BLICKY_STEPS, render: MeetBlicky },
+  // ── The demo: the onboarding, a press per beat, then the scenarios, then he goes live ──
+  { title: 'Onboarding', chapter: 'Demo', steps: ONBOARDING_STEPS, render: Onboarding },
+  { title: 'The scenarios', chapter: 'Demo', steps: SCENARIOS_STEPS, render: Scenarios },
+  // ── After the live demo: what it can do, how well, how it's built ──
+  { title: 'Fifteen verbs', chapter: 'How it works', steps: VERBS_STEPS, render: Verbs },
+  { title: 'The full exam', chapter: 'Proof', steps: EXAM_STEPS, render: Exam },
+  { title: 'Before and after', chapter: 'Proof', steps: ANNOTATIONS_STEPS, render: Annotations },
+  { title: 'How we built it', chapter: 'How we built it', steps: STACK_STEPS, render: Stack },
   { title: 'Close', steps: CLOSE_STEPS, ground: felt, dark: true, chrome: false, render: Close },
-  // Appendix, for questions. MiaStory (the first, one-scene version of her story) is here too.
-  { title: 'Mia’s story, one scene', chapter: 'Appendix', steps: STORY_STEPS, render: MiaStory },
-  { title: 'Shake to wake', chapter: 'Appendix', steps: 3, render: ShakeToWake },
-  { title: 'It sees what you mean', chapter: 'Appendix', steps: 4, render: SeesFlow },
-  { title: 'Your north star', chapter: 'Appendix', steps: NORTH_STAR_STEPS, render: NorthStar },
-  { title: 'Built for the real world', chapter: 'Appendix', dark: true, render: RealWorld },
 ]

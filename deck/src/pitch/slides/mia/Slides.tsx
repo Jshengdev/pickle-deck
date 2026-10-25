@@ -2,7 +2,7 @@ import { motion } from 'motion/react'
 import { M, span } from '../../../brand/frame'
 import { useStep } from '../../kit/step'
 import { MiaFigure, Lines, Win, TypeOn, SCREENS } from './parts'
-import { THIS_IS, SISTER, SHE_IS, TOO_MANY, ASKS_AI, ONE_STEP, NEXT_STEP, ASK, WALL, OTHER_CHATS } from './words'
+import { THIS_IS, SISTER, SHE_IS, PROJECTS, TOO_MANY, ASKS_AI, ONE_STEP, NEXT_STEP, ASK, WALL, OTHER_CHATS } from './words'
 
 /** Mia's story as a sequence of slides, one idea each, one sentence per press (his brief 2026-10-25, about 4:10 AM:
     "the first slide I want to have is just a picture of Mia, and then… This is Mia, and then next slide. She… is
@@ -12,7 +12,7 @@ import { THIS_IS, SISTER, SHE_IS, TOO_MANY, ASKS_AI, ONE_STEP, NEXT_STEP, ASK, W
     Every slide's steps = its number of sentences; the counts are exported for index.tsx. */
 const spring = { type: 'spring', visualDuration: 0.5, bounce: 0.14 } as const
 const TOP = 150
-/** His words 2026-10-25 ~5 AM: "make it so it's more animated when you do each like new slide". So in Mia's story things
+/** His words 2026-10-25 ~4:25 AM: "make it so it's more animated when you do each like new slide". So in Mia's story things
     do move in when a slide arrives (the deck's "nothing animates in" is relaxed here, as in the first story scene). */
 function Enter({ children, delay = 0, from = { y: 60, scale: 0.94 }, style }: { children: React.ReactNode; delay?: number; from?: { x?: number; y?: number; scale?: number; rotate?: number }; style?: React.CSSProperties }) {
   return <motion.div initial={{ opacity: 0, ...from }} animate={{ opacity: 1, x: 0, y: 0, scale: 1, rotate: 0 }} transition={{ ...spring, delay }} style={style}>{children}</motion.div>
@@ -37,13 +37,42 @@ export function ThisIsMia() {
   )
 }
 
-/** 3 · who she is, and the one thing that stops her. */
+/** 3 · who she is: her projects, one card per press (his ask: "be more specific that these are different projects and like
+    ways to organize context"), then the one thing that stops her. One sentence at a time, as in her AI slide. */
 export const SHE_IS_STEPS = SHE_IS.length
+const CREDIT: Record<string, string> = { cad: 'FreeCAD · Nik vr · CC BY-SA 4.0', video: 'Kdenlive · Ddeepeshkumar · CC BY-SA 4.0' }
+const CARD_W = 420, CARD_GAP = 30
+function ProjectCard({ name, what, src, credit, n }: { name: string; what: string; src: string; credit?: string; n: number }) {
+  return (
+    <div style={{ position: 'relative', width: CARD_W, paddingTop: 44 }}>
+      {/* the folder tab, as on Pickle's notepad */}
+      <div style={{ position: 'absolute', left: 0, top: 0, height: 52, padding: '0 20px', display: 'flex', alignItems: 'center', gap: 12, borderRadius: '14px 14px 0 0', background: 'var(--surface-page)', boxShadow: 'inset 0 0 0 1px var(--line-hair)' }}>
+        <span style={{ font: 'var(--t-pixel-4)', color: 'var(--text-muted)' }}>{n}</span>
+        <span style={{ font: '700 24px var(--font-head)', letterSpacing: '-0.01em' }}>{name}</span>
+      </div>
+      <div style={{ position: 'relative', borderRadius: '0 18px 18px 18px', overflow: 'hidden', background: 'var(--surface-page)', boxShadow: 'inset 0 0 0 1px var(--line-hair), 0 3px 0 oklch(0.3 0.01 230 / .14)' }}>
+        <div style={{ position: 'relative', margin: 12, borderRadius: 10, overflow: 'hidden', height: 270 }}>
+          <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top left', display: 'block' }} />
+          {credit && <span style={{ position: 'absolute', right: 6, bottom: 6, padding: '2px 6px', borderRadius: 6, background: 'oklch(1 0 0 / .85)', font: '400 11px var(--font-pixel)', color: 'var(--text-muted)' }}>{credit}</span>}
+        </div>
+        <div style={{ padding: '2px 22px 18px', font: '400 28px/1.25 var(--font-second)', color: 'var(--pickle-ink)' }}>{what}</div>
+      </div>
+    </div>
+  )
+}
 export function SheIs() {
+  const step = useStep(), last = SHE_IS.length - 1
   return (
     <>
-      <Enter from={{ x: 100 }} style={{ position: 'absolute', right: M + 20, bottom: 0 }}><MiaFigure height={620} /></Enter>
-      <Lines lines={SHE_IS} style={{ position: 'absolute', left: M, top: TOP, width: span(8) }} />
+      <Enter from={{ x: 100 }} style={{ position: 'absolute', right: M + 10, bottom: 0 }}><MiaFigure height={600} /></Enter>
+      <div style={{ position: 'absolute', left: M, top: TOP, width: span(9) }}><Lines lines={[SHE_IS[step] ?? '']} from={step} /></div>
+      {PROJECTS.map((p, i) => (
+        <motion.div key={p.name} initial={false} transition={spring}
+          animate={step >= p.at ? { opacity: step === last ? 0.5 : 1, y: 0, rotate: step === last ? (i - 1) * 3 : 0, scale: 1 } : { opacity: 0, y: 70, rotate: (i - 1) * 6, scale: 0.92 }}
+          style={{ position: 'absolute', left: M + i * (CARD_W + CARD_GAP), top: 440 }}>
+          <ProjectCard n={i + 1} name={p.name} what={p.what} src={SCREENS[p.screen]} credit={CREDIT[p.screen]} />
+        </motion.div>
+      ))}
     </>
   )
 }
@@ -62,7 +91,7 @@ export function TooMany() {
   const step = useStep()
   return (
     <>
-      <Enter from={{ y: 80 }} style={{ position: 'absolute', left: M, bottom: 0 }}><div style={{ opacity: step >= 3 ? 0.55 : 1, transition: 'opacity 400ms' }}><MiaFigure height={440} /></div></Enter>
+      <Enter from={{ y: 80 }} style={{ position: 'absolute', left: M, bottom: 0 }}><div style={{ opacity: step >= 3 ? 0.55 : 1, transition: 'opacity 400ms' }}><MiaFigure height={350} /></div></Enter>
       <Lines lines={TOO_MANY} style={{ position: 'absolute', left: M, top: TOP, width: span(6) }} />
       {PILE.map((p, i) => (
         <motion.div key={p.title} initial={p.at === 0 ? { opacity: 0, scale: 0.8, rotate: p.r * 3, x: 0 } : false} transition={{ ...spring, delay: p.at === 0 ? 0.2 + i * 0.12 : 0 }}
@@ -133,7 +162,7 @@ export function OneStep() {
   return (
     <>
       <Lines lines={ONE_STEP} style={{ position: 'absolute', left: M, top: TOP, width: span(8) }} />
-      {MORE.map((m, i) => (
+      {MORE.slice(0, 9).map((m, i) => (
         <motion.div key={i} initial={{ opacity: 0, y: 40 }} animate={step >= 1 ? { opacity: 0, y: 260 + i * 20, rotate: m.r * 8 } : { opacity: 0.8, y: 0, rotate: m.r }} transition={{ ...spring, delay: step >= 1 ? i * 0.03 : 0 }}
           style={{ position: 'absolute', left: m.x, top: m.y + 120 }}>
           <Win title={`AI chat · ${OTHER_CHATS[i]?.title ?? 'session ' + (i + 2)}`} w={560} h={300} style={{ left: 0, top: 0 }} />

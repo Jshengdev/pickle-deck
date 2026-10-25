@@ -8,16 +8,17 @@ import { HER } from './story'
 
 /** 11 · Close, as the end of a love letter: back to Mia, the 3 reasons with proof, then the signature. 3 steps.
     0  her ending: she started (the story pays off)
-    1  why it works for her, and for you: 3 reasons, the last one with real numbers (the first live exam, docs/PRODUCT.md)
+    1  why it works for her, and for you: 3 reasons, the last one with real numbers: the latest live exam, two passes
+       (docs/evals/2026-10-24-2/summary.txt: chemistry 47/50, reveal 33/34 with 1 slip) and routing (docs/PRODUCT.md:198)
     2  the line, signed by the cast ("the reaction is the signature", his words S5), and the ask if there is one
     Wording is DRAFT. ASK stays empty until he gives the one-line ask; empty means it isn't shown (no placeholders). */
 export const CLOSE_STEPS = 3
 const ENDING = `Tonight, ${HER} started.`
-const ENDING_LINE = 'Not with 5 answers. With 1 next step.'
+const ENDING_LINE = 'Not with ten sessions. With one next step.'   // echoes his line on slide 6
 const REASONS = [
   { lead: 'It remembers everything you’re juggling.', proof: '' },
   { lead: 'It gives you 1 next step, not a wall.', proof: '' },
-  { lead: 'It already works.', proof: '0 answers given away early · 16/16 routed right · 20/21 chemistry  (first full live exam, README)' },
+  { lead: 'It already works.', proof: '47/50 chemistry · kept the answer back 33/34 (1 slip) · 16/16 routed right  (latest live exam, 2 passes)' },
 ]
 const SIGN_OFF = `we’ve got you, ${HER}`
 const ASK = ''
