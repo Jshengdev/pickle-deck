@@ -5,3 +5,5 @@ deck/exports
 *.log
 .env
 .env.*
+mana/out/
+mana/data/
