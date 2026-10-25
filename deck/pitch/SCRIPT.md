@@ -1,4 +1,6 @@
-# pickje · the pitch script · draft 2 · 2026-10-25, about 4:30 AM
+# pickje · the pitch script · draft 3 · 2026-10-25, about 4:45 AM
+
+Draft 3 opens on Mia's case study (his brief ~4:10 AM, deck/pitch/PLAN.md); the slide numbers below follow the new order.
 
 About 3 minutes, one beat per slide. Built from his brief (2026-10-25, verbatim at the end): at most 3 slides on the
 problem (a hook; the data, research and personal story; then "there's always a tool for more" → what we need is
@@ -10,19 +12,24 @@ The slides are in `deck/src/pitch/index.tsx`; open `?deck=pitch` and press → t
 
 ---
 
-## 1 · Title (5 s)
-> "This is pickje. It sees what you mean."
+## Mia, the case study (≈ 60 s, `slides/mia/`, one sentence per press)
+His brief (2026-10-25, ~4:10 AM, in deck/pitch/PLAN.md): open on Mia; one sentence per press; her real screens.
 
-## The problem (≈ 75 s, 3 slides)
+**1 · Her picture.** *(silence, a beat)*
+**2 ·** > "This is Mia."
+**3 ·** > "She's a second-year mechanical engineering student at Cal. *(press)* Like most people, she's ambitious.
+> *(press)* She's smart. *(press)* She designs parts in CAD, edits videos for her club, and is learning to invest.
+> *(press)* But there's one thing that keeps stopping her."
+- The persona details are DRAFT (his ask: make her a specific person in her trade, as the sponsor tracks want).
+**4 ·** > "She has too many interests. *(press)* Too many projects. *(press)* Too many things she needs to do. *(press)* So
+> nothing starts." *(her real screens pile up: the video editor, the stocks page, CAD, the chemistry worksheet, the Cal
+> Student Hub)*
+**5 ·** > "So Mia asks AI for help. *(press)* She types out her question. *(press)* It answers with a wall of text. *(press)*
+> She screenshots the page. *(press)* Pastes it back in. *(press)* Opens another agent session for her CAD part. *(press)*
+> Another for her video. *(press)* And another for her stocks. *(press)* Ten sessions in, she can't remember what any of it
+> said, where it came from, what it was for, or what her next step is."
 
-### 2 · Mia's night (the hook, ≈ 30 s) · `MiaStory`
-> "Meet Mia. It's 11 PM. Chemistry is due tonight, her portfolio Friday, internship forms this week. *(press)* She's
-> stuck, so she asks an AI. It gives her a wall of text. *(press)* She asks about her portfolio. It has no idea what
-> she means. *(press)* For 62 to 85 percent of kids with ADHD, working memory is exactly where it breaks down."
-
-- Mia is a made-up person (a scenario, not a testimonial). **Fact:** Kofler et al. 2020, *Neuropsychology* 34(6) (children).
-
-### 3 · It's not just Mia (data, research, the personal line, ≈ 25 s) · `NotJustMia`
+### 6 · It's not just Mia (data, research, the personal line, ≈ 25 s) · `NotJustMia`
 > **His words:** "For years we thought she just needed better productivity apps."
 > "366 million adults live with ADHD symptoms. *(press)* The average worker switches apps about 1,200 times a day, and
 > spends nearly 4 hours a week finding their place again. *(press)* After an interruption, it takes 23 minutes to get
@@ -33,7 +40,7 @@ The slides are in `deck/src/pitch/index.tsx`; open `?deck=pitch` and press → t
   Gloria Mark, UC Irvine, Gallup interview (one study of 36 workers: 23 min 15 s to resume interrupted work).
 - **Open (his):** who "she" is, said in one line, if he wants to.
 
-### 4 · There's always a tool for more (≈ 20 s) · `ToolsForMore`
+### 7 · There's always a tool for more (≈ 20 s) · `ToolsForMore`
 > "There's always a tool for more. More apps. More tabs. Now, AI that does more for you. *(press)* But the work that
 > matters to you isn't handed off; it's done together. *(press)* So we didn't build more. We built something
 > collaborative, human-focused, and it leaves your context right where it is."
@@ -41,9 +48,15 @@ The slides are in `deck/src/pitch/index.tsx`; open `?deck=pitch` and press → t
 - Draft, from his brief: "the idea of ai is to do more, but what we need is somethgin more collaboritve huamn focuesd
   and doesnt mess with where your context goes."
 
+### 8 · One next step · `slides/mia/` (`OneStep`)
+> "Mia doesn't need ten agent sessions. *(press)* She needs one next step." *(the sessions clear; one card stays:
+> "Question 22: count the degrees of unsaturation first.", her own rule in the staged o-chem project)*
+
 ## Meet pickje (≈ 15 s)
 
-### 5 · Meet Pickle and Blicky · `MeetCast`
+### 9 · Title · "pickje sees what you mean."
+
+### 10 · Meet Pickle and Blicky · `MeetCast`
 > "Pickle rides on your cursor; its real work is backstage, as the context brain. Blicky is the one you see: he draws
 > on your screen and talks you through it."
 
