@@ -18,7 +18,7 @@ npm run dev                 # http://127.0.0.1:5320
 
 | URL | What |
 |---|---|
-| `/?deck=pitch` | **The presentation you're polishing.** 11 slides, wired from the draft outline. Source: `deck/src/pitch/` |
+| `/?deck=pitch` | **The presentation you're polishing.** 19 slides in his order (2026-10-25, 4:38 AM). Source: `deck/src/pitch/` |
 | `/` | The brand book: 58 pages of live code, every rule shown. ← → to page, G for the grid |
 | `/?notepads` | **New:** the two final notepads, live (Pickle's notepad, and Blicky's scratchpad with `?notepads=blicky`). Replay them, tune them with the dials, screenshot them for slides |
 | `/?lab` | The materials lab (metal, felt, moss) |
@@ -27,8 +27,8 @@ npm run dev                 # http://127.0.0.1:5320
 
 ## 2. The story and the facts
 
-**Start with `deck/pitch/SCRIPT.md`** (draft 2, 2026-10-25): the spoken script for every slide, with sources, built from
-his brief. The draft outline below is the earlier version.
+**Start with `deck/pitch/SCRIPT.md`** (draft 5, 2026-10-25): the spoken script for every slide, with sources, and his
+walkthrough verbatim. `deck/pitch/PLAN.md` has the order, one file per slide. The draft outline below is the earlier version.
 
 - **The draft story:** `deck/pitch/OUTLINE-draft1.md`. Eleven slides: title, problem, meet Pickle and Blicky, shake to wake, the magic moment, the demo, your north star, how it works, it works, why it matters, close. Every line in it is one of three things: his words, a fact with its proof, or a draft clearly marked. Keep it that way.
 - **What pickje is, in full:** `docs/PRODUCT.md` (the product README).
@@ -39,13 +39,13 @@ his brief. The draft outline below is the earlier version.
 
 | Number | What it measures | Caveat | Source |
 |---|---|---|---|
-| 52% | Rubric criteria met on the first full live exam | Not a clean number: that run had demo examples in its prompts. The pass bar is 80% over two runs | `docs/PRODUCT.md:27-29` |
-| 0 | Answers given away early | | `docs/PRODUCT.md:28` |
-| 20/21 | Chemistry criteria | | `docs/PRODUCT.md:28` |
-| 16/16 | Reveal criteria | | `docs/PRODUCT.md:50` |
-| 16/16 | Routed to the right project | | `docs/PRODUCT.md:70` |
-| 6 ms | From Pickle's write to the card updating (Convex) | | `docs/PRODUCT.md:79` |
-| 15/18 | Found in the top 3 on a staged question set (Elastic) | Staged data | `docs/PRODUCT.md:87` |
+| 62% (302/485) | Rubric criteria met, latest live exam, 2 passes | The pass bar is 80% over 2 runs with no reveal slips: **not passed**. The mic heard 0 of 36 steps (the words were handed in) | `docs/evals/2026-10-24-2/summary.txt` |
+| 52% (117/224) | The same, first run | That run had demo examples in its prompts | `docs/evals/2026-10-24-1/summary.txt` |
+| 33/34, 1 slip | Kept the answer back (reveal) | The slip: a recap named the product | `docs/evals/2026-10-24-2/summary.txt` |
+| 47/50 | Chemistry criteria | | `docs/evals/2026-10-24-2/summary.txt` |
+| 16/16 | Routed to the right project | The check's output wasn't kept | `docs/PRODUCT.md:198` |
+| 6 ms | From Pickle's write to the card updating (Convex) | | `docs/PRODUCT.md` |
+| 15/18 | Found in the top 3 on a staged question set (Elastic) | Staged data | `docs/PRODUCT.md` |
 
 - More detail is in `docs/STATUS.md` and `docs/EVALS.md`. Don't round, and don't drop a caveat.
 - **Sponsor tracks**, what each asks for, and the risk if we skip it: `docs/SPONSORS.md` (Factory, Cartesia, Moss, Convex, Elastic, Mana, and more).
