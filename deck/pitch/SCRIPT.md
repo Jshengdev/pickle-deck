@@ -1,6 +1,6 @@
 # pickje · the pitch script · draft 3 · 2026-10-25, about 4:45 AM
 
-Draft 3 opens on Mia's case study (his brief ~4:10 AM, deck/pitch/PLAN.md); the slide numbers below follow the new order.
+Draft 4 (~5 AM): his walkthrough of the first half, his order and wording; the slide numbers below follow it.
 
 About 3 minutes, one beat per slide. Built from his brief (2026-10-25, verbatim at the end): at most 3 slides on the
 problem (a hook; the data, research and personal story; then "there's always a tool for more" → what we need is
@@ -12,45 +12,31 @@ The slides are in `deck/src/pitch/index.tsx`; open `?deck=pitch` and press → t
 
 ---
 
-## Mia, the case study (≈ 60 s, `slides/mia/`, one sentence per press)
-His brief (2026-10-25, ~4:10 AM, in deck/pitch/PLAN.md): open on Mia; one sentence per press; her real screens.
+## The first half (his order and words, 2026-10-25 ~5 AM; one sentence per press)
 
-**1 · Her picture.** *(silence, a beat)*
-**2 ·** > "This is Mia."
-**3 ·** > "She's a second-year mechanical engineering student at Cal. *(press)* Like most people, she's ambitious.
-> *(press)* She's smart. *(press)* She designs parts in CAD, edits videos for her club, and is learning to invest.
-> *(press)* But there's one thing that keeps stopping her."
-- The persona details are DRAFT (his ask: make her a specific person in her trade, as the sponsor tracks want).
-**4 ·** > "She has too many interests. *(press)* Too many projects. *(press)* Too many things she needs to do. *(press)* So
-> nothing starts." *(her real screens pile up: the video editor, the stocks page, CAD, the chemistry worksheet, the Cal
-> Student Hub)*
-**5 ·** > "So Mia asks AI for help. *(press)* She types out her question. *(press)* It answers with a wall of text. *(press)*
-> She screenshots the page. *(press)* Pastes it back in. *(press)* Opens another agent session for her CAD part. *(press)*
-> Another for her video. *(press)* And another for her stocks. *(press)* Ten sessions in, she can't remember what any of it
-> said, where it came from, what it was for, or what her next step is."
-
-### 6 · It's not just Mia (data, research, the personal line, ≈ 25 s) · `NotJustMia`
-> **His words:** "For years we thought she just needed better productivity apps."
-> "366 million adults live with ADHD symptoms. *(press)* The average worker switches apps about 1,200 times a day, and
-> spends nearly 4 hours a week finding their place again. *(press)* After an interruption, it takes 23 minutes to get
-> back. *(press)* **His words:** the truth is, the software we use was built for neurotypical brains."
-
-- **Facts:** Song et al. 2021, *J. Global Health* 11:04009 (6.76% of adults, ≈ 366 M in 2020). Murty, Dadlani & Das,
-  *HBR*, Aug 2022 (137 people at 3 Fortune 500 companies: ≈ 1,200 toggles a day, just under 4 h a week reorienting).
-  Gloria Mark, UC Irvine, Gallup interview (one study of 36 workers: 23 min 15 s to resume interrupted work).
-- **Open (his):** who "she" is, said in one line, if he wants to.
-
-### 7 · There's always a tool for more (≈ 20 s) · `ToolsForMore`
-> "There's always a tool for more. More apps. More tabs. Now, AI that does more for you. *(press)* But the work that
-> matters to you isn't handed off; it's done together. *(press)* So we didn't build more. We built something
-> collaborative, human-focused, and it leaves your context right where it is."
-
-- Draft, from his brief: "the idea of ai is to do more, but what we need is somethgin more collaboritve huamn focuesd
-  and doesnt mess with where your context goes."
-
-### 8 · One next step · `slides/mia/` (`OneStep`)
-> "Mia doesn't need ten agent sessions. *(press)* She needs one next step." *(the sessions clear; one card stays:
-> "Question 22: count the degrees of unsaturation first.", her own rule in the staged o-chem project)*
+**1 · Her picture.** *(a beat)*
+**2 ·** > "This is Mia. *(press)* More specifically, she's En's sister." *(the name's spelling: confirm)*
+**3 ·** > "Like anyone else, she's ambitious. *(press)* She's smart. *(press)* She does 3D CAD for her club, and she's learning
+> to invest. *(press)* But there's one thing that keeps stopping her."
+**4 ·** > "She has too many interests. *(press)* Too many projects. *(press)* Too many things she needs to do. *(press)* So nothing
+> starts." *(her real screens pile up)*
+**5 ·** > "The obvious solution: use AI for help. *(press)* She types out a question. *(press)* It answers with a wall of text.
+> *(press)* She screenshots the page. *(press)* Pastes it back in. *(press)* While she waits, she remembers something for her
+> cat, so she opens another chat. *(press)* Another for the video. *(press)* And another for the stocks. *(press)* Sooner or
+> later, she's ten sessions in."
+**6 ·** > "Mia doesn't need ten agent sessions. *(press)* She needs one next step."
+**7 · It's not just Mia.** > His words: "For years we thought she just needed better productivity apps." *(press)* "15.5 million
+> U.S. adults have ADHD. *(press)* We switch apps about 1,200 times a day, and spend nearly 4 hours a week finding our place
+> again. *(press)* After an interruption, it takes 23 minutes to get back. *(press)* His words: the truth is, the software
+> we use was built for neurotypical brains."
+- **Facts:** CDC, MMWR 73(40), Oct 2024 (15.5 M U.S. adults, 6.0%, a current diagnosis, self-reported); HBR, Aug 2022 (137
+  people at 3 Fortune 500 companies); Gloria Mark, UC Irvine (one study, 36 workers).
+**8 · There's always a tool for more.** > "There's always a tool for more. More apps, more tabs, now AI that does more for you.
+> *(press)* His words: and for the rest of us, our great ambitions are held back by tools that only complicate it more.
+> *(press)* Instead of a tool that does more for you, we built one that does it with you: it asks before it acts, it teaches
+> one step at a time, and it shows you, on your own screen, like a friend."
+- The 3 points and the mission line come from the pickje session's answer, each grounded in his words
+  (his-words.md:86-90, spec 0014, spec 0006). The pivot sentence is DRAFT.
 
 ## Meet pickje (≈ 15 s)
 

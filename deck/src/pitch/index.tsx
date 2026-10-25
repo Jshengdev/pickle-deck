@@ -25,11 +25,11 @@ export const pitch: Entry[] = [
   // Mia, the case study the pitch opens on (his brief 2026-10-25, ~4:10 AM): her picture, "This is Mia.", who she is,
   // too much, she asks AI until she's ten sessions in. One sentence per press. slides/mia/.
   ...MIA,
-  // How many people that is, and what everyone keeps building for them.
+  // His order (2026-10-25 ~5 AM): ten sessions in → "Mia doesn't need ten sessions. She needs one next step." → it's not
+  // just Mia → there's always a tool for more → then Pickle. That's the first half.
+  ...MIA_TURN,
   { title: 'It’s not just Mia', chapter: 'The problem', steps: NOT_JUST_STEPS, render: NotJustMia },
   { title: 'There’s always a tool for more', chapter: 'The problem', steps: TOOLS_STEPS, render: ToolsForMore },
-  // The turn: one next step, then meet pickje.
-  ...MIA_TURN,
   { title: 'pickje sees what you mean.', steps: 2, ground: felt, dark: true, chrome: false, render: Title },
   { title: 'Meet Pickle and Blicky', chapter: 'Meet pickje', steps: 2, render: MeetCast },
   // The demo as clips: onboarding, the scenarios, one turn close up. Each plays on its own and loops.

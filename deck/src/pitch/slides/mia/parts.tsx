@@ -42,7 +42,7 @@ export function Lines({ lines, from = 0, size = 'var(--t-head-1)', gap = 26, sty
       {lines.map((l, i) => {
         const at = from + i, on = step >= at
         return (
-          <motion.div key={l} initial={false} animate={{ opacity: on ? (step === at ? 1 : 0.28) : 0, y: on ? 0 : 18 }} transition={{ type: 'spring', visualDuration: 0.45, bounce: 0.12 }}
+          <motion.div key={l} initial={{ opacity: 0, y: 24 }} animate={{ opacity: on ? (step === at ? 1 : 0.28) : 0, y: on ? 0 : 18 }} transition={{ type: 'spring', visualDuration: 0.45, bounce: 0.12 }}
             style={{ font: size, letterSpacing: 'var(--t-head-1-track)', color: 'var(--ink)' }}>{l}</motion.div>
         )
       })}
