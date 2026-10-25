@@ -4,9 +4,9 @@ import * as B from './slides-b'
 import * as C from './slides-c'
 import * as Dd from './slides-d'
 
-/** The brand book v2, in order. ground: the slide's background; dark: the chrome reads on dark; ink: the chrome is full
+/** The brand book v2, in order. steps: how many states the slide builds through (default 1); ground: the slide’s background; dark: the chrome reads on dark; ink: the chrome is full
     ink (on sky felt); chrome: false on full-bleed covers. Openers are banners: forest chrome is dark, sky and sage ink. */
-export type Entry = { title: string; chapter?: string; render: ComponentType; ground?: string; dark?: boolean; ink?: boolean; chrome?: boolean }
+export type Entry = { title: string; chapter?: string; render: ComponentType<{ step?: number }>; steps?: number; ground?: string; dark?: boolean; ink?: boolean; chrome?: boolean }
 const felt = 'var(--surface-felt)'
 type Tone = 'dark' | 'ink'
 const ch = (chapter: string, items: [string, ComponentType, Tone?][]): Entry[] => items.map(([title, render, tone]) => ({ title, chapter, render, dark: tone === 'dark', ink: tone === 'ink' }))

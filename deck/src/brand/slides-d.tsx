@@ -9,7 +9,7 @@ import { ColourOpener, Cover } from './slides-a'
 const K = D.scale
 
 /** A small card in the product: title is the state, a line in the second voice, the meter and the time at the foot. */
-function StateCard({ title, line, value, accent = 'var(--text-muted)', lifted = false, catchAt, time, w = 300, h = 210 }: { title: string; line?: ReactNode; value: number; accent?: string; lifted?: boolean; catchAt?: number; time: string; w?: number; h?: number }) {
+export function StateCard({ title, line, value, accent = 'var(--text-muted)', lifted = false, catchAt, time, w = 300, h = 210 }: { title: string; line?: ReactNode; value: number; accent?: string; lifted?: boolean; catchAt?: number; time: string; w?: number; h?: number }) {
   return (
     <Card width={w} height={h} lifted={lifted} scale={1.25}>
       <div style={{ font: '600 30px/1.1 var(--font-head)', letterSpacing: '-0.02em' }}>{title}</div>
@@ -23,7 +23,7 @@ function StateCard({ title, line, value, accent = 'var(--text-muted)', lifted = 
 }
 
 /** A real-looking window: the editor with this repo's own tokens file in it (no placeholder text). */
-function Editor({ w, h }: { w: number; h: number }) {
+export function Editor({ w, h }: { w: number; h: number }) {
   const lines = ["const SOURCE = {", "  palettes: {", "    silver: { note: 'the one neutral: metal, chrome, concrete' },", "    moss:   { note: 'living moss: life green, not olive' },",
     "  },", "  semantic: {", "    'surface-felt': 'forest-800',", "    'catch': 'amber-400',", "    'stuck': 'ember-600',", "  },", "}"]
   return (

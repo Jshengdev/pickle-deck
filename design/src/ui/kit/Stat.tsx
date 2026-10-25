@@ -6,7 +6,7 @@ export function Stat({ value, caption, size = 'var(--text-giant)', tone = 'ink' 
   return (
     <div style={{ display: 'grid', gap: 6 }}>
       <div style={{ font: `400 ${size}/0.95 var(--font-pixel)`, letterSpacing: '-0.02em', color: tone === 'ink' ? 'var(--ink)' : 'var(--text-on-dark)' }}>{value}</div>
-      <div style={{ font: '400 20px/1.4 var(--font-head)', color: tone === 'ink' ? 'var(--text-secondary)' : 'var(--text-on-dark-muted)' }}>{caption}</div>
+      <div style={{ font: '400 calc(20px * var(--type-scale, 1))/1.4 var(--font-head)', color: tone === 'ink' ? 'var(--text-secondary)' : 'var(--text-on-dark-muted)' }}>{caption}</div>
     </div>
   )
 }

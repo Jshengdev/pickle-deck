@@ -60,6 +60,8 @@ docs/
 
 ## Making a slide
 
+Slides build one idea per → press, and each can have its own dials: see [deck/src/pitch/README.md](deck/src/pitch/README.md).
+
 ```tsx
 import { Surface } from '@design/material/Surface'
 import { Card, Tray, Meter, Bars } from '@design/ui/kit'

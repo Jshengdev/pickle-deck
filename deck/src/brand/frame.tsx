@@ -63,7 +63,7 @@ export function Fig({ caption, children, w, h, style }: { caption?: ReactNode; c
   return (
     <figure style={{ margin: 0, width: w, display: 'flex', flexDirection: 'column', ...style }}>
       <div style={{ height: h, position: 'relative', display: 'grid', placeItems: 'center' }}>{children}</div>
-      {caption && <figcaption style={{ marginTop: 18, font: '400 20px/1.45 var(--font-head)', color: 'var(--text-muted)' }}>{caption}</figcaption>}
+      {caption && <figcaption style={{ marginTop: 18, font: '400 calc(20px * var(--type-scale, 1))/1.45 var(--font-head)', color: 'var(--text-muted)' }}>{caption}</figcaption>}
     </figure>
   )
 }
@@ -72,8 +72,8 @@ export function Fig({ caption, children, w, h, style }: { caption?: ReactNode; c
 export function Rule({ lead, children }: { lead: string; children?: ReactNode }) {
   return (
     <div>
-      <div style={{ font: '600 23px/1.3 var(--font-head)', letterSpacing: '-0.01em' }}>{lead}</div>
-      {children && <div style={{ font: '400 20px/1.45 var(--font-head)', color: 'var(--text-secondary)', marginTop: 4 }}>{children}</div>}
+      <div style={{ font: '600 calc(23px * var(--type-scale, 1))/1.3 var(--font-head)', letterSpacing: '-0.01em' }}>{lead}</div>
+      {children && <div style={{ font: '400 calc(20px * var(--type-scale, 1))/1.45 var(--font-head)', color: 'var(--text-secondary)', marginTop: 4 }}>{children}</div>}
     </div>
   )
 }
