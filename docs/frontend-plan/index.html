@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pickje · front end: where it is, what changes</title>
+<link rel="stylesheet" href="../../design/src/tokens/generated/tokens.css">
+<link rel="stylesheet" href="../../design/src/tokens/fonts.css">
+<link rel="stylesheet" href="../../node_modules/pretendard/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="vendor/dialkit/styles.css">
+<style>
+  /* Pretendard from the shell's own font folder, so this page and the app use the same files */
+  /* in pickle-deck, Pretendard comes from npm (run npm install); in pickje it came from the shell's font folder */
+  :root { --base: 16px; --gap: 72px; --track: -0.025em; --accent: var(--forest-700); --cols: 3; --motion: 220ms; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--surface-ground); color: var(--ink); font: 400 var(--base)/1.55 var(--font-head); }
+  main { max-width: 1240px; margin: 0 auto; padding: 56px 40px 140px; }
+  nav { position: sticky; top: 0; z-index: 5; background: oklch(0.97 0.004 220 / .92); border-bottom: 1px solid var(--line-hair); }
+  nav div { max-width: 1240px; margin: 0 auto; padding: 10px 40px; display: flex; gap: 22px; font: 600 13px var(--font-head); }
+  nav a { color: var(--text-secondary); text-decoration: none; } nav a:hover { color: var(--ink); }
+  h1 { font: 700 calc(var(--base) * 3) / 1.05 var(--font-head); letter-spacing: var(--track); margin: 0 0 14px; }
+  h2 { font: 700 calc(var(--base) * 1.95) / 1.1 var(--font-head); letter-spacing: var(--track); margin: 0 0 10px; }
+  h3 { font: 700 calc(var(--base) * 1.2) / 1.25 var(--font-head); letter-spacing: -0.01em; margin: 0 0 6px; }
+  section { margin-top: var(--gap); }
+  .lede { font-size: calc(var(--base) * 1.2); color: var(--text-secondary); max-width: 860px; }
+  .label { font: 600 11.5px var(--font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+  .px { font-family: var(--font-pixel); font-size: 12px; color: var(--text-muted); }
+  .his { font-family: var(--font-second); color: var(--accent); }
+  .card { background: var(--surface-page); border-radius: 18px; padding: 22px 24px; box-shadow: inset 0 0 0 1px var(--line-hair), 0 1px 0 oklch(0.3 0.01 230 / .1); }
+  .grid { display: grid; grid-template-columns: repeat(var(--cols), 1fr); gap: 16px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 99px; font: 500 12.5px/1.4 var(--font-head); background: var(--silver-100); box-shadow: inset 0 0 0 1px var(--silver-300); color: var(--silver-800); white-space: nowrap; }
+  .pill.g { background: var(--moss-50); box-shadow: inset 0 0 0 1px var(--moss-300); color: var(--moss-700); }
+  .pill.b { background: var(--sky-50); box-shadow: inset 0 0 0 1px var(--sky-200); color: var(--sky-700); }
+  .pill.y { background: var(--pollen-50); box-shadow: inset 0 0 0 1px var(--pollen-200); color: var(--pollen-700); }
+  .pill.r { background: oklch(0.97 0.02 20); box-shadow: inset 0 0 0 1px oklch(0.85 0.07 20); color: oklch(0.5 0.15 25); }
+  code, .file { font: 500 12.5px var(--font-pixel); color: var(--text-secondary); }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th { text-align: left; font: 600 11.5px var(--font-head); letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); padding: 8px 10px; border-bottom: 1px solid var(--line-hair); }
+  td { padding: 10px; border-bottom: 1px solid var(--silver-200); vertical-align: top; }
+  ul.tight { margin: 6px 0 0; padding-left: 18px; } ul.tight li { margin: 3px 0; }
+  img.shot { width: 100%; border-radius: 12px; display: block; box-shadow: inset 0 0 0 1px var(--line-hair); background: var(--silver-200); }
+  /* before / after */
+  .swap { display: grid; grid-template-columns: 1fr 1.25fr; gap: 22px; align-items: start; }
+  .ba { display: inline-flex; gap: 4px; padding: 3px; border-radius: 10px; background: var(--silver-200); }
+  .ba button { border: 0; background: transparent; padding: 5px 12px; border-radius: 8px; font: 600 12.5px var(--font-head); color: var(--text-secondary); cursor: pointer; }
+  .ba button.on { background: var(--surface-page); color: var(--ink); box-shadow: 0 1px 0 oklch(0.3 0.01 230 / .15); }
+  .stage { position: relative; } .stage > * { transition: opacity var(--motion) ease; }
+  .stage .after { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+  .stage.show-after .before { opacity: 0; } .stage.show-after .after { opacity: 1; pointer-events: auto; }
+  .stage.show-both { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } .stage.show-both .after { position: static; opacity: 1; }
+  /* flow diagram */
+  .flow { display: grid; grid-template-columns: 1.1fr 0.9fr 1fr 1fr; gap: 14px; align-items: start; }
+  .lane { display: grid; gap: 8px; }
+  .node { background: var(--surface-page); border-radius: 12px; padding: 10px 12px; box-shadow: inset 0 0 0 1px var(--line-hair); font-size: 13.5px; line-height: 1.4; transition: box-shadow var(--motion), opacity var(--motion); }
+  .node b { display: block; font-weight: 600; font-size: 14px; }
+  .flow.focus .node { opacity: .35; } .flow.focus .node.hot { opacity: 1; box-shadow: inset 0 0 0 2px var(--accent); }
+  .flowkeys { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0 18px; }
+  .flowkeys button { border: 0; cursor: pointer; }
+  /* demo timeline */
+  .beats { display: grid; grid-template-columns: repeat(14, 1fr); gap: 6px; margin: 18px 0; }
+  .beat { border: 0; cursor: pointer; text-align: left; border-radius: 12px; padding: 10px 9px 12px; background: var(--surface-page); box-shadow: inset 0 0 0 1px var(--line-hair); font: 600 12px/1.25 var(--font-head); color: var(--text-secondary); min-height: 92px; transition: box-shadow var(--motion), transform var(--motion); }
+  .beat .n { font: 400 12px var(--font-pixel); color: var(--text-muted); display: block; margin-bottom: 6px; }
+  .beat.pad-p { box-shadow: inset 0 0 0 2px var(--forest-600); } .beat.pad-b { box-shadow: inset 0 0 0 2px var(--sky-500); }
+  .beat.on { transform: translateY(-4px); background: var(--silver-50); box-shadow: inset 0 0 0 2px var(--ink); color: var(--ink); }
+  .beatcard { display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; align-items: start; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 99px; margin-right: 6px; vertical-align: 1px; }
+  .q { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; margin: 10px 0; font-family: var(--font-second); color: var(--text-secondary); }
+  .ask { display: grid; gap: 12px; } .ask .card { display: grid; grid-template-columns: 34px 1fr; gap: 12px; }
+  .ask .num { font: 700 22px var(--font-head); color: var(--accent); }
+  footer { margin-top: 80px; color: var(--text-muted); font-size: 13px; }
+  @media print { nav, .dialkit-root { display: none !important; } }
+</style>
+</head>
+<body>
+<nav><div><a href="#ask">His ask</a><a href="#now">Today</a><a href="#tokens">Tokens</a><a href="#data">Live data</a><a href="#replace">What changes</a><a href="#build">How it's built</a><a href="#demo">Demo flow</a><a href="#order">Order of work</a><a href="#align">Your calls</a></div></nav>
+<main>
+  <div class="label">pickje · front end · 2026-10-24, about 7:30 PM</div>
+  <h1>Where the front end is,<br>and what the notepads change</h1>
+  <p class="lede">A read of the Mac shell (<code>app/shell</code>), its tokens, and every path live data takes to the screen, then the plan for putting the two final notepads in. Nothing in <code>app/</code> is changed yet. This page is for checking we agree before any code moves. Every claim points at <code>file:line</code> from the three reads.</p>
+
+  <section id="ask">
+    <h2>His ask</h2>
+    <div class="q">"i want you to basically with all the design context nad branding go into the main repo where the project exists. diagnoise all tis design tokens and how it standarizes everythign and hwere live data is connected ot front end. then show where it is now and what you are going ot replace in there. that will be ideal to lock down the front end visualization for it . im going to use the html visualiziotn of how youre going to change its code and get things done to see if are aligned with me on where these things should be and the actual interaction to utilize them and show how they will be useful during a demo flow"</div>
+  </section>
+
+  <!-- ============================================================ TODAY -->
+  <section id="now">
+    <h2>Today: what the shell draws</h2>
+    <p class="lede">One click-through overlay per screen (<code>Overlay.swift:9-51</code>) holds Pickle, Blicky and the marks; cards and windows are separate floating panels. SwiftUI and Core Animation, no web views.</p>
+    <div class="grid" style="margin-top:22px">
+      <div class="card"><div class="label">at the cursor</div><h3>Pickle + his panel</h3>Pickle (60 pt, Core Animation) and a dark panel beside him: "listening", his words, Droid's step lines, and a pinned <code>name → next</code>.<div class="file" style="margin-top:8px">Overlay.swift:133-352 · AppController.swift:892-898</div></div>
+      <div class="card"><div class="label">flying</div><h3>Blicky, bubble, marks</h3>Blicky (46 pt, SwiftUI Canvas), his one-line caption bubble, and 11 kinds of ink marks drawn over the screen.<div class="file" style="margin-top:8px">BlickyView.swift:45-288 · Marks.swift:463</div></div>
+      <div class="card"><div class="label">on Blicky click</div><h3>Context card <span class="pill g">→ Pickle's notepad</span></h3>"What Pickle knows": project, route chip, trust line, North star / Where it stopped / Next, 3 notes, sessions, other projects. Live from Convex.<div class="file" style="margin-top:8px">ContextCard.swift:216-347 · LiveCard.swift:8-84</div></div>
+      <div class="card"><div class="label">on the notes command</div><h3>Notes window <span class="pill b">→ Blicky's scratchpad</span></h3>"Blicky's notes": a title, a markdown body, then his spoken reaction is kept with it.<div class="file" style="margin-top:8px">NotesWindow.swift:80-113 · AppController.swift:901-909</div></div>
+      <div class="card"><div class="label">onboarding OB5</div><h3>Past-frame card</h3>The only screenshot shown back: a crop of an earlier frame beside Pickle, deleted after 30 s.<div class="file" style="margin-top:8px">BlickyView.swift:117-152 · turn.ts:365-388</div></div>
+      <div class="card"><div class="label">also</div><h3>Stamp, pins, onboarding cards</h3>Moss-ring stamp + undo pill, pins on circles, the onboarding intro card, the circle echo box, and the menu.<div class="file" style="margin-top:8px">StampPanel.swift · Pins.swift · OnboardingCard.swift</div></div>
+    </div>
+    <div class="two" style="margin-top:22px">
+      <div><div class="label" style="margin-bottom:8px">today · the context card (docs/nap)</div><img class="shot" src="img/now-context-card.png" alt="the context card today"></div>
+      <div><div class="label" style="margin-bottom:8px">today · the notes window (docs/nap)</div><img class="shot" src="img/now-notes-window.png" alt="the notes window today"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ TOKENS -->
+  <section id="tokens">
+    <h2>Tokens: how it standardizes today</h2>
+    <p class="lede">One tunable pipeline, but no system under it: values are per component, not per role, and the file on disk is behind the code.</p>
+    <div class="flow" style="grid-template-columns: repeat(4, 1fr); margin-top:20px">
+      <div class="node"><b>Tokens.swift defaults</b>16 groups, every key a literal default (<code>Tokens.swift:569-587</code>). This is what actually runs.</div>
+      <div class="node"><b>tokens.json (stale)</b>11 of 16 groups; onboarding, voice, sound, circle, turnCircle missing. Deep-merged over the defaults at launch (<code>:622-667</code>).</div>
+      <div class="node"><b>Dials, live</b>dials/index.html ↔ DialServer WebSocket :47821; set / save / reload (<code>DialServer.swift:26-63</code>).</div>
+      <div class="node"><b>Brand.swift</b>Font roles ui / note / cast → Pretendard, Fairfax HD, Geist Pixel Circle (<code>Brand.swift:10-30</code>). No Geist Pixel Square.</div>
+    </div>
+    <div class="two" style="margin-top:22px">
+      <div class="card">
+        <h3>How standardized it really is</h3>
+        <ul class="tight">
+          <li>About 300 per-component literals and no role layer: <code>#63ADF7</code> repeated in 8 keys, <code>#121212</code> in about 10.</li>
+          <li>The new cards hardcode every type size (10–17), tracking and spacing: <code>ContextCard.swift:221-339</code>, <code>NotesWindow.swift:85-106</code>.</li>
+          <li>Motion is per surface: outBack 1.70158 in the panel, easeOut 0.15 in the stamp, 45 ms per caption character.</li>
+          <li>A real bug: the card measures its label in the system font and draws it in Pretendard (<code>BlickyDirector.swift:685</code> vs <code>BlickyView.swift:134</code>).</li>
+          <li>Old web pages in <code>app/</code> still carry retired names: <code>--sky-deep #3D9DC3</code>, a beige <code>--paper #EFEBE1</code>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>What I'll replace</h3>
+        <ul class="tight">
+          <li><b>One source:</b> <code>design/tools/tokens.mjs</code> also writes the shell's tokens (roles, the type scale, motion ms), so Swift and the notepads read the same numbers.</li>
+          <li><b>A role layer in Tokens.swift</b> (ink, text-secondary, text-muted, text-on-dark, surface-page, line-hair, blicky-ink, pickle-ink, attention, checked), and the cards and panel read roles, not hex.</li>
+          <li><b>Fix the drift</b> in the table below; dials keep working, now on roles.</li>
+          <li><b>Fonts:</b> add Geist Pixel Square (counts, page numbers) to <code>app/shell/fonts</code>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:20px">
+      <h3>Drift against the design system</h3>
+      <table>
+        <tr><th>Shell today</th><th>Design system</th><th>Where</th></tr>
+        <tr><td>Pencil lead / box stroke <code>#3D9DC3</code></td><td>not on the sky ramp; Blicky's writing is <code>blicky-ink</code> sky-700 <code>#295798</code></td><td class="file">Tokens.swift:173</td></tr>
+        <tr><td>Pencil wood <code>#E9CDA4</code>, eraser <code>#F29BA4</code></td><td>beige is banned; petal-300 <code>#FEABCA</code>, silver-400</td><td class="file">tokens.mjs:18</td></tr>
+        <tr><td>Highlight <code>#FFD84D</code></td><td><code>attention</code> pollen-300 <code>#F7C933</code></td><td class="file">Marks.swift:1392</td></tr>
+        <tr><td>Panel <code>#141414</code>, text <code>#FFFFFF</code></td><td><code>night #161513</code>, <code>text-on-dark #F5F7F7</code></td><td class="file">Overlay.swift</td></tr>
+        <tr><td>Card label grey <code>#6B6B6B</code></td><td><code>text-muted #515A5D</code> (no light grey text)</td><td class="file">ContextCard.swift</td></tr>
+        <tr><td>Radii 12 / 6 / 10 / 3 / 6</td><td>scale 2, 4, 8, 12, 18, 28, 36; card 18</td><td class="file">Tokens.swift</td></tr>
+        <tr><td>Card shadow: blur 14 at 0.22</td><td>grain elevation, never blur</td><td class="file">BlickyView.swift:122</td></tr>
+        <tr><td>Type 12, 14, 15, 22; tracking in points</td><td>11, 13, 16, 20, 25; tracking in em</td><td class="file">ContextCard / NotesWindow</td></tr>
+        <tr><td>Blink every 4.2 s for 140 ms</td><td>blinkEvery 6000, blink 90</td><td class="file">PickleLife.swift</td></tr>
+        <tr><td>Caption 45 ms a character; fades 500, vanish 300, pop 160</td><td>dot 40; gentle 420, base 280; hitStop 90, drain 80 unused</td><td class="file">Tokens.swift</td></tr>
+      </table>
+      <p class="px" style="margin:10px 0 0">Already matching: onboarding plane #F5F7F7, cheek #EE3445, Blicky body sky-400 #63ADF7, pencil pollen-300, card radius 18 / pad 24, quick 180, swap 220, scene 900.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ DATA -->
+  <section id="data">
+    <h2>Live data: what reaches the screen, and how</h2>
+    <p class="lede">The shell has no Convex client: everything comes through the talk server as plain HTTP with NDJSON lines (<code>TalkStream.swift:86-103</code>). Pick a notepad to see the paths it would read.</p>
+    <div class="flowkeys">
+      <button class="pill" data-focus="">everything</button>
+      <button class="pill g" data-focus="p">Pickle's notepad reads</button>
+      <button class="pill b" data-focus="b">Blicky's scratchpad reads</button>
+      <button class="pill r" data-focus="gap">gaps to close</button>
+    </div>
+    <div class="flow" id="flow">
+      <div class="lane"><div class="label">where it comes from</div>
+        <div class="node p" ><b>Projects (subjects/&lt;slug&gt;)</b>RESUME.md: north star, where it stopped, next; rewritten at each close (<code>projects.ts:130-149, 591</code>).</div>
+        <div class="node b"><b>A turn</b>His words, the newest screen frame, the cursor; the brain's say / do lines (<code>turn.ts:119+</code>).</div>
+        <div class="node p b"><b>Sessions (live profile)</b><code>sessions/&lt;id&gt;.jsonl</code>: his words, the frame id, every line and command (<code>sessions.ts:455-467</code>).</div>
+        <div class="node p"><b>References</b>A project's first crop, in <code>references/</code> and Convex storage (<code>projects.ts:504-556</code>).</div>
+        <div class="node b"><b>Notes, memlog, decisions</b><code>notes:bySlug</code>, <code>memlog:bySlug</code> in Convex; his reactions to notes.</div>
+        <div class="node"><b>Ears, Droid, desk</b>Mic finals; Droid steps; the onboarding north star and step (<code>machine.ts:222-225</code>).</div>
+      </div>
+      <div class="lane"><div class="label">talk server (127.0.0.1)</div>
+        <div class="node p"><b>GET /watch</b>Convex <code>card:now</code> subscription, pushed as <code>card{…}</code> lines (<code>live.ts:55-107</code>).</div>
+        <div class="node b"><b>POST /turn</b>Streams <code>screen, say, audio, do, words, trust, done</code> and more (<code>turn.ts:139-338</code>).</div>
+        <div class="node"><b>GET /droid/watch · POST /droid/offer</b>Droid's switch and steps.</div>
+        <div class="node gap"><b>Not exposed yet</b><code>references:bySlug</code>, <code>notes:bySlug</code>, <code>sessions:bySlug</code>; <code>/watch</code> fields sent but unread: <code>step</code>, <code>notes[].body</code>, <code>projects[].screen</code>.</div>
+      </div>
+      <div class="lane"><div class="label">shell consumer</div>
+        <div class="node p"><b>ContextCard + LiveCard</b>Decodes <code>CardSnapshot</code>; shows north star / where it stopped / next (<code>LiveCard.swift:96-190</code>).</div>
+        <div class="node b"><b>Talk.swift</b>Runs every <code>cmd</code>; says go to the bubble; ignores <code>route, recall, bring_back, session, replay…</code> (<code>Talk.swift:391-504</code>).</div>
+        <div class="node b"><b>AppController notes</b>Opens the notes window on the <code>notes</code> command (<code>:901-909</code>).</div>
+        <div class="node gap"><b>Project pin drops fields</b><code>project</code> cmd carries north_star and where_it_stopped; only <code>name → next</code> is shown (<code>:892-898</code>).</div>
+      </div>
+      <div class="lane"><div class="label">on screen</div>
+        <div class="node p"><b>Pickle's notepad</b>North star, last stop (+ the moment on hover), next step, earlier, a tab per project.</div>
+        <div class="node b"><b>Blicky's scratchpad</b>Working on, completed + context, routes to each source, sketches, up next.</div>
+        <div class="node"><b>Pickle's panel, bubble, marks</b>Stay as they are, on the token roles.</div>
+        <div class="node gap"><b>Screenshot for the last stop</b>The turn's frame is deleted when the turn ends (<code>turn.ts:155-160</code>); the peek needs a kept crop. Your call below.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ REPLACE -->
+  <section id="replace">
+    <h2>What changes, surface by surface</h2>
+    <p class="lede">Two surfaces are replaced by the two finals, fed by data the server already has. The rest stay and move onto the token roles.</p>
+
+    <div class="card" style="margin-top:22px">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap">
+        <h3 style="margin:0">1 · Context card → Pickle's notepad</h3>
+        <div class="ba" data-for="s1"><button class="on" data-v="before">today</button><button data-v="after">after</button><button data-v="both">side by side</button></div>
+      </div>
+      <div class="swap" style="margin-top:16px">
+        <div>
+          <div class="label">opens</div><p style="margin:4px 0 12px">The same trigger, a click on Blicky (<code>AppController.swift:114-121</code>). The pad rises; Pickle leaves the cursor and lands on it as the sticker; then it writes.</p>
+          <div class="label">field by field</div>
+          <table>
+            <tr><th>Today (CardSnapshot)</th><th>In the notepad</th></tr>
+            <tr><td><code>northStar</code></td><td>north star, at the top</td></tr>
+            <tr><td><code>whereItStopped</code></td><td>last stop, with "preview" on hover</td></tr>
+            <tr><td><code>next</code></td><td>next step, the one green thing</td></tr>
+            <tr><td><code>sessions[]</code></td><td>earlier stops, further down the scroll</td></tr>
+            <tr><td><code>projects[]</code> ("→ next")</td><td>a blue tab per project; hover shows its next step; click opens it</td></tr>
+            <tr><td>route chip, trust line, LIVE</td><td>kept, small, in Geist Pixel along the bottom edge</td></tr>
+            <tr><td>Reset / Clear screen</td><td>kept, two small buttons under the pad</td></tr>
+            <tr><td><span class="pill r">new</span> the moment</td><td>the stop's crop, what you said and the reply: a new <code>peek</code> on <code>/watch</code>, from the session file and the kept crop</td></tr>
+          </table>
+        </div>
+        <div class="stage" id="s1">
+          <div class="before"><img class="shot" src="img/now-context-card-crop.png" alt="today, close up"><div class="px" style="margin-top:6px">today, live on his screen: "what pickle knows", empty because no project has a RESUME.md yet</div><img class="shot" style="margin-top:10px" src="img/now-context-card.png" alt="today, the whole screen"></div>
+          <div class="after"><img class="shot" src="img/pickle-final.jpg" alt="Pickle's notepad"><img class="shot" style="margin-top:10px" src="img/pickle-peek.jpg" alt="the last stop on hover"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap">
+        <h3 style="margin:0">2 · Notes window → Blicky's scratchpad</h3>
+        <div class="ba" data-for="s2"><button class="on" data-v="before">today</button><button data-v="after">after</button><button data-v="both">side by side</button></div>
+      </div>
+      <div class="swap" style="margin-top:16px">
+        <div>
+          <div class="label">opens</div><p style="margin:4px 0 12px">On the <code>notes</code> command and at a "completed" moment in a teaching turn (the final molecule, the three-step summary). Blicky flies onto it; the border goes to glass while it writes, back to metal when it's done.</p>
+          <div class="label">field by field</div>
+          <table>
+            <tr><th>From</th><th>In the scratchpad</th></tr>
+            <tr><td>the turn's question / circled region</td><td>working on</td></tr>
+            <tr><td><code>notes</code> cmd title + the decision line</td><td>completed + its context</td></tr>
+            <tr><td><code>screen{frame_id, app, window}</code></td><td>source: the screen it was on</td></tr>
+            <tr><td>his words (the turn text)</td><td>source: what you said</td></tr>
+            <tr><td>memlog / decisions</td><td>source: your rule</td></tr>
+            <tr><td><code>notes:bySlug</code> + his reaction</td><td>source: a note, and what you said about it</td></tr>
+            <tr><td>panel / label / structure marks parked by "Wait for my pad"</td><td>the sketches, drawn in the pad instead of over the page</td></tr>
+            <tr><td>project <code>next</code></td><td>up next</td></tr>
+          </table>
+        </div>
+        <div class="stage" id="s2">
+          <img class="shot before" src="img/now-notes-window.png" alt="today">
+          <div class="after"><img class="shot" src="img/blicky-final.jpg" alt="Blicky's scratchpad"><div class="two" style="margin-top:10px"><img class="shot" src="img/blicky-writing.jpg" alt="while writing"><div class="px" style="align-self:center">while it writes: the border clears to glass with a running catch (no rainbow); when done it's metal again</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:20px">
+      <div class="card"><h3>3 · Pickle's panel</h3>Stays at the cursor, on <code>surface-night</code> and <code>text-on-dark</code>. It keeps "listening", his words and Droid's lines; the pinned <code>name → next</code> moves into the notepad.</div>
+      <div class="card"><h3>4 · Past-frame card</h3>Its crop pipeline (<code>card.mjs</code>, <code>turn.ts:365-388</code>) becomes the picture in the last-stop preview.</div>
+      <div class="card"><h3>5 · Bubble, marks, stamp</h3>Same drawing, read from roles: Blicky's ink sky-700, highlight pollen-300, no beige, no blur shadows.</div>
+    </div>
+  </section>
+
+  <!-- ============================================================ BUILD -->
+  <section id="build">
+    <h2>How the notepads get into a native app</h2>
+    <p class="lede">The finals are React with WebGL materials (felt, moss, metal); the shell is SwiftUI. Two ways in; the first is my recommendation.</p>
+    <div class="two" style="margin-top:20px">
+      <div class="card" style="box-shadow: inset 0 0 0 2px var(--accent)">
+        <span class="pill g">recommended</span>
+        <h3 style="margin-top:8px">A · The finals as they are, in a web view</h3>
+        <ul class="tight">
+          <li>A <code>NotepadPanel.swift</code>: a floating, transparent NSPanel with a WKWebView, one per pad.</li>
+          <li>It loads a built bundle of the two finals (a <code>notepad</code> entry in <code>design/</code>, built into <code>app/shell/notepad/</code>, offline).</li>
+          <li>The shell already holds the data: it passes each <code>card{…}</code> line and turn event in through one call, <code>window.pickje.update(json)</code>.</li>
+          <li>Pickle's flight stays native (he's already drawn at the cursor); the pad tells Swift where its sticker is, so he lands on it.</li>
+          <li>Pros: it looks exactly like what you signed off, today. Cons: a web view's memory, and two worlds to keep in step.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>B · Port the finals to SwiftUI</h3>
+        <ul class="tight">
+          <li>Rebuild both pads in SwiftUI; bake the felt, moss and metal into images from the design system's own renderer.</li>
+          <li>Pros: one world, native text and scrolling. Cons: days of work before the deadline, and every detail you tuned has to be redone by eye.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ DEMO -->
+  <section id="demo">
+    <h2>Where they show up in the demo</h2>
+    <p class="lede">The beats as the specs and code have them today (<code>bin/pickje --live</code>, the o-chem worksheet). Green outline: Pickle's notepad; blue: Blicky's scratchpad. Click a beat.</p>
+    <div class="beats" id="beats"></div>
+    <div class="card beatcard" id="beatcard"></div>
+  </section>
+
+  <!-- ============================================================ ORDER -->
+  <section id="order">
+    <h2>Order of work, once you say go</h2>
+    <div class="grid" style="--cols: 3; margin-top:18px">
+      <div class="card"><span class="px">01</span><h3>Tokens, one source</h3><code>tokens.mjs</code> writes the shell's roles; Tokens.swift gets the role layer; the drift rows fixed; Geist Pixel Square added. Dials keep working.</div>
+      <div class="card"><span class="px">02</span><h3>The notepad bundle</h3>A <code>notepad</code> build of the two finals that takes <code>update(json)</code>, with the staged projects as its offline fixture.</div>
+      <div class="card"><span class="px">03</span><h3>NotepadPanel.swift</h3>The web-view panel; opens on Blicky's click (Pickle's) and on <code>notes</code> / completed (Blicky's); Pickle and Blicky fly onto it.</div>
+      <div class="card"><span class="px">04</span><h3>/watch carries the moment</h3>A <code>peek</code> per project (crop, his words, the reply) and the fields already sent (<code>step</code>, notes bodies); the project pin keeps all its fields.</div>
+      <div class="card"><span class="px">05</span><h3>Turn events into the scratchpad</h3>Talk.swift forwards <code>notes</code>, parked marks, <code>screen</code>, <code>route</code>, <code>session</code> to Blicky's pad; the glint runs while lines are streaming.</div>
+      <div class="card"><span class="px">06</span><h3>Check it live</h3>The whole demo run on <code>--live</code> with the staged projects, then on a real session; screenshots of each beat for you.</div>
+    </div>
+    <p class="px" style="margin-top:12px">Another session is working in <code>app/</code> right now (it committed 617ac66 after the design commit). The shell changes go in small commits that touch only these files, and I'll check its tree before each.</p>
+  </section>
+
+  <!-- ============================================================ ALIGN -->
+  <section id="align">
+    <h2>Your calls</h2>
+    <div class="card" style="margin-top:16px; box-shadow: inset 0 0 0 2px var(--accent)">
+      <div class="label">answered · 2026-10-24, about 7:40 PM</div>
+      <div class="q">"hmmm lets just tryt to prot to swiftui and try to replicate it as close as possible. yes 2 sounds good. blickets sketchs are in the pad if theres not enough reasonable space on the screen. The scratch pad is just meant to summarize ideas and save the diagrams that were drawn so if it gets too cluttered it can pull the diagrma form on the screen and save it in the scratch pad. makes it the ones ocur for the tokens ensure the branding adn starnadizeton of desing can be properly designed."</div>
+      <ul class="tight"><li><b>1:</b> port to SwiftUI, as close as possible (B, not the web view).</li><li><b>2:</b> yes, keep a crop for each last stop.</li><li><b>3:</b> on screen by default; into the pad when there isn't room; when the screen gets too cluttered a diagram moves into the pad and is saved.</li><li><b>4:</b> yes, tokens.mjs is the one source for the shell.</li></ul>
+      <p class="px" style="margin:8px 0 0">The handoff prompt with all of it: docs/frontend-plan/HANDOFF-PROMPT.md · the art: docs/frontend-plan/art/</p>
+    </div>
+    <div class="ask" style="margin-top:16px">
+      <div class="card"><div class="num">1</div><div><h3>Web view (A) or a SwiftUI port (B)?</h3>A keeps the finals exactly as signed off and is the fastest way in; B is fully native.</div></div>
+      <div class="card"><div class="num">2</div><div><h3>Keep a crop of the screen for each last stop?</h3>Today the turn's frame is deleted when the turn ends, so the hover preview has nothing to show. The idea: keep only the crop (never the full frame), on this Mac, in the project folder, gone when the project is. Nothing leaves the machine.</div></div>
+      <div class="card"><div class="num">3</div><div><h3>Blicky's sketches: in the pad, on the screen, or both?</h3>Run 1's "it kept writing all over the place" parked panels and structures until the pad existed ("Wait for my pad").</div></div>
+      <div class="card"><div class="num">4</div><div><h3>Tokens: design/tools/tokens.mjs as the one source for the shell too?</h3>The shell's tokens.json would be written from it; the dials keep working.</div></div>
+    </div>
+  </section>
+
+  <footer>Sources: three read-only passes over pickje at 7901102…617ac66 (the shell and its tokens, live data to the shell, the demo flow), the design system in <code>design/</code>, and docs/spec/design-02-blicky-states.md. Images: the finals rendered from Storybook; the card and notes window from docs/nap.</footer>
+</main>
+
+<script src="vendor/dialkit/browser.global.js"></script>
+<script>
+  // ---- the demo beats (from the read of README, SPEC, STATUS, TRACKER, specs 0004/0006/0009 and the code headers)
+  const BEATS = [
+    { n: 'B0', t: 'Setup', pad: '', s: 'works', what: 'bin/pickje --live: its own projects, Convex on :3220, the worksheet PDF open in Preview.', where: 'bin/pickje:7-12 · exam.ts:25-29', pads: 'Nothing yet. The staged projects (o-chem, desk lamp, onboarding critique) are what the pads will show.' },
+    { n: 'B1', t: 'Onboarding', pad: '', s: 'partial', what: 'Intro card, meet Pickle and Blicky, sees now, sees earlier, hand over, big goal.', where: 'SPEC:75-120 · STATUS:34', pads: 'The big goal (north star) it stamps becomes the top line of Pickle\'s notepad later.' },
+    { n: 'B2', t: 'Shake to wake', pad: '', s: 'works', what: 'Pickle pops up dazed at the cursor; the mic opens; his panel says listening.', where: 'ShakeDetector.swift · Talk.swift', pads: 'Pickle is the one who will fly onto the pad: he starts here, at the cursor.' },
+    { n: 'B3', t: 'Circle and ask', pad: '', s: 'built', what: 'He circles C10H12O while talking; the turn routes: same document, Moss, Claude.', where: 'TurnCircle.swift · README:67-70', pads: 'The circled region becomes "working on" in Blicky\'s scratchpad.' },
+    { n: 'B4', t: 'Pickle speaks first', pad: '', s: 'built', what: 'One line, at most 14 words, about what\'s at the pointer, or a recap of earlier sessions.', where: 'stall.ts:9-14 · sessions.ts:36-38', pads: 'The recap reads the same session files as the notepad\'s earlier stops.' },
+    { n: 'B5', t: 'Blicky teaches', pad: 'b', s: 'partial', what: 'He flies, rings, highlights, labels, draws structures; the voice waits for each mark.', where: 'app/shell/README:29-32 · 0006:46-67', pads: 'Blicky\'s scratchpad opens at "completed" (the final molecule): what he completed and why, the routes to each source (the worksheet, your words, your rule, a note), the sketches parked by "Wait for my pad". The border glints while he writes.' },
+    { n: 'B6', t: 'Mechanism', pad: 'b', s: 'partial', what: 'Reactive sites, curved arrows, intermediates, the product, a three-step summary.', where: '0006:261-416', pads: 'A new page in the scratchpad for the three-step summary; the earlier page stays one flip back.' },
+    { n: 'B7', t: 'Barge-in', pad: 'b', s: 'built', what: 'He talks over Blicky: pause, cut, "go on" resumes.', where: 'app/shell/README:47-58', pads: 'The scratchpad stops mid-line and its glint stops with the voice; "go on" picks the pen back up.' },
+    { n: 'B8', t: 'Where to file it', pad: 'p', s: 'built', what: 'When the route was new or unsure, Pickle asks where it filed the turn.', where: 'turn.ts:632 · projects.ts:302', pads: 'The blue tabs slide out: the projects to file it under; the one it went to lifts.' },
+    { n: 'B9', t: 'Click Blicky', pad: 'p', s: 'live, not watched', what: 'Opens the card: project, north star, where it stopped, next, notes, other projects, trust line, LIVE.', where: 'ContextCard.swift:1-5 · AppController.swift:117-121', pads: 'This is Pickle\'s notepad: Pickle leaves the cursor and lands as the sticker; north star, last stop (hover: the screen, what you said, the reply), next step, earlier; a tab per project.' },
+    { n: 'B10', t: 'Droid\'s yes', pad: '', s: 'built', what: 'Pickle offers a practice set; on a yes Droid plans and its steps show in Pickle\'s panel.', where: 'DroidOffers.swift:4-12', pads: 'Stays in Pickle\'s panel; the notepad\'s next step updates when Droid\'s plan lands.' },
+    { n: 'B11', t: 'Switch, bring back', pad: 'p', s: 'staged', what: 'Moves between o-chem, the lamp and the critique; after a gap Elastic re-primes the brief.', where: '0004:34,48 · turn.ts:528-530', pads: 'Click a blue tab: that project\'s plan. Bring back fills its last stop and earlier stops.' },
+    { n: 'B12', t: 'Close and recap', pad: 'p', s: 'built', what: '"That\'s it for this one" closes with a one-line summary; the next panel recaps and can replay.', where: 'sessions.ts:31-44', pads: 'The close writes a new last stop and next step: the notepad rewrites its page live, title last.' },
+    { n: 'B13', t: 'Judges\' artifacts', pad: '', s: 'staged', what: 'The Mana idea log and the committed eval.', where: 'TRACKER:71 · docs/evals/README', pads: 'Screenshots of both pads go in the deck and the Devpost video.' },
+  ]
+  const beats = document.getElementById('beats'), card = document.getElementById('beatcard')
+  const tone = { works: 'g', built: 'b', partial: 'y', staged: '', 'live, not watched': 'b' }
+  function show(i) {
+    const b = BEATS[i]
+    beats.querySelectorAll('.beat').forEach((el, j) => el.classList.toggle('on', j === i))
+    card.innerHTML = `<div><div class="label">${b.n} · ${b.t} <span class="pill ${tone[b.s] ?? ''}" style="margin-left:6px">${b.s}</span></div>
+      <h3 style="margin-top:8px">${b.what}</h3><div class="file">${b.where}</div></div>
+      <div><div class="label">${b.pad === 'p' ? '<span class="dot" style="background:var(--forest-600)"></span>Pickle\'s notepad' : b.pad === 'b' ? '<span class="dot" style="background:var(--sky-500)"></span>Blicky\'s scratchpad' : 'the pads'}</div>
+      <p style="margin:6px 0 0">${b.pads}</p></div>`
+  }
+  BEATS.forEach((b, i) => {
+    const el = document.createElement('button')
+    el.className = 'beat' + (b.pad === 'p' ? ' pad-p' : b.pad === 'b' ? ' pad-b' : '')
+    el.innerHTML = `<span class="n">${b.n}</span>${b.t}`
+    el.onclick = () => { show(i); kit && kit.setValue?.('beat', b.n) }
+    beats.appendChild(el)
+  })
+  show(9)
+
+  // ---- before / after toggles
+  document.querySelectorAll('.ba').forEach((ba) => ba.querySelectorAll('button').forEach((btn) => btn.onclick = () => {
+    ba.querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === btn)); setView(ba.dataset.for, btn.dataset.v)
+  }))
+  function setView(id, v) { const st = document.getElementById(id); st.classList.toggle('show-after', v === 'after'); st.classList.toggle('show-both', v === 'both') }
+
+  // ---- the data paths each notepad reads
+  const flow = document.getElementById('flow')
+  document.querySelectorAll('[data-focus]').forEach((btn) => btn.onclick = () => {
+    const f = btn.dataset.focus
+    flow.classList.toggle('focus', !!f)
+    flow.querySelectorAll('.node').forEach((n) => n.classList.toggle('hot', !!f && n.classList.contains(f)))
+  })
+
+  // ---- DialKit: the values tuned by feel (type size, tracking, spacing, grid, colour, motion) and the two views
+  const root = DialKit.createDialRoot()
+  var kit = DialKit.createDialKit('Plan page', {
+    type: [16, 13, 20, 0.5], tracking: [-0.025, -0.06, 0.02, 0.005], spacing: [72, 32, 140, 2], grid: [3, 1, 4, 1],
+    accent: { type: 'select', options: ['pickle green', 'blicky blue', 'ink'], default: 'pickle green' },
+    motion: [220, 0, 900, 10],
+    beat: { type: 'select', options: BEATS.map((b) => b.n), default: 'B9' },
+    view: { type: 'select', options: ['today', 'after', 'side by side'], default: 'today' },
+  })
+  kit.subscribe((v) => {
+    const r = document.documentElement.style
+    r.setProperty('--base', v.type + 'px'); r.setProperty('--track', v.tracking + 'em'); r.setProperty('--gap', v.spacing + 'px')
+    r.setProperty('--cols', v.grid); r.setProperty('--motion', v.motion + 'ms')
+    r.setProperty('--accent', v.accent === 'blicky blue' ? 'var(--sky-700)' : v.accent === 'ink' ? 'var(--ink)' : 'var(--forest-700)')
+    const i = BEATS.findIndex((b) => b.n === v.beat); if (i >= 0) show(i)
+    const view = v.view === 'after' ? 'after' : v.view === 'side by side' ? 'both' : 'before'
+    ;['s1', 's2'].forEach((id) => { setView(id, view); document.querySelectorAll(`.ba[data-for="${id}"] button`).forEach((x) => x.classList.toggle('on', x.dataset.v === view)) })
+  })
+</script>
+</body>
+</html>

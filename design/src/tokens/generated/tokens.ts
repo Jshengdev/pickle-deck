@@ -1051,6 +1051,15 @@ export const tokens = {
         0.0042,
         84.5908
       ]
+    },
+    "page": {
+      "oklch": "oklch(100.0% 0.000 89.9)",
+      "hex": "#FFFFFF",
+      "lch": [
+        1,
+        0,
+        89.8756
+      ]
     }
   },
   "semantic": {
@@ -1103,6 +1112,21 @@ export const tokens = {
       "ref": "night",
       "oklch": "oklch(19.6% 0.004 84.6)",
       "hex": "#161513"
+    },
+    "surface-page": {
+      "ref": "page",
+      "oklch": "oklch(100.0% 0.000 89.9)",
+      "hex": "#FFFFFF"
+    },
+    "blicky-ink": {
+      "ref": "sky-700",
+      "oklch": "oklch(46.0% 0.118 257.6)",
+      "hex": "#295798"
+    },
+    "pickle-ink": {
+      "ref": "forest-700",
+      "oklch": "oklch(46.0% 0.094 142.2)",
+      "hex": "#366532"
     },
     "ink": {
       "ref": "silver-950",

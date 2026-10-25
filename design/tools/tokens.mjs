@@ -29,7 +29,7 @@ const SOURCE = {
     ember:  { note: 'cheek red (a face) and stop red (stuck, nothing else)', hueLight: 30, hueDark: 20, chroma: 0.22, peak: 0.5, anchors: { 500: '#EE3445', 600: '#D8202F' } },
   },
   // Exact single colours from his s07 that are not on a ramp.
-  fixed: { night: '#161513' },
+  fixed: { night: '#161513', page: '#FFFFFF' },
   // Semantic roles: code uses THESE, never a raw palette step (see STYLE.md).
   semantic: {
     'surface-ground': 'silver-100',   // the clean metal-white the whole product sits on (no paper, no beige)
@@ -42,6 +42,9 @@ const SOURCE = {
     'surface-felt-sky': 'sky-500',    // sky felt: "the sky blue one just feels really good"
     'surface-felt-neutral': 'silver-300', // grey felt, when colour would compete
     'surface-night': 'night',         // the title card (s07)
+    'surface-page': 'page',           // the notepad's page: straight white (his words 2026-10-24: "remove the metalness, make it just straight white")
+    'blicky-ink': 'sky-700',          // Blicky writing to you, in blue (7.3:1 on white)
+    'pickle-ink': 'forest-700',       // the Pickle mode's writing
     'ink': 'silver-950',              // text, outlines, the cast's marker line, the eyes
     'text-secondary': 'silver-800',   // body sentences: 8.7:1 on the ground (no light grey text, sign #16)
     'text-muted': 'silver-700',       // captions only: 5.9:1 on the ground; on felt use ink or text-secondary

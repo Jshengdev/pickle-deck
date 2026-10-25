@@ -31,6 +31,8 @@ is linked, and "merged" only after its join's check ran.
 | C11 | North star, desk, next step | L6 | works alone | `node app/desk/test/check.ts`: 4/5 pass (sign-check 9/10); `node app/desk/cli.ts onboard` is interactive | 10-24 01:39 |
 | C12 | Sandbox debugger | L7 | works alone | `app/sandbox/run.ts ears --n 12`: fresh cases each run, 6–11/12 pass; report.html | 10-23 23:44 |
 | J1 | Join: Talk (shake, say, hear a reply) | join | building | part 1: talk server in `app/service/`; part 2: shell wiring after the marks lane | 10-24 01:14 |
-| C13 | Onboarding flow | join | not started | | |
+| C13 | Onboarding flow | join | building | OB0–OB4 checked by him; OB5, OB6, OB7 wait on his check (OB7 built 10-24 morning); `docs/nap/storyboard.html` (20 beats, `tools/storyboard.mjs`) | 10-24 05:41 |
+| C19 | The cast, alive (blink, breath, listening eyes, cheer; Blicky's gaze and giggle) | onboarding | works alone | `docs/nap/cast-life-sheet.png` (`pickje --life-sheet`); PICKLE_CHEER and BLICKY_GIGGLE fired in the app | 10-24 05:09 |
+| C20 | Sound: three opening stings and four cues | onboarding | works alone | not heard yet (nothing played out loud); `node app/sound/check.mjs` all pass; a muted run logged all five cues at their moments | 10-24 05:17 |
 | C15 | Session layer: .pickje/ in each repo, bg sessions, cmux | L6 | works alone | `app/service/`: handover 7.1 s round trip on a stand-in; new repos need one manual `claude` run (trust) | 10-23 23:45 |
 | C16 | Voice bake-off | L2 | cut | his pick 23:47: "Cartesia, decided" | 10-23 23:47 |
